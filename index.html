@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111b21" id="meta-tema">
+<title>Acompañamiento</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+html{font-size:115%}
+:root{
+  --bg:#111b21;--card:#202c33;--card2:#2a3942;--borde:#374850;
+  --txt:#e9edef;--txt2:#8696a0;
+  --header:#202c33;--avb:#111b21;--overlay:rgba(0,0,0,.75);--placeholder:#8696a0;
+  --azul:#00a884;--verde:#22c55e;--amarillo:#f59e0b;--rojo:#ef4444;--wa:#00a884;
+  --accent:#00a884;--accent2:#06cf9c;
+  --grad:linear-gradient(135deg,#00a884,#008069);
+  --sombra:0 4px 14px rgba(0,0,0,.45);
+}
+body.claro{
+  --bg:#eae6df;--card:#ffffff;--card2:#f0f2f5;--borde:#d9dbdb;
+  --txt:#111b21;--txt2:#4a5b64;
+  --header:#075e54;--avb:#ffffff;--overlay:rgba(0,0,0,.55);--placeholder:#8696a0;
+  --accent:#047857;--accent2:#008069;
+  --sombra:0 3px 10px rgba(0,0,0,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{background:var(--bg);color:var(--txt);min-height:100vh}
+button{cursor:pointer;border:none;font:inherit}
+input,textarea,select{width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;font:inherit;background:var(--card2);color:var(--txt);margin-bottom:10px}
+input::placeholder,textarea::placeholder{color:var(--placeholder)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
+.btn{display:block;width:100%;padding:13px;border-radius:10px;font-weight:600;text-align:center}
+.btn.primary{background:var(--grad);color:#fff}
+.btn.link{background:none;color:var(--accent);margin-top:6px}
+.link-pass{background:none;border:none;color:var(--accent);font-size:.88rem;margin-top:8px;text-decoration:underline}
+.msg{color:#f15c6d;font-size:.9rem;min-height:1.2em;margin-top:8px;text-align:center}
+#view-login{display:flex;align-items:center;justify-content:center;padding:16px;min-height:100vh}
+.card{background:var(--card);border:1px solid var(--borde);border-radius:16px;padding:28px 22px;width:100%;max-width:400px;text-align:center;box-shadow:var(--sombra)}
+.card h1{font-family:Georgia,'Times New Roman',serif;font-size:1.7rem;margin-bottom:4px;color:var(--accent)}
+.card .sub{color:var(--txt2);margin-bottom:6px;font-size:.95rem}
+.card .verso{font-style:italic;color:var(--txt2);font-size:.85rem;margin-bottom:20px}
+.card .verso b{color:var(--accent);font-style:normal}
+#view-app{max-width:520px;margin:0 auto;padding:0 12px 16px}
+header{position:sticky;top:0;background:var(--header);backdrop-filter:blur(10px);padding:14px 14px 10px;display:flex;justify-content:space-between;align-items:center;z-index:5;border-bottom:2px solid rgba(255,255,255,.25);margin:0 -12px 10px}
+header h1{font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;color:#fff}
+header .quien{font-size:.75rem;color:rgba(255,255,255,.85)}
+header .hb{display:flex;gap:8px}
+#btn-ayuda,#btn-disc,#btn-reporte,#btn-salir{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);color:#fff;padding:7px 12px;border-radius:8px;font-size:.85rem}
+.verso-hoy{background:var(--card);border:1px solid var(--borde);border-left:3px solid var(--accent);border-radius:12px;padding:10px 14px;margin-bottom:10px;font-style:italic;font-size:.88rem;color:var(--txt2)}
+.verso-hoy b{color:var(--accent);font-style:normal}
+.nota-priv{background:rgba(0,168,132,.12);border:1px solid var(--borde);border-radius:10px;padding:8px 12px;font-size:.8rem;color:var(--txt2);margin-bottom:8px}
+.meta-tarea{background:var(--card);border:1px solid var(--borde);border-radius:12px;padding:10px 14px;margin-bottom:10px;font-size:.92rem;display:flex;align-items:center;gap:8px}
+.meta-tarea b{color:var(--accent)}
+.aviso-ficha{background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.45);border-radius:10px;padding:8px 12px;font-size:.82rem;color:var(--amarillo);margin-bottom:10px}
+body.claro .aviso-ficha{color:#8a5200;background:rgba(245,158,11,.18)}
+.tabs{display:flex;gap:4px;margin-bottom:10px}
+.tab{flex:1;padding:12px;background:none;color:var(--txt2);font-weight:600;border-bottom:2px solid transparent;border-radius:0}
+.tab.active{color:var(--accent);border-bottom:2px solid var(--accent)}
+.toolbar{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.chips{display:flex;gap:8px}
+.chip{flex:1;padding:8px;border-radius:999px;background:var(--card);border:1px solid var(--borde);font-weight:600;font-size:.88rem;color:var(--txt2)}
+.chip.active{background:var(--accent);border-color:transparent;color:#fff}
+.cump-box{background:var(--card);border:1px solid var(--borde);border-left:3px solid var(--accent);border-radius:14px;padding:12px 14px;margin:8px 0 10px}
+.cump-titulo{font-weight:800;font-size:.85rem;color:var(--accent);margin-bottom:8px}
+.cump-lista{display:flex;gap:8px;flex-wrap:wrap}
+.cump{background:var(--card2);border:1px solid var(--borde);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer}
+.cump:active{transform:scale(.97)}
+.cump.pasado{opacity:.35}
+.cump.hoy{background:#fde047;border-color:#fde047;color:#713f12}
+ul#lista,ul#lista-visitas{list-style:none;display:flex;flex-direction:column;gap:6px;padding-bottom:90px}
+li.persona{background:var(--card);border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:12px;box-shadow:var(--sombra)}
+.avw{width:54px;height:54px;border-radius:50%;padding:2.5px;background:var(--borde);flex-shrink:0}
+.avw.rojo{background:linear-gradient(135deg,#8b2626,#e05252)}
+.avw.amarillo{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.avw.verde{background:#0b7a55}
+.avw.grande{width:92px;height:92px;margin:0 auto}
+.avw.grande .av{font-size:2rem}
+.avw.icn{width:46px;height:46px}
+.av{width:100%;height:100%;border-radius:50%;background:var(--card2);color:var(--txt);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;border:2.5px solid var(--avb);overflow:hidden}
+li .info{flex:1;min-width:0}
+li .nombre{font-weight:600;font-size:.95rem}
+li .meta{font-size:.8rem;color:var(--txt2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gch{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.66rem;font-weight:700;margin-left:8px;vertical-align:2px}
+.gch.ausente{background:rgba(239,68,68,.18);color:#ef4444}
+body:not(.claro) .gch.ausente{color:#f28b8b}
+.gch.silencioso{background:rgba(245,158,11,.18);color:#b45309}
+body:not(.claro) .gch.silencioso{color:#fbbf24}
+.cch{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--borde);font-size:.75rem;font-weight:600;color:var(--txt);margin:2px 2px}
+.fgrupo{font-weight:800;font-size:.78rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.4px;margin:12px 4px 4px}
+.fgrupo.atras{color:#ef4444}
+body:not(.claro) .fgrupo.atras{color:#f28b8b}
+.vch{display:inline-block;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0}
+.fab{position:fixed;bottom:80px;right:22px;width:56px;height:56px;border-radius:50%;background:var(--grad);color:#fff;font-size:1.7rem;box-shadow:0 6px 18px rgba(0,128,105,.5);z-index:6;display:flex;align-items:center;justify-content:center}
+#btn-tema{position:fixed;bottom:22px;left:22px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--borde);color:var(--txt);font-size:1.15rem;z-index:7;display:flex;align-items:center;justify-content:center;box-shadow:var(--sombra)}
+.modal{position:fixed;inset:0;background:var(--overlay);display:flex;align-items:flex-end;justify-content:center;z-index:10}
+.modal .hoja{background:var(--card);border-top:3px solid var(--accent);width:100%;max-width:520px;max-height:92vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:20px 18px 30px}
+@media(min-width:560px){.modal{align-items:center}.modal .hoja{border-radius:18px;border:1px solid var(--borde)}}
+.modal .hoja>p{color:var(--txt)}
+.cerrar{position:sticky;top:0;float:right;background:var(--card2);color:var(--txt);width:34px;height:34px;border-radius:50%;font-size:1rem}
+.det-nombre{font-size:1.3rem;margin:6px 0 2px;font-weight:700}
+.estado-chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:.78rem;font-weight:700;color:#fff;margin-bottom:12px}
+.estado-chip.verde{background:#0b7a55}.estado-chip.amarillo{background:#b45309}.estado-chip.rojo{background:#b03a3a}
+.acciones{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}
+.btn-wa{background:var(--wa);color:#fff;flex:1;min-width:140px;padding:13px;border-radius:10px;font-weight:700;text-decoration:none;text-align:center}
+.btn-llamar{background:transparent;color:var(--txt);flex:1;min-width:140px;padding:12px;border-radius:10px;font-weight:700;text-decoration:none;text-align:center;border:1px solid var(--borde)}
+.btn-acc{flex:1;min-width:140px;padding:12px;border-radius:10px;font-weight:700;background:var(--card2);color:var(--txt)}
+.btn-acc.verde{background:rgba(0,168,132,.15);color:var(--accent)}
+body:not(.claro) .btn-acc.verde{color:#06cf9c}
+.btn-acc.naranja{background:rgba(245,158,11,.15);color:#b45309}
+body:not(.claro) .btn-acc.naranja{color:#fbbf24}
+.btn-acc.azul{background:rgba(0,168,132,.12);color:var(--accent)}
+body:not(.claro) .btn-acc.azul{color:#06cf9c}
+.btn-acc.rojo{background:rgba(239,68,68,.15);color:#ef4444}
+body:not(.claro) .btn-acc.rojo{color:#f28b8b}
+.fila{display:flex;gap:8px;font-size:.93rem;margin:6px 0;flex-wrap:wrap}
+.fila .k{color:var(--txt2);flex-shrink:0}
+h3.secc{margin:18px 0 8px;color:var(--accent);text-transform:uppercase;letter-spacing:.4px;font-size:.78rem}
+.tipos{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.tipo{flex:1;min-width:100px;padding:9px;border-radius:10px;background:var(--card2);color:var(--txt);font-weight:600;font-size:.82rem}
+.tipo.active{background:var(--accent);color:#fff}
+.historia{list-style:none;margin-top:4px}
+.historia li{background:var(--card2);border-radius:10px;padding:10px 12px;margin-bottom:6px;font-size:.88rem}
+.historia .fecha{color:var(--txt2);font-size:.76rem}
+.btn-danger{background:rgba(239,68,68,.15);color:#ef4444;margin-top:16px}
+body:not(.claro) .btn-danger{color:#f28b8b}
+.btn-secondary{background:var(--card2);color:var(--txt)}
+.cal{background:var(--card);border:1px solid var(--borde);border-radius:14px;padding:12px;margin-bottom:10px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cal-head b{font-size:.95rem;text-transform:capitalize}
+.cal-nav{background:var(--card2);color:var(--txt);width:32px;height:32px;border-radius:8px;font-weight:700}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal-dow{font-size:.66rem;color:var(--txt2);font-weight:700;padding:4px 0}
+.cal-d{padding:4px 2px;min-height:52px;display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:8px;position:relative}
+.cal-d .num{font-size:.76rem}
+.cal-d.hoy{background:var(--card2);font-weight:700}
+.cal-d.sel{background:var(--accent);color:#fff;font-weight:700}
+.cal-d.vacio{visibility:hidden}
+.cal-pill{display:block;max-width:100%;font-size:.55rem;font-weight:700;line-height:1.3;padding:2px 4px;border-radius:5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-mas{font-size:.58rem;font-weight:700;color:var(--txt2)}
+.resumen-hoy{background:var(--card);border:1px solid var(--borde);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.92rem}
+.resumen-hoy b{color:var(--accent)}
+.rep-res{background:var(--card2);border-radius:12px;padding:12px;margin-top:6px;font-size:.9rem}
+.rep-res div{display:flex;justify-content:space-between;padding:4px 0}
+.rep-res b{color:var(--accent)}
+#modal-ayuda .ayuda-paso{background:var(--card2);border-radius:10px;padding:12px;margin-bottom:10px;font-size:.92rem}
+#modal-ayuda .ayuda-paso b{color:var(--accent)}
+.caso{background:var(--card2);border-radius:10px;padding:12px;margin-bottom:8px}
+.caso .cs-nombre{font-weight:700;font-size:.95rem}
+.caso .cs-meta{font-size:.8rem;color:var(--txt2);margin:2px 0}
+.cs-vence{font-size:.8rem;font-weight:700;color:var(--accent);margin:4px 0}
+.cs-vence.atras{color:var(--amarillo)}
+body.claro .cs-vence.atras{color:#8a5200}
+.cs-btns{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.cs-btns a,.cs-btns button{flex:1;min-width:120px;padding:9px;border-radius:8px;font-weight:600;font-size:.82rem;text-decoration:none;text-align:center;border:none;cursor:pointer}
+.cs-wa{background:var(--wa);color:#fff}
+.cs-nota{background:var(--card);color:var(--txt);border:1px solid var(--borde)}
+.paso-chk{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;font-size:.88rem}
+.paso-chk input{width:auto;margin-top:2px;margin-bottom:0}
+.guia-item{background:var(--card2);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.88rem}
+.guia-item b{color:var(--accent)}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);color:var(--txt);border:1px solid var(--accent);padding:10px 18px;border-radius:999px;font-size:.9rem;opacity:0;transition:.3s;pointer-events:none;z-index:20}
+#toast.show{opacity:1}
+.oculto{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- ====== LOGIN ====== -->
+<div id="view-login">
+  <div class="card">
+    <h1>✝ Acompañamiento</h1>
+    <p class="sub">"Nadie solo, todos cuidados"</p>
+    <p class="verso">"Id por todo el mundo y predicad el evangelio a toda criatura" — <b>Mc 16:15</b></p>
+    <div id="login-form">
+      <input id="login-email" type="email" placeholder="Correo electrónico" autocomplete="email">
+      <input id="login-pass" type="password" placeholder="Contraseña" autocomplete="current-password">
+      <button id="btn-login" class="btn primary">Entrar</button>
+      <button id="btn-forgot" class="link-pass">¿Olvidaste tu contraseña?</button>
+      <button id="go-reg" class="btn link">Primera vez · Crear cuenta</button>
+    </div>
+    <div id="reg-form" class="oculto">
+      <input id="reg-nombre" placeholder="Tu nombre y apellido">
+      <input id="reg-email" type="email" placeholder="Correo electrónico">
+      <input id="reg-pass" type="password" placeholder="Contraseña (mínimo 6 caracteres)">
+      <input id="reg-codigo" placeholder="Código de invitación">
+      <button id="btn-reg" class="btn primary">Crear mi cuenta</button>
+      <button id="go-login" class="btn link">Ya tengo cuenta · Entrar</button>
+    </div>
+    <p id="auth-msg" class="msg"></p>
+  </div>
+</div>
+
+<!-- ====== APP PRINCIPAL ====== -->
+<div id="view-app" class="oculto">
+  <header>
+    <div><h1>✝ Acompañamiento</h1><div class="quien" id="user-name"></div></div>
+    <div class="hb">
+      <button id="btn-ayuda" class="btn-ayuda">❓</button>
+      <button id="btn-disc" class="btn-disc">⚖️</button>
+      <button id="btn-reporte">📄</button>
+      <button id="btn-salir">Salir</button>
+    </div>
+  </header>
+
+  <div class="verso-hoy" id="verso-hoy"></div>
+
+  <div class="tabs">
+    <button id="tab-personas" class="tab active">👥 Personas</button>
+    <button id="tab-agenda" class="tab">📅 Agenda</button>
+  </div>
+
+  <div id="pane-personas">
+    <div class="toolbar">
+      <input id="buscar" placeholder="🔍 Buscar por nombre…">
+      <div class="chips">
+        <button class="chip active" data-filtro="todos">Todos</button>
+        <button class="chip" data-filtro="mias">Mis asignadas</button>
+        <button class="chip" data-filtro="atencion" id="chip-atencion">⚠️ Atención</button>
+      </div>
+    </div>
+    <div id="meta-tarea" class="meta-tarea"></div>
+    <div id="nota-priv" class="nota-priv oculto"></div>
+    <div id="cumples"></div>
+    <ul id="lista"></ul>
+  </div>
+
+  <div id="pane-agenda" class="oculto">
+    <div class="cal">
+      <div class="cal-head">
+        <button id="cal-prev" class="cal-nav">‹</button>
+        <b id="cal-titulo"></b>
+        <button id="cal-next" class="cal-nav">›</button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+    <div class="resumen-hoy">
+      <span id="resumen-txt"></span>
+      <button id="btn-ver-todas" class="chip" style="padding:6px 12px;flex:0 0 auto">Ver próximas</button>
+    </div>
+    <ul id="lista-visitas"></ul>
+  </div>
+
+  <button id="btn-agregar" class="fab" title="Agregar">＋</button>
+</div>
+
+<!-- ====== AYUDA ====== -->
+<div id="modal-ayuda" class="modal oculto">
+  <div class="hoja">
+    <button id="ayuda-cerrar" class="cerrar">✕</button>
+    <div class="det-nombre">❓ ¿Qué hago hoy?</div>
+    <div class="ayuda-paso"><b>1. Mirá tu lista</b><br>Arriba de todo están las personas más urgentes (círculo con borde rojo o naranja). Empezá por ahí.</div>
+    <div class="ayuda-paso"><b>2. Tocá la persona</b><br>Se abre su ficha con su teléfono, dirección y toda su información.</div>
+    <div class="ayuda-paso"><b>3. Contactala</b><br>Tocá 💬 WhatsApp (el mensaje ya sale escrito, solo enviá) o 📞 Llamar.</div>
+    <div class="ayuda-paso"><b>4. LO MÁS IMPORTANTE ⚠️</b><br>Cuando termines de hablar, volvé a la app y tocá <b>✅ Guardar contacto</b>. Si no lo guardás, queda como que nadie la llamó.</div>
+    <div class="ayuda-paso"><b>5. ¿Necesita una visita en casa?</b><br>Tocá 🏠 Agendar visita y coordiná con los mensajes ya escritos.</div>
+    <div class="ayuda-paso"><b>6. Disciplina ⚖️ (solo ancianos)</b><br>Botón ⚖️: registra casos de censura, remoción o desaparición con la guía del Manual de la Iglesia (cap. 8) y Mateo 18. Solo los ancianos de iglesia lo usan.</div>
+    <div class="ayuda-paso"><b>💡 Otros datos útiles</b><br>• El versículo cambia cada día<br>• 🎂 Si la persona cumple años, el botón se convierte en "Felicitar"<br>• ☀️/🌙 (abajo a la izquierda) cambia los colores<br>• ⚠️ Atención muestra a los alejados y apartados</div>
+    <div class="ayuda-paso">🙏 <i>"Nadie solo, todos cuidados"</i></div>
+  </div>
+</div>
+
+<!-- ====== DISCIPLINA (Manual de la Iglesia, cap. 8) ====== -->
+<div id="modal-disc" class="modal oculto">
+  <div class="hoja">
+    <button id="disc-cerrar" class="cerrar">✕</button>
+    <div class="det-nombre">⚖️ Disciplina</div>
+    <p style="font-size:.8rem;color:var(--txt2);margin-bottom:10px">Basado en el capítulo 8 del <i>Manual de la Iglesia</i> y Mateo 18. Actitud siempre: <b>ayudar y salvar</b> (Efe. 5:25-30). Debe ser registrada por voto de la iglesia en reunión administrativa, presidida por el pastor o un anciano ordenado (p. 82-83).</p>
+    <div class="acciones">
+      <button id="btn-nuevo-caso" class="btn-acc verde">➕ Nuevo caso</button>
+      <button id="btn-ver-guia" class="btn-acc azul">📖 Guía del proceso</button>
+    </div>
+    <h3 class="secc">Casos activos</h3>
+    <div id="disc-lista"></div>
+    <div id="disc-form" class="oculto">
+      <h3 class="secc">Registrar caso (por voto de la iglesia)</h3>
+      <select id="dc-persona"></select>
+      <label style="font-size:.85rem;color:var(--txt2)">Medida tomada</label>
+      <select id="dc-tipo">
+        <option value="censura">⚖️ Censura (1 a 12 meses)</option>
+        <option value="remocion">🔴 Remoción de la feligresía</option>
+        <option value="desaparicion">🔇 Desaparición (paradero desconocido)</option>
+      </select>
+      <label style="font-size:.85rem;color:var(--txt2)">Razón (Manual, pp. 79-80)</label>
+      <select id="dc-motivo"></select>
+      <div style="display:flex;gap:8px">
+        <div style="flex:2"><label style="font-size:.85rem;color:var(--txt2)">Fecha del voto</label><input id="dc-fecha" type="date"></div>
+        <div style="flex:1" id="dc-dur-box"><label style="font-size:.85rem;color:var(--txt2)">Meses</label><input id="dc-dur" type="number" min="1" max="12" value="6"></div>
+      </div>
+      <label style="font-size:.85rem;color:var(--txt2)">Pasos previos (Mateo 18 + Manual) — marcar los cumplidos</label>
+      <div id="dc-pasos"></div>
+      <textarea id="dc-nota" rows="2" placeholder="Notas del caso (confidenciales)"></textarea>
+      <button id="dc-guardar" class="btn primary">💾 Guardar caso</button>
+      <p style="font-size:.78rem;color:var(--txt2);margin-top:6px">El caso se registra también automáticamente en la Historia de vida de la persona.</p>
+    </div>
+    <div id="disc-guia" class="oculto">
+      <h3 class="secc">Guía del proceso (Manual, cap. 8)</h3>
+      <div class="guia-item"><b>1. Espíritu</b> — Disciplinar siempre es para ayudar y salvar, nunca para destruir (Efe. 5:25-30).</div>
+      <div class="guia-item"><b>2. Mateo 18:15-17, en orden</b> — a) hablar entre vos y él solo; b) con uno o dos testigos; c) presentarlo a la iglesia. Ningún paso antes de los anteriores.</div>
+      <div class="guia-item"><b>3. Junta directiva</b> — Revisa el caso y solo puede RECOMENDAR. No puede remover miembros por sí misma (p. 82).</div>
+      <div class="guia-item"><b>4. Reunión administrativa</b> — Debidamente convocada, presidida por el pastor o, en su ausencia, por un anciano ordenado de común acuerdo con la asociación (p. 82-83). Voto de la mayoría presente.</div>
+      <div class="guia-item"><b>5. Derechos del miembro</b> — Notificación escrita al menos 2 semanas antes, con las razones; derecho a ser oído, a presentar pruebas y testigos (p. 83). No puede traer abogado (p. 83).</div>
+      <div class="guia-item"><b>6. Medidas</b> — Censura (1-12 meses): pierde cargos y voz/voto, conserva los cultos y la Cena del Señor. Remoción: medida extrema, solo tras agotar todo y consultar a la asociación (p. 80-81).</div>
+      <div class="guia-item"><b>7. Fin de censura</b> — Si la conducta fue satisfactoria, queda en plena comunión sin nuevo voto; se le notifica (p. 81).</div>
+      <div class="guia-item"><b>8. Después de la remoción</b> — Notificar con pesar, en lo posible en persona; mantener contacto y espíritu de amistad (p. 85). Readmisión: arrepentimiento + pruebas de cambio, normalmente con rebautismo; consultar a la asociación (p. 85-86).</div>
+      <div class="guia-item"><b>9. NO remover por</b> — falta de asistencia ni razones pecuniarias (p. 84). Paradero desconocido: tras esfuerzos certificados, se vota designarlo «desaparecido» (p. 84; DSA: 1 año).</div>
+      <div class="guia-item"><b>10. Apelación</b> — Por escrito a la iglesia; luego a la junta directiva de la asociación (p. 86).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== MODAL REPORTE ====== -->
+<div id="modal-reporte" class="modal oculto">
+  <div class="hoja">
+    <button id="rep-cerrar" class="cerrar">✕</button>
+    <div class="det-nombre">📄 Reporte mensual</div>
+    <div style="display:flex;gap:8px">
+      <div style="flex:2">
+        <label style="font-size:.85rem;color:var(--txt2)">Mes</label>
+        <select id="rep-mes">
+          <option value="1">Enero</option><option value="2">Febrero</option>
+          <option value="3">Marzo</option><option value="4">Abril</option>
+          <option value="5">Mayo</option><option value="6">Junio</option>
+          <option value="7">Julio</option><option value="8">Agosto</option>
+          <option value="9">Septiembre</option><option value="10">Octubre</option>
+          <option value="11">Noviembre</option><option value="12">Diciembre</option>
+        </select>
+      </div>
+      <div style="flex:1">
+        <label style="font-size:.85rem;color:var(--txt2)">Año</label>
+        <select id="rep-anio"></select>
+      </div>
+    </div>
+    <div class="rep-res" id="rep-resumen"></div>
+    <button id="btn-generar-pdf" class="btn primary" style="margin-top:12px">⬇️ Generar PDF</button>
+    <p style="font-size:.8rem;color:var(--txt2);margin-top:8px;text-align:center">El PDF se descarga en tu teléfono y podés compartirlo por WhatsApp.</p>
+    <button id="btn-recalcular" class="btn btn-secondary" style="margin-top:10px">🔧 Recalcular semáforos (una sola vez)</button>
+  </div>
+</div>
+
+<!-- ====== DETALLE DE PERSONA ====== -->
+<div id="modal-detalle" class="modal oculto">
+  <div class="hoja">
+    <button id="det-cerrar" class="cerrar">✕</button>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:8px">
+      <div class="avw grande" id="det-avw"><div class="av" id="det-av">?</div></div>
+      <div class="det-nombre" id="det-nombre" style="text-align:center"></div>
+      <span id="det-estado" class="estado-chip"></span>
+    </div>
+    <div class="acciones">
+      <a id="det-wa" class="btn-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a id="det-llamar" class="btn-llamar">📞 <span id="det-tel-txt"></span></a>
+    </div>
+    <button id="btn-tomar" class="btn btn-secondary oculto" style="margin-bottom:10px">🙋 Hacerme cargo del seguimiento</button>
+    <button id="btn-agendar-visita" class="btn btn-secondary" style="margin-bottom:10px">🏠 Agendar visita a esta persona</button>
+    <div class="fila"><span class="k">✝️</span><span id="det-miembro"></span></div>
+    <div class="fila"><span class="k">🕊️</span><span id="det-bautismo"></span></div>
+    <div class="fila"><span class="k">🏷️</span><span id="det-caracter"></span></div>
+    <div class="fila"><span class="k">👨‍👩‍👧</span><span id="det-familia"></span></div>
+    <div class="fila"><span class="k">🏠</span><span id="det-direccion"></span></div>
+    <div class="fila"><span class="k">🎂</span><span id="det-cumple"></span></div>
+    <div class="fila"><span class="k">👤</span><span id="det-cuidador"></span></div>
+    <h3 class="secc">Historia de vida</h3>
+    <ul class="historia" id="det-vida"></ul>
+    <button id="btn-agregar-vida" class="btn btn-secondary" style="margin-top:8px">➕ Agregar nota a la historia</button>
+    <div id="vida-form" class="oculto" style="margin-top:10px">
+      <label style="font-size:.85rem;color:var(--txt2)">Fecha del hecho</label>
+      <input id="vida-fecha" type="date">
+      <textarea id="vida-texto" rows="2" placeholder="Qué sucedió: bautismo, reinstauración, cargo, ministerio, mudanza…"></textarea>
+      <button id="btn-guardar-vida" class="btn primary">💾 Guardar nota de historia</button>
+    </div>
+    <h3 class="secc">Registrar contacto</h3>
+    <div class="tipos">
+      <button class="tipo" data-tipo="llamada">📞 Llamada</button>
+      <button class="tipo" data-tipo="mensaje">💬 Mensaje</button>
+      <button class="tipo" data-tipo="visita">🏠 Visita</button>
+    </div>
+    <textarea id="det-nota" rows="2" placeholder="Nota (opcional): ¿cómo está? ¿qué pidió?"></textarea>
+    <button id="btn-guardar-contacto" class="btn primary">✅ Guardar contacto</button>
+    <h3 class="secc" id="det-historial-titulo">Historial de contactos</h3>
+    <ul class="historia" id="det-historial"></ul>
+    <button id="btn-editar-ficha" class="btn btn-secondary" style="margin-top:14px">✏️ Editar ficha</button>
+  </div>
+</div>
+
+<!-- ====== FORMULARIO PERSONA ====== -->
+<div id="modal-form" class="modal oculto">
+  <div class="hoja">
+    <button id="f-cerrar" class="cerrar">✕</button>
+    <div class="det-nombre" id="form-titulo">Agregar persona</div>
+    <input id="f-nombre" placeholder="Nombre y apellido *">
+    <input id="f-telefono" type="tel" placeholder="WhatsApp / teléfono *">
+    <input id="f-direccion" placeholder="Dirección (para visitas)">
+    <select id="f-cuidador"></select>
+    <label style="font-size:.85rem;color:var(--txt2)">Condición en la iglesia</label>
+    <select id="f-miembro">
+      <option value="">— Sin dato —</option>
+      <option value="activo">🟢 Activo · miembro activo</option>
+      <option value="frecuente">🟩 Frecuente · viene regularmente</option>
+      <option value="visitante">🔵 Visitante · aún no es miembro</option>
+      <option value="alejado">🟡 Alejado · hace tiempo que no viene</option>
+      <option value="apartado">🔴 Apartado · en disciplina</option>
+      <option value="censura">⚖️ Bajo censura · período de prueba</option>
+      <option value="desaparecido">🔇 Desaparecido · paradero desconocido</option>
+    </select>
+    <label style="font-size:.85rem;color:var(--txt2)">Fecha de bautismo</label>
+    <input id="f-bautismo" type="date">
+    <label style="font-size:.85rem;color:var(--txt2)">Carácter (tocá para marcar o desmarcar)</label>
+    <div id="f-caracter" class="tipos"></div>
+    <label style="font-size:.85rem;color:var(--txt2)">Familia</label>
+    <textarea id="f-familia" rows="2" placeholder="Casado con…, hijos…, vive con…"></textarea>
+    <label style="font-size:.85rem;color:var(--txt2)">Cumpleaños</label>
+    <input id="f-cumple" type="date">
+    <textarea id="f-notas" rows="3" placeholder="Notas rápidas: pedidos de oración, salud, trabajo…"></textarea>
+    <button id="btn-guardar-persona" class="btn primary">💾 Guardar</button>
+    <button id="btn-eliminar-persona" class="btn btn-danger oculto">🗑 Eliminar persona</button>
+  </div>
+</div>
+
+<!-- ====== FORMULARIO VISITA ====== -->
+<div id="modal-visita-form" class="modal oculto">
+  <div class="hoja">
+    <button id="vf-cerrar" class="cerrar">✕</button>
+    <div class="det-nombre" id="vf-titulo">Agendar visita</div>
+    <select id="vf-persona"></select>
+    <label style="font-size:.85rem;color:var(--txt2)">Motivo de la visita</label>
+    <div class="tipos" id="vf-tipos"></div>
+    <div style="display:flex;gap:8px">
+      <div style="flex:2"><label style="font-size:.85rem;color:var(--txt2)">Fecha</label><input id="vf-fecha" type="date"></div>
+      <div style="flex:1"><label style="font-size:.85rem;color:var(--txt2)">Hora</label><input id="vf-hora" type="time"></div>
+    </div>
+    <label style="font-size:.85rem;color:var(--txt2)">Quién visita</label>
+    <select id="vf-responsable"></select>
+    <textarea id="vf-nota" rows="2" placeholder="Nota: qué necesita, con quién vive, referencias…"></textarea>
+    <button id="btn-guardar-visita" class="btn primary">💾 Agendar visita</button>
+  </div>
+</div>
+
+<!-- ====== DETALLE DE VISITA ====== -->
+<div id="modal-visita" class="modal oculto">
+  <div class="hoja">
+    <button id="v-cerrar" class="cerrar">✕</button>
+    <div class="det-nombre" id="v-titulo"></div>
+    <span id="v-estado" class="estado-chip"></span>
+    <div class="fila"><span class="k">🙏</span><span id="v-tipo"></span></div>
+    <div class="fila"><span class="k">📅</span><span id="v-cuando"></span></div>
+    <div class="fila"><span class="k">🏠</span><span id="v-dir"></span></div>
+    <div class="fila"><span class="k">👤</span><span id="v-resp"></span></div>
+    <div class="fila"><span class="k">📝</span><span id="v-nota"></span></div>
+    <div class="fila oculto" id="v-informe-row"><span class="k">✅</span><span id="v-informe-txt"></span></div>
+    <div class="acciones" id="v-acciones"></div>
+    <div id="v-informe-box" class="oculto">
+      <h3 class="secc">Informe de la visita</h3>
+      <textarea id="v-informe" rows="3" placeholder="¿Cómo fue? ¿qué compartieron? ¿pedidos de oración?"></textarea>
+      <button id="btn-finalizar-visita" class="btn primary">💾 Guardar informe y finalizar</button>
+    </div>
+    <button id="btn-eliminar-visita" class="btn btn-danger oculto">🗑 Eliminar visita</button>
+  </div>
+</div>
+
+<button id="btn-tema" title="Cambiar tema">☀️</button>
+<div id="toast"></div>
+
+<script type="module">
+/* ============ ZONA DE CONFIGURACIÓN — APP GRUPAL ============ */
+const CODIGO_INVITACION = "FE2025";
+const CODIGO_PAIS = "54";
+const MENSAJE_WHATSAPP = "Hola {nombre} 👋 Dios te bendice. ¿Cómo has estado? Te saludo con mucho cariño 🙏";
+const MENSAJE_AUSENTE = "Hola {nombre} 👋 Hace tiempo que no te vemos por la iglesia 🙏 ¿Cómo estás? ¿Todo bien por tu casa? Te extrañamos, un abrazo grande 🤗";
+const MENSAJE_CUMPLE = "¡Feliz cumpleaños {nombre}! 🎂🎉 Que Dios te bendiga hoy y siempre, y que este nuevo año venga lleno de salud, alegría y bendiciones 🙏 Te abraza con cariño, la familia de Fe de Jesús 🤗";
+const NOMBRE_ORG = "Fe de Jesús";
+const CARACTERES = ['Amigable','Alegre','Enojón','Serio','Consagrado','Tímido','Disperso','Servicial','Sensible','Líder','Honrado','Trabajador','Genial','Reservado'];
+/* ====================================================== */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, writeBatch, onSnapshot, serverTimestamp, getDocs, query, where, increment, Timestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB60b9ierInk3Xhf1ueyx-Tg7sJOPI4lQw",
+  authDomain: "acompa-f19c9.firebaseapp.com",
+  projectId: "acompa-f19c9",
+  storageBucket: "acompa-f19c9.firebasestorage.app",
+  messagingSenderId: "1089924717195",
+  appId: "1:1089924717195:web:698ecb4818389058b2928e"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+const esc = s => (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- VERSÍCULO DEL DÍA ---------- */
+const VERSICULOS = [
+  {t:'"Sobrellevad los unos las cargas de los otros"', r:'Gá 6:2'},
+  {t:'"Id por todo el mundo y predicad el evangelio a toda criatura"', r:'Mc 16:15'},
+  {t:'"Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar"', r:'Mt 11:28'},
+  {t:'"La religión pura y sin mancha es visitar a los huérfanos y a las viudas"', r:'Stg 1:27'},
+  {t:'"¿Qué hombre de vosotros, teniendo cien ovejas, si pierde una, no va tras la que se perdió?"', r:'Lc 15:4'},
+  {t:'"Por tanto, id y haced discípulos"', r:'Mt 28:19'},
+  {t:'"El amor de Dios ha sido derramado en nuestros corazones"', r:'Ro 5:5'},
+  {t:'"Y considerémonos unos a otros para estimularnos al amor y a las buenas obras"', r:'He 10:24'},
+  {t:'"Como cada uno recibió un don, ministrándolo unos a otros"', r:'1 P 4:10'},
+  {t:'"Yo he venido para que tengan vida, y para que la tengan en abundancia"', r:'Jn 10:10'},
+  {t:'"No nos cansemos de hacer el bien, porque a su tiempo segaremos"', r:'Gá 6:9'},
+  {t:'"El Señor es mi pastor; nada me faltará"', r:'Sal 23:1'},
+  {t:'"Estad siempre preparados para presentar defensa de la esperanza que hay en vosotros"', r:'1 P 3:15'},
+  {t:'"El que haga volver a un pecador de su camino, salvará un alma"', r:'Stg 5:20'},
+  {t:'"Amarás a tu prójimo como a ti mismo"', r:'Mt 22:39'},
+  {t:'"Nada hagáis por rivalidad o vanagloria; con humildad estimad a los demás"', r:'Fil 2:3'},
+  {t:'"La oración del justo puede mucho"', r:'Stg 5:16'},
+  {t:'"He aquí cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía"', r:'Sal 133:1'},
+  {t:'"Fortaleced las manos cansadas y afirmad las rodillas endebles"', r:'Is 35:3'},
+  {t:'"Id por todo el mundo; predicad el evangelio a toda criatura"', r:'Mc 16:15'}
+];
+(function(){
+  const dia = Math.floor(Date.now()/86400000) % VERSICULOS.length;
+  const v = VERSICULOS[dia];
+  const el = $('verso-hoy');
+  if(el) el.innerHTML = `<b>📖</b> ${esc(v.t)} <b>— ${v.r}</b>`;
+})();
+
+/* ---------- TEMA CLARO/OSCURO (estilo WhatsApp) ---------- */
+function setTema(t){
+  const claro = t==='claro';
+  document.body.classList.toggle('claro', claro);
+  $('btn-tema').textContent = claro ? '🌙' : '☀️';
+  $('meta-tema').setAttribute('content', claro ? '#008069' : '#111b21');
+  try{ localStorage.setItem('tema', t); }catch(e){}
+}
+setTema((()=>{ try{ return localStorage.getItem('tema')||'oscuro'; }catch(e){ return 'oscuro'; } })());
+ $('btn-tema').onclick = ()=> setTema(document.body.classList.contains('claro') ? 'oscuro' : 'claro');
+
+const ERRORES = {
+  'auth/invalid-credential':'Correo o contraseña incorrectos.',
+  'auth/invalid-login-credentials':'Correo o contraseña incorrectos.',
+  'auth/user-not-found':'Correo o contraseña incorrectos.',
+  'auth/wrong-password':'Correo o contraseña incorrectos.',
+  'auth/email-already-in-use':'Ese correo ya tiene cuenta. Inicia sesión.',
+  'auth/weak-password':'La contraseña debe tener al menos 6 caracteres.',
+  'auth/invalid-email':'Escribe un correo válido.',
+  'auth/too-many-requests':'Demasiados intentos. Espera un momento.',
+  'auth/unauthorized-domain':'Dominio no autorizado: agrégalo en Firebase → Authentication → Settings → Authorized domains.',
+  'auth/network-request-failed':'Sin conexión. Revisa tu internet.',
+  'auth/operation-not-allowed':'El acceso con correo no está habilitado en Firebase.'
+};
+
+const TIPOS_VISITA = {
+  oracion:{txt:'Oración',icono:'🙏',frase:'orar contigo'},
+  uncion:{txt:'Unción',icono:'🕊️',frase:'orar y ungirte con aceite'},
+  pastoral:{txt:'Visita pastoral',icono:'⛪',frase:'una visita pastoral'},
+  estudio:{txt:'Estudio bíblico',icono:'📖',frase:'compartir un estudio bíblico'},
+  acompanamiento:{txt:'Acompañamiento',icono:'☕',frase:'acompañarte y conversar'}
+};
+const ESTADOS_VISITA = {
+  programada:{txt:'Programada',color:'#008069'},
+  confirmada:{txt:'Confirmada',color:'#00a884'},
+  camino:{txt:'En camino',color:'#b45309'},
+  realizada:{txt:'Realizada',color:'#54656f'},
+  cancelada:{txt:'Cancelada',color:'#b03a3a'}
+};
+const MIEMBRO_TXT = {
+  activo:'Activo · miembro activo ✅',
+  frecuente:'Frecuente · viene regularmente ✅',
+  visitante:'Visitante · aún no es miembro 🔵',
+  alejado:'Alejado · hace tiempo que no viene ⚠️',
+  apartado:'Apartado · en disciplina 🔴',
+  censura:'⚖️ Bajo censura · período de prueba',
+  desaparecido:'🔇 Desaparecido · paradero desconocido'
+};
+const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+let user = null, personas = [], cuidadores = [], visitas = [];
+let filtro = 'todos', busqueda = '';
+let personaActual = null, editandoId = null, tipoContacto = 'llamada';
+let vista = 'personas';
+let calY, calM, calDia = null;
+let visitaActual = null, editandoVisitaId = null, tipoVisitaSel = 'oracion';
+let listasCargadas = false;
+let unsubHist = null, historialActual = [];
+let unsubVida = null, vidaActual = [];
+let repCache = {key:'', contactos:[]};
+let fCarSel = [];
+let casosDisc = [];
+
+function condMiembro(p){
+  if(!p) return '';
+  if(p.estadoMiembro) return p.estadoMiembro;
+  if(p.estadoIglesia==='frecuente') return 'frecuente';
+  if(p.estadoIglesia==='poco'||p.estadoIglesia==='no_viene') return 'alejado';
+  return '';
+}
+
+/* ---------- AYUDA ---------- */
+ $('btn-ayuda').onclick = ()=> $('modal-ayuda').classList.remove('oculto');
+ $('ayuda-cerrar').onclick = ()=> $('modal-ayuda').classList.add('oculto');
+
+/* ---------- OLVIDÉ MI CONTRASEÑA ---------- */
+ $('btn-forgot').onclick = async ()=>{
+  const email = $('login-email').value.trim();
+  if(!email){ alert('Primero escribí tu correo en el campo de arriba, después tocá "¿Olvidaste tu contraseña?".'); return; }
+  try{
+    await sendPasswordResetEmail(auth, email);
+    alert('📬 Te enviamos un correo a '+email+'.\nAbrilo y seguí el enlace para crear una contraseña nueva.\n(Chequeá también la carpeta de spam)');
+  }catch(e){
+    alert(e.code==='auth/user-not-found'
+      ? 'No existe una cuenta con ese correo. Verificá cómo lo escribiste o creá una cuenta nueva.'
+      : 'No se pudo enviar el correo. Revisá la dirección e intentá de nuevo.');
+  }
+};
+
+/* ---------- AUTENTICACIÓN ---------- */
+ $('go-reg').onclick = ()=>{ $('login-form').classList.add('oculto'); $('reg-form').classList.remove('oculto'); $('auth-msg').textContent=''; };
+ $('go-login').onclick = ()=>{ $('reg-form').classList.add('oculto'); $('login-form').classList.remove('oculto'); $('auth-msg').textContent=''; };
+
+ $('btn-login').onclick = async ()=>{
+  $('auth-msg').textContent = 'Entrando…';
+  try{ await signInWithEmailAndPassword(auth, $('login-email').value.trim(), $('login-pass').value); }
+  catch(e){ $('auth-msg').textContent = ERRORES[e.code] || ('Error: '+e.message); }
+};
+
+ $('btn-reg').onclick = async ()=>{
+  const nombre=$('reg-nombre').value.trim(), email=$('reg-email').value.trim();
+  const pass=$('reg-pass').value, cod=$('reg-codigo').value.trim();
+  $('auth-msg').textContent='';
+  if(!nombre){ $('auth-msg').textContent='Escribe tu nombre.'; return; }
+  if(cod !== CODIGO_INVITACION){ $('auth-msg').textContent='Código de invitación incorrecto.'; return; }
+  try{
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, {displayName: nombre});
+    await setDoc(doc(db,'cuidadores',cred.user.uid), {nombre, email, creado: serverTimestamp()});
+  }catch(e){ $('auth-msg').textContent = ERRORES[e.code] || ('Error: '+e.message); }
+};
+
+ $('btn-salir').onclick = ()=> signOut(auth);
+
+onAuthStateChanged(auth, u=>{
+  user = u;
+  if(u){
+    $('view-login').classList.add('oculto');
+    $('view-app').classList.remove('oculto');
+    $('user-name').textContent = 'Dios te bendiga, ' + (u.displayName || u.email);
+    if(!listasCargadas){ suscribir(); listasCargadas = true; }
+  }else{
+    $('view-app').classList.add('oculto');
+    $('view-login').classList.remove('oculto');
+  }
+});
+
+/* ---------- DATOS EN TIEMPO REAL ---------- */
+function suscribir(){
+  onSnapshot(collection(db,'personas'), snap=>{
+    personas = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    personas.sort((a,b)=>(a.nombre||'').localeCompare(b.nombre||''));
+    render(); renderCumples(); llenarSelectPersonas();
+  }, e=>console.error(e));
+  onSnapshot(collection(db,'cuidadores'), snap=>{
+    cuidadores = snap.docs.map(d=>({uid:d.id, ...d.data()}));
+    llenarSelectCuidadores();
+    renderAgenda();
+  });
+  onSnapshot(collection(db,'visitas'), snap=>{
+    visitas = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    visitas.sort((a,b)=>(a.fecha||'').localeCompare(b.fecha||'') || (a.hora||'').localeCompare(b.hora||''));
+    renderAgenda(); renderCalendario();
+  }, e=>console.error(e));
+  onSnapshot(collection(db,'disciplina'), snap=>{
+    casosDisc = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    if(!$('modal-disc').classList.contains('oculto')) renderDisc();
+  }, e=>console.error(e));
+}
+
+/* ---------- SEMÁFORO ---------- */
+function estado(p){
+  const ms = p.ultimoContacto?.toMillis ? p.ultimoContacto.toMillis() : 0;
+  if(!ms) return {color:'rojo', txt:'Nunca contactado', dias:99999};
+  const d = Math.floor((Date.now()-ms)/86400000);
+  return {color: d<=7?'verde': d<=14?'amarillo':'rojo',
+          txt: d===0?'Contactado hoy':`Hace ${d} ${d===1?'día':'días'}`, dias:d};
+}
+
+/* ---------- PESTAÑAS ---------- */
+function setVista(v){
+  vista = v;
+  $('tab-personas').classList.toggle('active', v==='personas');
+  $('tab-agenda').classList.toggle('active', v==='agenda');
+  $('pane-personas').classList.toggle('oculto', v!=='personas');
+  $('pane-agenda').classList.toggle('oculto', v!=='agenda');
+  $('btn-agregar').textContent = v==='agenda' ? '🏠' : '＋';
+}
+ $('tab-personas').onclick = ()=> setVista('personas');
+ $('tab-agenda').onclick = ()=> setVista('agenda');
+
+function esMesCumple(p){
+  return !!(p.cumple && p.cumple.slice(5,7) === String(new Date().getMonth()+1).padStart(2,'0'));
+}
+
+function visibleParaMi(p){
+  if(!user) return false;
+  return !p.cuidadorUid || p.cuidadorUid===user.uid;
+}
+
+function renderCumples(){
+  const hoy = new Date();
+  const lista = personas.filter(p=>p.cumple && p.cumple.slice(5,7)===String(hoy.getMonth()+1).padStart(2,'0'))
+    .filter(visibleParaMi)
+    .map(p=>({p, dia:+p.cumple.slice(8)}))
+    .sort((a,b)=>a.dia-b.dia);
+  if(!lista.length){ $('cumples').innerHTML=''; return; }
+  $('cumples').innerHTML = `<div class="cump-box">
+    <div class="cump-titulo">🎂 Cumpleaños de ${MESES[hoy.getMonth()]} · ${lista.length} hermano${lista.length>1?'s':''}</div>
+    <div class="cump-lista">${lista.map(x=>{
+      const diff = x.dia - hoy.getDate();
+      const cls = diff===0?'hoy':diff<0?'pasado':'';
+      const eti = diff===0?'¡HOY! 🎉':diff<0?`fue hace ${-diff}d`:diff===1?'mañana':`en ${diff} días`;
+      return `<span class="cump ${cls}" data-id="${x.p.id}">🎂 ${esc(x.p.nombre)} · ${x.dia} · ${eti}</span>`;
+    }).join('')}</div></div>`;
+  $('cumples').querySelectorAll('.cump').forEach(el=> el.onclick = ()=> abrirDetalle(el.dataset.id));
+}
+
+/* ---------- CONTADOR DE TAREAS ---------- */
+function renderMetaTarea(){
+  if(!user) return;
+  const mias = personas.filter(p=>!p.cuidadorUid || p.cuidadorUid===user.uid);
+  const rojas = mias.filter(p=>estado(p).color==='rojo').length;
+  const amarillas = mias.filter(p=>estado(p).color==='amarillo').length;
+  $('meta-tarea').innerHTML = personas.length
+    ? `🎯 Tu trabajo: <b>${mias.length}</b> persona${mias.length!==1?'s':''} · <b>${rojas}</b> urgente${rojas!==1?'s':''} 🔴${amarillas?' · '+amarillas+' 🟡':''}`
+    : '';
+}
+
+function gch(p){
+  const c = condMiembro(p);
+  if(c==='apartado') return '<span class="gch ausente">apartado</span>';
+  if(c==='censura') return '<span class="gch silencioso">censura</span>';
+  if(c==='alejado') return '<span class="gch silencioso">alejado</span>';
+  return '';
+}
+
+function render(){
+  if(!user) return;
+  renderMetaTarea();
+  const nA = personas.filter(p=>['alejado','apartado','censura'].includes(condMiembro(p))).length;
+  $('chip-atencion').textContent = nA ? `⚠️ ${nA}` : '⚠️ Atención';
+
+  const q = busqueda.toLowerCase();
+  let lista = personas.filter(p=> !q || p.nombre.toLowerCase().includes(q));
+  if(filtro==='mias') lista = lista.filter(p=>p.cuidadorUid === user.uid);
+  if(filtro==='atencion') lista = lista.filter(p=>['alejado','apartado','censura'].includes(condMiembro(p)));
+  lista = lista.filter(visibleParaMi);
+
+  const ocultas = personas.filter(p=> p.cuidadorUid && p.cuidadorUid!==user.uid).length;
+  const np = $('nota-priv');
+  if(ocultas>0){
+    np.classList.remove('oculto');
+    np.innerHTML = `🔒 ${ocultas} hermano${ocultas>1?'s':''} al cuidado de otros compañeros.`;
+  }else np.classList.add('oculto');
+
+  const orden = {rojo:0, amarillo:1, verde:2};
+  const gOrden = {apartado:0, censura:1, alejado:2, visitante:3, frecuente:3, activo:3, '':3};
+  lista.sort((a,b)=>{
+    const ea=estado(a), eb=estado(b);
+    return orden[ea.color]-orden[eb.color]
+      || (gOrden[condMiembro(a)]-gOrden[condMiembro(b)])
+      || eb.dias-ea.dias || a.nombre.localeCompare(b.nombre);
+  });
+
+  $('lista').innerHTML = lista.map(p=>{
+    const e = estado(p);
+    const ini = (p.nombre||'?').trim().charAt(0).toUpperCase();
+    return `<li class="persona" data-id="${p.id}">
+      <div class="avw ${e.color}"><div class="av">${esc(ini)}</div></div>
+      <div class="info"><div class="nombre">${esc(p.nombre)}${gch(p)}</div>
+      <div class="meta">${e.txt}${p.cuidadorNombre?' · 👤 '+esc(p.cuidadorNombre):''}</div></div>
+      <div style="color:var(--txt2)">›</div></li>`;
+  }).join('') || `<p style="text-align:center;color:var(--txt2);margin-top:30px">${filtro==='atencion'?'Nadie en situación de atención. 🎉':'No hay personas en tu vista todavía.<br>Toca ＋ para agregar la primera.'}</p>`;
+
+  $('lista').querySelectorAll('li.persona').forEach(li=> li.onclick = ()=> abrirDetalle(li.dataset.id));
+}
+
+ $('buscar').oninput = e=>{ busqueda = e.target.value; render(); };
+document.querySelectorAll('.chip[data-filtro]').forEach(ch=> ch.onclick = ()=>{
+  document.querySelectorAll('.chip[data-filtro]').forEach(c=>c.classList.remove('active'));
+  ch.classList.add('active'); filtro = ch.dataset.filtro; render();
+});
+
+/* ---------- FECHAS ---------- */
+function hoyStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function fechaLarga(s){
+  if(!s) return '';
+  const [a,m,d]=s.split('-').map(Number);
+  return new Date(a,m-1,d).toLocaleDateString('es',{weekday:'long',day:'numeric',month:'long'});
+}
+function etiquetaDia(s){
+  const hoy = hoyStr();
+  if(s===hoy) return 'Hoy · '+fechaLarga(s);
+  const man = new Date(); man.setDate(man.getDate()+1);
+  const mStr = man.getFullYear()+'-'+String(man.getMonth()+1).padStart(2,'0')+'-'+String(man.getDate()).padStart(2,'0');
+  if(s===mStr) return 'Mañana · '+fechaLarga(s);
+  return fechaLarga(s).charAt(0).toUpperCase()+fechaLarga(s).slice(1);
+}
+
+/* ---------- WHATSAPP ---------- */
+function waNum(p){
+  let d = (p.telefono||'').replace(/\D/g,'');
+  if(!d) return null;
+  if(CODIGO_PAIS && d.length<=10 && !d.startsWith(CODIGO_PAIS)) d = CODIGO_PAIS + d;
+  if(CODIGO_PAIS==='54' && d.startsWith('54') && !d.startsWith('549') && d.length===12) d = '549' + d.slice(2);
+  return d;
+}
+function waLink(p){
+  const d = waNum(p);
+  if(!d) return null;
+  let plantilla = MENSAJE_WHATSAPP;
+  if(esMesCumple(p)) plantilla = MENSAJE_CUMPLE;
+  else if(['alejado','apartado'].includes(condMiembro(p))) plantilla = MENSAJE_AUSENTE;
+  return 'https://wa.me/'+d+'?text='+encodeURIComponent(plantilla.replaceAll('{nombre}', p.nombre||''));
+}
+function waLinkMsg(p, texto){
+  const d = waNum(p);
+  if(!d) return null;
+  return 'https://wa.me/'+d+'?text='+encodeURIComponent(texto);
+}
+function msgAvisoVisita(v){
+  const t = TIPOS_VISITA[v.tipo]||{frase:'visitarte'};
+  return `Hola ${v.personaNombre} 👋 Dios te bendiga 🙏 Te escribimos para avisarte que el ${fechaLarga(v.fecha)} a las ${v.hora||''} hs te visitaremos para ${t.frase}. ¿Te queda bien ese horario? 🏠`;
+}
+function msgPedirHorario(v){
+  const t = TIPOS_VISITA[v.tipo]||{frase:'visitarte'};
+  return `Hola ${v.personaNombre} 👋 Queremos coordinar una visita a tu casa para ${t.frase}. ¿En qué día y horario te encontrarías mejor? 🏠🙏`;
+}
+function msgCamino(v){
+  return `Hola ${v.personaNombre} 👋 Ya estoy en camino a tu casa 🚗 Nos vemos en un rato 🙏`;
+}
+
+/* ---------- DETALLE PERSONA ---------- */
+function fmtFecha(s){
+  const [a,m,d] = s.split('-');
+  return `${d} ${MESES[+m-1]}`;
+}
+function mapsLink(dir){
+  return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(dir);
+}
+
+function abrirDetalle(id){
+  const p = personas.find(x=>x.id===id); if(!p) return;
+  if(!visibleParaMi(p)){ toast('🔒 Esta persona está al cuidado de otro compañero'); return; }
+  personaActual = p;
+  const e = estado(p);
+  const avisoViejo = document.getElementById('aviso-ficha');
+  if(avisoViejo) avisoViejo.remove();
+  if(e.dias>=7 && e.dias!==99999){
+    const div = document.createElement('div');
+    div.className='aviso-ficha'; div.id='aviso-ficha';
+    div.innerHTML = `⏰ Hace ${e.dias} día${e.dias!==1?'s':''} que no se la contacta. Cuando termines de hablar, tocá <b>✅ Guardar contacto</b>.`;
+    const accionesEl = document.querySelector('#modal-detalle .acciones');
+    if(accionesEl) accionesEl.after(div);
+  }
+  $('det-av').textContent = (p.nombre||'?').trim().charAt(0).toUpperCase();
+  $('det-avw').className = 'avw grande '+e.color;
+  $('det-nombre').innerHTML = esc(p.nombre) + gch(p);
+  const chip = $('det-estado'); chip.textContent = e.txt; chip.className = 'estado-chip '+e.color;
+  const link = waLink(p), wa = $('det-wa');
+  if(esMesCumple(p)) wa.textContent = '💬 Felicitar 🎂';
+  else if(['alejado','apartado'].includes(condMiembro(p))) wa.textContent = '💬 ¿Todo bien?';
+  else wa.textContent = '💬 WhatsApp';
+  if(link){ wa.classList.remove('oculto'); wa.href = link; } else wa.classList.add('oculto');
+  const ll = $('det-llamar');
+  if(p.telefono){ ll.classList.remove('oculto'); ll.href = 'tel:'+p.telefono.replace(/\s/g,''); $('det-tel-txt').textContent = p.telefono; }
+  else ll.classList.add('oculto');
+  const bt = $('btn-tomar');
+  if(!p.cuidadorUid && user) bt.classList.remove('oculto');
+  else bt.classList.add('oculto');
+  $('det-miembro').textContent = MIEMBRO_TXT[condMiembro(p)] || 'Sin dato de condición';
+  $('det-bautismo').textContent = p.bautismo ? 'Bautizado/a el '+fmtFecha(p.bautismo) : 'Sin fecha de bautismo';
+  $('det-caracter').innerHTML = (p.caracter && p.caracter.length)
+    ? p.caracter.map(c=>`<span class="cch">${esc(c)}</span>`).join('') : 'Sin etiquetas de carácter';
+  $('det-familia').textContent = p.familia || '—';
+  const filaDir = $('det-direccion').parentElement;
+  if(p.direccion){
+    filaDir.classList.remove('oculto');
+    $('det-direccion').innerHTML = `${esc(p.direccion)} <a href="${mapsLink(p.direccion)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">🗺 Maps</a>`;
+  } else filaDir.classList.add('oculto');
+  $('det-cumple').textContent = p.cumple ? fmtFecha(p.cumple) : '—';
+  $('det-cuidador').textContent = p.cuidadorNombre || 'Sin asignar';
+  $('det-nota').value = '';
+  $('vida-form').classList.add('oculto');
+  setTipo('llamada');
+  cargarHistorial(p.id);
+  cargarHistoria(p.id);
+  $('modal-detalle').classList.remove('oculto');
+}
+
+function cargarHistorial(pid){
+  if(unsubHist) unsubHist();
+  historialActual = [];
+  $('det-historial-titulo').textContent = 'Historial de contactos…';
+  $('det-historial').innerHTML = '';
+  unsubHist = onSnapshot(query(collection(db,'contactos'), where('personaId','==',pid)), snap=>{
+    historialActual = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    historialActual.sort((a,b)=>(b.fecha?.toMillis||0)-(a.fecha?.toMillis||0));
+    renderHistorial();
+  }, e=>console.error(e));
+}
+
+function renderHistorial(){
+  if(!personaActual) return;
+  $('det-historial-titulo').textContent = `Historial de contactos (${historialActual.length})`;
+  $('det-historial').innerHTML = historialActual.map(c=>{
+    const f = c.fecha?.toDate ? c.fecha.toDate() : null;
+    const icono = {llamada:'📞', mensaje:'💬', visita:'🏠'}[c.tipo] || '📌';
+    const titulo = c.nota || {llamada:'Llamada', mensaje:'Mensaje', visita:'Visita'}[c.tipo] || c.tipo;
+    return `<li><div>${icono} ${esc(titulo)}</div>
+      <div class="fecha">${f ? f.toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'})+' · ':''}por ${esc(c.por||'—')}</div></li>`;
+  }).join('') || '<li style="text-align:center;color:var(--txt2);background:none">Aún sin contactos registrados</li>';
+}
+
+function cargarHistoria(pid){
+  if(unsubVida) unsubVida();
+  vidaActual = [];
+  $('det-vida').innerHTML = '<li style="text-align:center;color:var(--txt2);background:none">Cargando…</li>';
+  unsubVida = onSnapshot(query(collection(db,'historia'), where('personaId','==',pid)), snap=>{
+    vidaActual = snap.docs.map(d=>({id:d.id, ...d.data()}));
+    vidaActual.sort((a,b)=>(b.fecha?.toMillis||0)-(a.fecha?.toMillis||0));
+    renderHistoria();
+  }, e=>console.error(e));
+}
+
+function renderHistoria(){
+  if(!personaActual) return;
+  $('det-vida').innerHTML = vidaActual.map(v=>{
+    const f = v.fecha?.toDate ? v.fecha.toDate() : null;
+    return `<li><div>📖 ${esc(v.texto)}</div>
+      <div class="fecha">${f ? f.toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'}) : ''}${v.por?' · registrado por '+esc(v.por):''}</div></li>`;
+  }).join('') || '<li style="text-align:center;color:var(--txt2);background:none">Sin notas de historia todavía.</li>';
+}
+
+ $('btn-agregar-vida').onclick = ()=>{
+  $('vida-form').classList.toggle('oculto');
+  $('vida-fecha').value = hoyStr();
+  $('vida-texto').value = '';
+};
+
+ $('btn-guardar-vida').onclick = async ()=>{
+  if(!personaActual) return;
+  const texto = $('vida-texto').value.trim();
+  if(!texto){ toast('Escribí qué sucedió'); return; }
+  const f = $('vida-fecha').value;
+  try{
+    await addDoc(collection(db,'historia'), {
+      personaId: personaActual.id,
+      nombrePersona: personaActual.nombre || '',
+      texto,
+      fecha: f ? Timestamp.fromMillis(new Date(f+'T12:00:00').getTime()) : serverTimestamp(),
+      por: user.displayName || user.email,
+      creado: serverTimestamp()
+    });
+    $('vida-texto').value = '';
+    $('vida-form').classList.add('oculto');
+    toast('📖 Nota de historia guardada');
+  }catch(e){ toast('Error al guardar'); console.error(e); }
+};
+
+ $('det-cerrar').onclick = ()=>{
+  $('modal-detalle').classList.add('oculto');
+  personaActual = null;
+  if(unsubHist){ unsubHist(); unsubHist = null; }
+  historialActual = [];
+  if(unsubVida){ unsubVida(); unsubVida = null; }
+  vidaActual = [];
+};
+
+function setTipo(t){
+  tipoContacto = t;
+  document.querySelectorAll('.tipo[data-tipo]').forEach(b=>b.classList.toggle('active', b.dataset.tipo===t));
+}
+document.querySelectorAll('.tipo[data-tipo]').forEach(b=> b.onclick = ()=> setTipo(b.dataset.tipo));
+
+ $('btn-tomar').onclick = async ()=>{
+  if(!personaActual || personaActual.cuidadorUid || !user) return;
+  if(!confirm(`¿Hacerte cargo del seguimiento de ${personaActual.nombre}?\n\nPasará a "Mis asignadas" a tu nombre.`)) return;
+  try{
+    await updateDoc(doc(db,'personas',personaActual.id), {
+      cuidadorUid: user.uid,
+      cuidadorNombre: user.displayName || user.email,
+      actualizado: serverTimestamp()
+    });
+    toast('🙋 Esta persona ahora está a tu cargo');
+    abrirDetalle(personaActual.id);
+  }catch(e){ toast('Error'); console.error(e); }
+};
+
+ $('btn-guardar-contacto').onclick = async ()=>{
+  if(!personaActual) return;
+  try{
+    await addDoc(collection(db,'contactos'), {
+      personaId: personaActual.id,
+      nombrePersona: personaActual.nombre || '',
+      tipo: tipoContacto,
+      nota: $('det-nota').value.trim(),
+      por: user.displayName || user.email,
+      fecha: serverTimestamp()
+    });
+    await updateDoc(doc(db,'personas',personaActual.id), {
+      ultimoContacto: serverTimestamp(),
+      nContactos: increment(1)
+    });
+    $('det-nota').value = '';
+    toast('✅ Contacto de '+(personaActual.nombre||'la persona')+' registrado — gracias 🙏');
+  }catch(e){ toast('Error al guardar'); console.error(e); }
+};
+
+ $('btn-agregar').onclick = ()=>{
+  if(vista==='agenda'){ abrirVisitaForm(null); return; }
+  abrirForm(null);
+};
+ $('btn-editar-ficha').onclick = ()=>{ if(personaActual) abrirForm(personaActual); };
+
+function llenarCaracter(seleccionadas){
+  fCarSel = [...(seleccionadas||[])];
+  $('f-caracter').innerHTML = CARACTERES.map(c=>
+    `<button type="button" class="tipo ${fCarSel.includes(c)?'active':''}" data-car="${esc(c)}">${esc(c)}</button>`).join('');
+  $('f-caracter').querySelectorAll('.tipo').forEach(b=> b.onclick = ()=>{
+    const c = b.dataset.car;
+    if(fCarSel.includes(c)){ fCarSel = fCarSel.filter(x=>x!==c); b.classList.remove('active'); }
+    else { fCarSel.push(c); b.classList.add('active'); }
+  });
+}
+
+function llenarSelectCuidadores(seleccionado){
+  const sel = $('f-cuidador');
+  const actual = seleccionado !== undefined ? seleccionado : sel.value;
+  sel.innerHTML = '<option value="">👤 — Sin asignar —</option>' +
+    cuidadores.map(c=>`<option value="${c.uid}">${esc(c.nombre)}</option>`).join('');
+  sel.value = actual || '';
+  if(sel.value !== (actual||'')) sel.value = '';
+}
+
+function abrirForm(p){
+  editandoId = p ? p.id : null;
+  $('form-titulo').textContent = p ? 'Editar persona' : 'Agregar persona';
+  $('f-nombre').value = p?.nombre || '';
+  $('f-telefono').value = p?.telefono || '';
+  $('f-direccion').value = p?.direccion || '';
+  llenarSelectCuidadores(p?.cuidadorUid || '');
+  $('f-miembro').value = condMiembro(p);
+  $('f-bautismo').value = p?.bautismo || '';
+  llenarCaracter(p?.caracter || []);
+  $('f-familia').value = p?.familia || '';
+  $('f-cumple').value = p?.cumple || '';
+  $('f-notas').value = p?.notas || '';
+  $('btn-eliminar-persona').classList.toggle('oculto', !p);
+  $('modal-detalle').classList.add('oculto');
+  $('modal-form').classList.remove('oculto');
+}
+
+function cerrarForm(volverADetalle){
+  $('modal-form').classList.add('oculto');
+  editandoId = null;
+  if(volverADetalle && personaActual) abrirDetalle(personaActual.id);
+  else personaActual = null;
+}
+
+ $('f-cerrar').onclick = ()=> cerrarForm(false);
+
+ $('btn-guardar-persona').onclick = async ()=>{
+  const nombre = $('f-nombre').value.trim();
+  if(!nombre){ toast('Falta el nombre'); return; }
+  const uidSel = $('f-cuidador').value;
+  const cuen = cuidadores.find(c=>c.uid===uidSel);
+  const datos = {
+    nombre, telefono: $('f-telefono').value.trim(),
+    direccion: $('f-direccion').value.trim(),
+    cuidadorUid: uidSel || '',
+    cuidadorNombre: cuen ? cuen.nombre : '',
+    estadoMiembro: $('f-miembro').value || '',
+    bautismo: $('f-bautismo').value || '',
+    caracter: fCarSel,
+    familia: $('f-familia').value.trim(),
+    cumple: $('f-cumple').value || '',
+    notas: $('f-notas').value.trim(),
+    actualizado: serverTimestamp()
+  };
+  try{
+    if(editandoId){
+      await updateDoc(doc(db,'personas',editandoId), datos);
+      toast('✅ Cambios guardados'); cerrarForm(true);
+    }else{
+      datos.creado = serverTimestamp();
+      await addDoc(collection(db,'personas'), datos);
+      toast('✅ Persona agregada'); cerrarForm(false);
+    }
+  }catch(e){ toast('Error al guardar'); console.error(e); }
+};
+
+ $('btn-eliminar-persona').onclick = async ()=>{
+  if(!editandoId) return;
+  if(!confirm('¿Eliminar esta persona y todo su historial? No se puede deshacer.')) return;
+  try{
+    const cs = await getDocs(query(collection(db,'contactos'), where('personaId','==',editandoId)));
+    const vs = await getDocs(query(collection(db,'historia'), where('personaId','==',editandoId)));
+    const ds = await getDocs(query(collection(db,'disciplina'), where('personaId','==',editandoId)));
+    const batch = writeBatch(db);
+    cs.forEach(d=> batch.delete(d.ref));
+    vs.forEach(d=> batch.delete(d.ref));
+    ds.forEach(d=> batch.delete(d.ref));
+    visitas.filter(v=>v.personaId===editandoId).forEach(v=> batch.delete(doc(db,'visitas',v.id)));
+    batch.delete(doc(db,'personas',editandoId));
+    await batch.commit();
+    toast('Eliminada'); cerrarForm(false);
+  }catch(e){ toast('Error al eliminar'); console.error(e); }
+};
+
+/* ---------- CALENDARIO CON PASTILLAS ---------- */
+function renderCalendario(){
+  $('cal-titulo').textContent = MESES[calM]+' '+calY;
+  const hoy = hoyStr();
+  const pendMap = new Map();
+  for(const v of visitas){
+    if(!['programada','confirmada','camino'].includes(v.estado)) continue;
+    if(!pendMap.has(v.fecha)) pendMap.set(v.fecha,[]);
+    pendMap.get(v.fecha).push(v);
+  }
+  const primerDia = new Date(calY, calM, 1);
+  const offset = (primerDia.getDay()+6)%7;
+  const cantDias = new Date(calY, calM+1, 0).getDate();
+  let html = ['L','M','X','J','V','S','D'].map(d=>`<div class="cal-dow">${d}</div>`).join('');
+  for(let i=0;i<offset;i++) html += '<div class="cal-d vacio"></div>';
+  for(let d=1;d<=cantDias;d++){
+    const fs = calY+'-'+String(calM+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const cls = (fs===hoy?'hoy ':'') + (calDia===fs?'sel':'');
+    const del = pendMap.get(fs)||[];
+    let pills = '';
+    del.slice(0,2).forEach(v=>{
+      const e = ESTADOS_VISITA[v.estado]||ESTADOS_VISITA.programada;
+      const nombre = (v.personaNombre||'').split(' ')[0];
+      pills += `<span class="cal-pill" data-vid="${v.id}" style="background:${e.color}" title="${esc(v.personaNombre)}">${esc(nombre)}</span>`;
+    });
+    if(del.length>2) pills += `<span class="cal-mas">+${del.length-2}</span>`;
+    html += `<div class="cal-d ${cls}" data-fecha="${fs}"><span class="num">${d}</span>${pills}</div>`;
+  }
+  $('cal-grid').innerHTML = html;
+  $('cal-grid').querySelectorAll('.cal-d[data-fecha]').forEach(el=> el.onclick = ()=>{
+    calDia = calDia===el.dataset.fecha ? null : el.dataset.fecha;
+    renderCalendario(); renderAgenda();
+  });
+  $('cal-grid').querySelectorAll('.cal-pill').forEach(p=> p.onclick = ev=>{
+    ev.stopPropagation();
+    abrirVisita(p.dataset.vid);
+  });
+}
+ $('cal-prev').onclick = ()=>{ calM--; if(calM<0){calM=11;calY--;} calDia=null; renderCalendario(); renderAgenda(); };
+ $('cal-next').onclick = ()=>{ calM++; if(calM>11){calM=0;calY++;} calDia=null; renderCalendario(); renderAgenda(); };
+ $('btn-ver-todas').onclick = ()=>{ calDia=null; renderCalendario(); renderAgenda(); };
+
+function itemVisita(v){
+  const t = TIPOS_VISITA[v.tipo]||{icono:'🏠',txt:v.tipo};
+  const e = ESTADOS_VISITA[v.estado]||ESTADOS_VISITA.programada;
+  return `<li class="persona" data-id="${v.id}">
+    <div class="avw icn"><div class="av">${t.icono}</div></div>
+    <div class="info"><div class="nombre">${v.hora||''} · ${esc(v.personaNombre)}</div>
+    <div class="meta">${t.txt}${v.responsableNombre?' · 👤 '+esc(v.responsableNombre):''}</div></div>
+    <span class="vch" style="background:${e.color}">${e.txt}</span></li>`;
+}
+
+function renderAgenda(){
+  if(!user) return;
+  const hoy = hoyStr();
+  const activos = visitas.filter(v=>['programada','confirmada','camino'].includes(v.estado));
+  const deHoy = activos.filter(v=>v.fecha===hoy);
+  $('resumen-txt').innerHTML = calDia
+    ? `📅 <b>${etiquetaDia(calDia)}</b>`
+    : `Hoy hay <b>${deHoy.length}</b> ${deHoy.length===1?'visita':'visitas'} programadas`;
+
+  if(calDia){
+    const lista = visitas.filter(v=>v.fecha===calDia)
+      .sort((a,b)=>(a.estado==='realizada'||a.estado==='cancelada')-(b.estado==='realizada'||b.estado==='cancelada') || (a.hora||'').localeCompare(b.hora||''));
+    $('lista-visitas').innerHTML = lista.map(itemVisita).join('') || `<p style="text-align:center;color:var(--txt2);margin-top:30px">Sin visitas ese día.</p>`;
+  }else{
+    const atrasadas = activos.filter(v=>v.fecha<hoy);
+    const proximas = activos.filter(v=>v.fecha>=hoy);
+    let html = '';
+    if(atrasadas.length){
+      html += `<li class="fgrupo atras">⚠️ Atrasadas</li>` + atrasadas.map(itemVisita).join('');
+    }
+    if(proximas.length){
+      let grupo = '';
+      proximas.forEach(v=>{
+        const et = etiquetaDia(v.fecha);
+        if(et!==grupo){ html += `<li class="fgrupo">${et}</li>`; grupo = et; }
+        html += itemVisita(v);
+      });
+    }
+    $('lista-visitas').innerHTML = html || `<p style="text-align:center;color:var(--txt2);margin-top:30px">No hay visitas agendadas.<br>Toca 🏠 para agendar la primera.</p>`;
+  }
+  $('lista-visitas').querySelectorAll('li.persona').forEach(li=> li.onclick = ()=> abrirVisita(li.dataset.id));
+}
+
+function llenarSelectPersonas(){
+  const sel = $('vf-persona');
+  const actual = sel.value;
+  sel.innerHTML = personas.filter(visibleParaMi).map(p=>`<option value="${p.id}">${esc(p.nombre)}</option>`).join('');
+  if(actual) sel.value = actual;
+  $('vf-tipos').innerHTML = Object.entries(TIPOS_VISITA).map(([k,t])=>
+    `<button type="button" class="tipo ${k===tipoVisitaSel?'active':''}" data-vtipo="${k}">${t.icono} ${t.txt}</button>`).join('');
+  $('vf-tipos').querySelectorAll('.tipo').forEach(b=> b.onclick = ()=>{
+    tipoVisitaSel = b.dataset.vtipo;
+    $('vf-tipos').querySelectorAll('.tipo').forEach(x=>x.classList.toggle('active', x.dataset.vtipo===tipoVisitaSel));
+  });
+}
+
+function llenarSelectResponsables(selUid){
+  const sel = $('vf-responsable');
+  sel.innerHTML = cuidadores.map(c=>`<option value="${c.uid}">${esc(c.nombre)}</option>`).join('') +
+    (user && !cuidadores.find(c=>c.uid===user.uid) ? `<option value="${user.uid}">${esc(user.displayName||user.email)}</option>` : '');
+  if(selUid) sel.value = selUid;
+  else if(user && cuidadores.find(c=>c.uid===user.uid)) sel.value = user.uid;
+}
+
+function abrirVisitaForm(v){
+  editandoVisitaId = v ? v.id : null;
+  $('vf-titulo').textContent = v ? 'Editar visita' : 'Agendar visita';
+  llenarSelectPersonas();
+  if(v){
+    $('vf-persona').value = v.personaId;
+    tipoVisitaSel = v.tipo;
+  }else if(personaActual){
+    $('vf-persona').value = personaActual.id;
+  }
+  $('vf-tipos').querySelectorAll('.tipo').forEach(x=>x.classList.toggle('active', x.dataset.vtipo===tipoVisitaSel));
+  $('vf-fecha').value = v?.fecha || hoyStr();
+  $('vf-hora').value = v?.hora || '19:00';
+  llenarSelectResponsables(v?.responsableUid);
+  $('vf-nota').value = v?.nota || '';
+  if(personaActual){ $('modal-detalle').classList.add('oculto'); }
+  $('modal-visita-form').classList.remove('oculto');
+}
+ $('vf-cerrar').onclick = ()=>{
+  $('modal-visita-form').classList.add('oculto');
+  editandoVisitaId = null;
+  if(personaActual) abrirDetalle(personaActual.id);
+};
+
+ $('btn-agendar-visita').onclick = ()=>{ if(personaActual) abrirVisitaForm(null); };
+
+ $('btn-guardar-visita').onclick = async ()=>{
+  const pid = $('vf-persona').value;
+  const p = personas.find(x=>x.id===pid);
+  if(!p){ toast('Elegí una persona'); return; }
+  const fecha = $('vf-fecha').value, hora = $('vf-hora').value;
+  if(!fecha){ toast('Elegí la fecha'); return; }
+  const rUid = $('vf-responsable').value;
+  const r = cuidadores.find(c=>c.uid===rUid);
+  const datos = {
+    personaId: pid, personaNombre: p.nombre,
+    tipo: tipoVisitaSel, fecha, hora,
+    direccion: p.direccion || '',
+    responsableUid: rUid || '', responsableNombre: r ? r.nombre : (user?.displayName||''),
+    nota: $('vf-nota').value.trim(),
+    actualizado: serverTimestamp()
+  };
+  try{
+    if(editandoVisitaId){
+      await updateDoc(doc(db,'visitas',editandoVisitaId), datos);
+      toast('✅ Visita actualizada');
+    }else{
+      datos.estado = 'programada';
+      datos.creado = serverTimestamp();
+      await addDoc(collection(db,'visitas'), datos);
+      toast('✅ Visita agendada');
+    }
+    $('modal-visita-form').classList.add('oculto');
+    editandoVisitaId = null;
+    if(personaActual) abrirDetalle(personaActual.id);
+  }catch(e){ toast('Error al guardar'); console.error(e); }
+};
+
+function abrirVisita(id){
+  const v = visitas.find(x=>x.id===id); if(!v) return;
+  visitaActual = v;
+  const t = TIPOS_VISITA[v.tipo]||{icono:'🏠',txt:v.tipo,frase:v.tipo};
+  const e = ESTADOS_VISITA[v.estado]||ESTADOS_VISITA.programada;
+  $('v-titulo').textContent = v.personaNombre;
+  const chip = $('v-estado'); chip.className = 'estado-chip';
+  chip.style.background = e.color; chip.textContent = e.txt;
+  $('v-tipo').textContent = `${t.icono} ${t.txt}`;
+  $('v-cuando').textContent = `${etiquetaDia(v.fecha)} · ${v.hora||''} hs`;
+  const p = personas.find(x=>x.id===v.personaId);
+  const dir = v.direccion || p?.direccion || '';
+  const filaDir = $('v-dir').parentElement;
+  if(dir){
+    filaDir.classList.remove('oculto');
+    $('v-dir').innerHTML = `${esc(dir)} <a href="${mapsLink(dir)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">🗺 Maps</a>`;
+  } else filaDir.classList.add('oculto');
+  $('v-resp').textContent = v.responsableNombre || '—';
+  $('v-nota').textContent = v.nota || '—';
+  const ir = $('v-informe-row');
+  if(v.informe){ ir.classList.remove('oculto'); $('v-informe-txt').textContent = v.informe; }
+  else ir.classList.add('oculto');
+  $('v-informe-box').classList.add('oculto');
+  $('v-informe').value = v.informe || '';
+
+  const pendiente = ['programada','confirmada','camino'].includes(v.estado);
+  function waBtn(label, msg, cls){
+    const link = p ? waLinkMsg(p, msg) : null;
+    return link ? `<a class="btn-${cls}" href="${link}" target="_blank" rel="noopener">${label}</a>` : '';
+  }
+  let html = '';
+  if(v.estado==='programada'){
+    html += waBtn('💬 Avisar visita', msgAvisoVisita(v), 'wa');
+    html += waBtn('💬 Pedir horario', msgPedirHorario(v), 'acc azul');
+    html += `<button class="btn-acc verde" data-acc="confirmada">✅ Ya confirmó</button>`;
+  }
+  if(v.estado==='confirmada'){
+    html += waBtn('🚗 Avisar que voy en camino', msgCamino(v), 'wa');
+    html += `<button class="btn-acc naranja" data-acc="camino">🚗 Estoy en camino</button>`;
+  }
+  if(v.estado==='camino'){
+    html += waBtn('🚗 Reenviar aviso', msgCamino(v), 'wa');
+  }
+  if(pendiente){
+    html += `<button class="btn-acc verde" data-acc="realizar">✔️ Marcar realizada</button>`;
+    html += `<button class="btn-acc azul" data-acc="editar">✏️ Editar</button>`;
+    html += `<button class="btn-acc rojo" data-acc="cancelar">❌ Cancelar</button>`;
+  }
+  $('v-acciones').innerHTML = html;
+  $('btn-eliminar-visita').classList.toggle('oculto', !(v.estado==='realizada'||v.estado==='cancelada'));
+
+  $('v-acciones').querySelectorAll('[data-acc]').forEach(b=> b.onclick = async ()=>{
+    const acc = b.dataset.acc;
+    if(acc==='editar'){ abrirVisitaForm(visitaActual); return; }
+    if(acc==='realizar'){ $('v-informe-box').classList.remove('oculto'); $('v-informe').focus(); return; }
+    if(acc==='cancelar'){
+      if(!confirm('¿Cancelar esta visita?')) return;
+      await updateDoc(doc(db,'visitas',visitaActual.id), {estado:'cancelada'});
+      toast('Visita cancelada'); $('modal-visita').classList.add('oculto'); visitaActual = null;
+      return;
+    }
+    await updateDoc(doc(db,'visitas',visitaActual.id), {estado:acc});
+    toast(acc==='confirmada'?'✅ Marcada como confirmada':'🚗 En camino');
+    $('modal-visita').classList.add('oculto'); visitaActual = null;
+  });
+
+  $('v-acciones').querySelectorAll('a[href]').forEach(a=> a.addEventListener('click', ()=>{
+    if(a.textContent.includes('camino') && visitaActual && visitaActual.estado==='confirmada'){
+      updateDoc(doc(db,'visitas',visitaActual.id), {estado:'camino'});
+    }
+  }));
+
+  $('modal-visita').classList.remove('oculto');
+}
+ $('v-cerrar').onclick = ()=>{ $('modal-visita').classList.add('oculto'); visitaActual = null; };
+
+ $('btn-finalizar-visita').onclick = async ()=>{
+  if(!visitaActual) return;
+  const informe = $('v-informe').value.trim();
+  try{
+    await updateDoc(doc(db,'visitas',visitaActual.id), {estado:'realizada', informe});
+    await addDoc(collection(db,'contactos'), {
+      personaId: visitaActual.personaId,
+      nombrePersona: visitaActual.personaNombre || '',
+      tipo:'visita',
+      nota: `Visita (${TIPOS_VISITA[visitaActual.tipo]?.txt||visitaActual.tipo})${informe?' — '+informe:''}`,
+      por: visitaActual.responsableNombre || (user?.displayName||user?.email),
+      fecha: serverTimestamp()
+    });
+    try{
+      await updateDoc(doc(db,'personas',visitaActual.personaId), {
+        ultimoContacto: serverTimestamp(),
+        nContactos: increment(1)
+      });
+    }catch(e2){ console.error(e2); }
+    toast('✅ Visita completada');
+    $('modal-visita').classList.add('oculto');
+    visitaActual = null;
+  }catch(e){ toast('Error al guardar'); console.error(e); }
+};
+
+ $('btn-eliminar-visita').onclick = async ()=>{
+  if(!visitaActual) return;
+  if(!confirm('¿Eliminar esta visita definitivamente?')) return;
+  try{
+    await deleteDoc(doc(db,'visitas',visitaActual.id));
+    toast('Eliminada'); $('modal-visita').classList.add('oculto'); visitaActual = null;
+  }catch(e){ toast('Error'); console.error(e); }
+};
+
+/* ---------- REPORTE MENSUAL PDF ---------- */
+ $('btn-reporte').onclick = ()=>{
+  const ahora = new Date();
+  $('rep-mes').value = String(ahora.getMonth()+1);
+  $('rep-anio').innerHTML = '';
+  const anioActual = ahora.getFullYear();
+  for(let a=anioActual; a>=anioActual-2; a--){
+    $('rep-anio').innerHTML += `<option value="${a}">${a}</option>`;
+  }
+  calcResumenRep();
+  $('modal-reporte').classList.remove('oculto');
+};
+ $('rep-cerrar').onclick = ()=> $('modal-reporte').classList.add('oculto');
+ $('rep-mes').onchange = calcResumenRep;
+ $('rep-anio').onchange = calcResumenRep;
+
+async function contactosDeMes(mes, anio){
+  const key = anio+'-'+mes;
+  if(repCache.key===key) return repCache.contactos;
+  const inicio = new Date(anio, mes-1, 1);
+  const fin = new Date(anio, mes, 1);
+  const snap = await getDocs(query(collection(db,'contactos'), where('fecha','>=',inicio), where('fecha','<',fin)));
+  const lista = snap.docs.map(d=>({id:d.id, ...d.data()}))
+    .sort((a,b)=>(b.fecha?.toMillis||0)-(a.fecha?.toMillis||0));
+  repCache = {key, contactos: lista};
+  return lista;
+}
+
+function datosMesBase(contactosMes){
+  const mes = +$('rep-mes').value, anio = +$('rep-anio').value;
+  const visitasMes = visitas.filter(v=>(v.fecha||'').startsWith(anio+'-'+String(mes).padStart(2,'0')));
+  const contactadas = new Set(contactosMes.map(c=>c.personaId));
+  const visitasRealizadas = visitasMes.filter(v=>v.estado==='realizada');
+  const nunca = personas.filter(p=>estado(p).dias===99999);
+  const atencion = personas.filter(p=>['alejado','apartado','censura'].includes(condMiembro(p)));
+  const cumples = personas.filter(p=>p.cumple && +p.cumple.slice(5,7)===mes)
+    .sort((a,b)=>+a.cumple.slice(8)-+b.cumple.slice(8));
+  return {mes, anio, contactosMes, visitasMes, contactadas, visitasRealizadas, nunca, atencion, cumples};
+}
+
+async function calcResumenRep(){
+  if(!$('rep-anio').value) return;
+  $('rep-resumen').innerHTML = '<div><span>⏳ Calculando…</span><b></b></div>';
+  try{
+    const mes = +$('rep-mes').value, anio = +$('rep-anio').value;
+    const contactosMes = await contactosDeMes(mes, anio);
+    const d = datosMesBase(contactosMes);
+    $('rep-resumen').innerHTML = `
+      <div><span>Personas en seguimiento</span><b>${personas.length}</b></div>
+      <div><span>Contactos registrados en el mes</span><b>${d.contactosMes.length}</b></div>
+      <div><span>Personas contactadas</span><b>${d.contactadas.size}</b></div>
+      <div><span>Visitas realizadas</span><b>${d.visitasRealizadas.length}</b></div>
+      <div><span>Nunca contactadas</span><b style="color:#ef4444">${d.nunca.length}</b></div>
+      <div><span>Bajo disciplina / atención</span><b style="color:#ef4444">${d.atencion.length}</b></div>
+      <div><span>Cumpleaños del mes</span><b>${d.cumples.length}</b></div>`;
+  }catch(e){
+    console.error(e);
+    $('rep-resumen').innerHTML = '<div><span>Error al calcular</span><b></b></div>';
+  }
+}
+
+ $('btn-generar-pdf').onclick = async ()=>{
+  try{
+    toast('⏳ Preparando informe…');
+    const mes = +$('rep-mes').value, anio = +$('rep-anio').value;
+    const contactosMes = await contactosDeMes(mes, anio);
+    const d = datosMesBase(contactosMes);
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const mesTxt = MESES[d.mes-1].charAt(0).toUpperCase()+MESES[d.mes-1].slice(1);
+
+    doc.setFillColor(0,128,105);
+    doc.rect(0,0,210,26,'F');
+    doc.setTextColor(255,255,255);
+    doc.setFontSize(15);
+    doc.text('Reporte mensual de Acompanamiento', 14, 11);
+    doc.setFontSize(10);
+    doc.text(mesTxt+' '+d.anio+' - '+NOMBRE_ORG, 14, 19);
+
+    doc.setTextColor(110,110,110);
+    doc.setFontSize(8);
+    doc.text('Generado el '+new Date().toLocaleDateString('es',{day:'2-digit',month:'2-digit',year:'numeric'})+' por '+(user?.displayName||user?.email||''), 14, 32);
+
+    doc.autoTable({
+      startY: 37,
+      head:[['Personas','Contactos del mes','Contactadas','Visitas realizadas','Nunca contactadas','Disciplina']],
+      body:[[
+        personas.length, d.contactosMes.length, d.contactadas.size,
+        d.visitasRealizadas.length, d.nunca.length, d.atencion.length
+      ]],
+      theme:'grid', headStyles:{fillColor:[0,128,105],fontSize:8}, styles:{fontSize:10,halign:'center'}
+    });
+
+    let y = doc.lastAutoTable.finalY + 10;
+    doc.setFontSize(11); doc.setTextColor(40,40,40);
+    doc.text('Contactos del mes', 14, y);
+    doc.autoTable({
+      startY: y+3,
+      head:[['Fecha','Persona','Tipo','Realizado por','Nota']],
+      body: d.contactosMes.length ? d.contactosMes.map(c=>{
+        const f = c.fecha?.toDate ? c.fecha.toDate() : null;
+        const tipo = {llamada:'Llamada', mensaje:'Mensaje', visita:'Visita'}[c.tipo]||c.tipo;
+        return [f?f.toLocaleDateString('es',{day:'2-digit',month:'2-digit'}):'—', c.nombrePersona||'', tipo, c.por||'', c.nota||''];
+      }) : [['—','Sin registros este mes','','','']],
+      theme:'striped', headStyles:{fillColor:[0,128,105],fontSize:8}, styles:{fontSize:8},
+      columnStyles:{4:{cellWidth:55}}
+    });
+
+    y = doc.lastAutoTable.finalY + 10;
+    if(y > 250){ doc.addPage(); y = 15; }
+    doc.setFontSize(11); doc.setTextColor(40,40,40);
+    doc.text('Visitas del mes', 14, y);
+    doc.autoTable({
+      startY: y+3,
+      head:[['Fecha','Persona','Motivo','Responsable','Estado','Informe']],
+      body: d.visitasMes.length ? d.visitasMes.map(v=>{
+        const [a,m,dd] = (v.fecha||'').split('-');
+        const motivo = TIPOS_VISITA[v.tipo]?.txt||v.tipo;
+        const est = ESTADOS_VISITA[v.estado]?.txt||v.estado;
+        return [`${dd}/${m}`, v.personaNombre||'', motivo, v.responsableNombre||'', est, v.informe||v.nota||''];
+      }) : [['—','Sin visitas este mes','','','','']],
+      theme:'striped', headStyles:{fillColor:[0,128,105],fontSize:8}, styles:{fontSize:8},
+      columnStyles:{5:{cellWidth:45}}
+    });
+
+    y = doc.lastAutoTable.finalY + 10;
+    if(y > 250){ doc.addPage(); y = 15; }
+    doc.setFontSize(11); doc.setTextColor(40,40,40);
+    doc.text('Situación actual del seguimiento', 14, y);
+    const ordenC = {rojo:0, amarillo:1, verde:2};
+    const situacion = [...personas].sort((a,b)=>ordenC[estado(a).color]-ordenC[estado(b).color]);
+    doc.autoTable({
+      startY: y+3,
+      head:[['Nombre','Último contacto','Semáforo','Cuidador','Condición','Bautismo']],
+      body: situacion.length ? situacion.map(p=>{
+        const e = estado(p);
+        const ult = e.dias===99999 ? 'Nunca' : e.txt.replace('Contactado ','');
+        return [p.nombre||'', ult, {verde:'Verde (al día)',amarillo:'Amarillo (+7 días)',rojo:'Rojo (+15 días)'}[e.color],
+                p.cuidadorNombre||'—',
+                {activo:'Activo',frecuente:'Frecuente',visitante:'Visitante',alejado:'Alejado',apartado:'Apartado',censura:'Censura',desaparecido:'Desaparecido','':'—'}[condMiembro(p)],
+                p.bautismo?fmtFecha(p.bautismo):'—'];
+      }) : [['—','Sin personas cargadas','','','','']],
+      theme:'striped', headStyles:{fillColor:[0,128,105],fontSize:8}, styles:{fontSize:8}
+    });
+
+    if(d.cumples.length){
+      y = doc.lastAutoTable.finalY + 10;
+      if(y > 250){ doc.addPage(); y = 15; }
+      doc.setFontSize(11); doc.setTextColor(40,40,40);
+      doc.text('Cumpleaños de '+mesTxt, 14, y);
+      doc.autoTable({
+        startY: y+3,
+        head:[['Día','Nombre']],
+        body: d.cumples.map(p=>[+p.cumple.slice(8), p.nombre||'']),
+        theme:'striped', headStyles:{fillColor:[0,128,105],fontSize:8}, styles:{fontSize:8},
+        columnStyles:{0:{cellWidth:20}}
+      });
+    }
+
+    const pages = doc.internal.getNumberOfPages();
+    for(let i=1;i<=pages;i++){
+      doc.setPage(i);
+      doc.setFontSize(7); doc.setTextColor(150);
+      doc.text('"Nadie solo, todos cuidados" - '+NOMBRE_ORG+' - Pagina '+i+' de '+pages, 105, 290, {align:'center'});
+    }
+
+    doc.save('reporte-acompanamiento-'+MESES[d.mes-1]+'-'+d.anio+'.pdf');
+    toast('✅ PDF descargado');
+  }catch(e){
+    toast('Error al generar el PDF');
+    console.error(e);
+  }
+};
+
+/* ---------- MÓDULO DISCIPLINA (Manual de la Iglesia, cap. 8) ---------- */
+const MOTIVOS_DISC = [
+  'Negación de la fe o enseñanza de doctrinas contrarias',
+  'Violación de la ley de Dios: idolatría, homicidio, robo, profanidad, juegos de azar, sábado, falsedad habitual',
+  'Violación de «No cometerás adulterio» / abuso sexual',
+  'Fornicación: promiscuidad, incesto u otras prácticas',
+  'Material pornográfico: producción, uso o distribución',
+  'Nuevo casamiento sin derecho bíblico',
+  'Violencia física, incluida la violencia familiar',
+  'Fraude o mentir conscientemente en los negocios',
+  'Conducta desordenada que traiga oprobio a la causa',
+  'Adhesión a movimiento divisionista o desleal',
+  'Negativa persistente a las autoridades de la iglesia',
+  'Uso, fabricación o venta de bebidas alcohólicas',
+  'Uso, manufactura o venta de tabaco',
+  'Uso o elaboración de drogas ilícitas',
+  'Otro (especificar en las notas)'
+];
+const PASOS_PREVIOS = [
+  'Conversación privada con la persona (Mt 18:15)',
+  'Con uno o dos testigos (Mt 18:16)',
+  'Presentado a la iglesia (Mt 18:17)',
+  'Junta directiva revisó el caso y solo RECOMENDÓ (p. 82)',
+  'Notificación escrita al miembro, al menos 2 semanas antes (p. 83)',
+  'Oportunidad de ser oído, con pruebas y testigos (p. 83)',
+  'Consulta con el pastor / la asociación (p. 81)'
+];
+
+ $('btn-disc').onclick = ()=>{
+  $('disc-form').classList.add('oculto');
+  $('disc-guia').classList.add('oculto');
+  $('modal-disc').classList.remove('oculto');
+  renderDisc();
+};
+ $('disc-cerrar').onclick = ()=> $('modal-disc').classList.add('oculto');
+ $('btn-ver-guia').onclick = ()=> $('disc-guia').classList.toggle('oculto');
+
+ $('btn-nuevo-caso').onclick = ()=>{
+  $('dc-persona').innerHTML = personas.map(p=>`<option value="${p.id}">${esc(p.nombre)}</option>`).join('');
+  $('dc-motivo').innerHTML = MOTIVOS_DISC.map(m=>`<option>${esc(m)}</option>`).join('');
+  $('dc-pasos').innerHTML = PASOS_PREVIOS.map((p,i)=>`<label class="paso-chk"><input type="checkbox" data-i="${i}"> ${esc(p)}</label>`).join('');
+  $('dc-fecha').value = hoyStr();
+  $('dc-dur').value = 6;
+  $('dc-nota').value = '';
+  $('dc-tipo').value = 'censura';
+  $('dc-dur-box').style.display = 'block';
+  $('disc-guia').classList.add('oculto');
+  $('disc-form').classList.remove('oculto');
+};
+
+ $('dc-tipo').onchange = ()=>{
+  $('dc-dur-box').style.display = $('dc-tipo').value==='censura' ? 'block' : 'none';
+};
+
+ $('dc-guardar').onclick = async ()=>{
+  const pid = $('dc-persona').value;
+  const p = personas.find(x=>x.id===pid);
+  if(!p){ toast('Elegí una persona'); return; }
+  const tipo = $('dc-tipo').value;
+  const fecha = $('dc-fecha').value || hoyStr();
+  const dur = tipo==='censura' ? Math.min(12, Math.max(1, +$('dc-dur').value || 6)) : null;
+  const pasos = {};
+  $('dc-pasos').querySelectorAll('input[type="checkbox"]').forEach(cb=> pasos['p'+cb.dataset.i] = cb.checked);
+  let fechaFin = null;
+  if(tipo==='censura'){
+    const f = new Date(fecha+'T12:00:00'); f.setMonth(f.getMonth()+dur);
+    fechaFin = Timestamp.fromMillis(f.getTime());
+  }
+  try{
+    await addDoc(collection(db,'disciplina'), {
+      personaId: pid, personaNombre: p.nombre,
+      tipo, motivo: $('dc-motivo').value,
+      fecha: Timestamp.fromMillis(new Date(fecha+'T12:00:00').getTime()),
+      duracion: dur, fechaFin,
+      pasos, nota: $('dc-nota').value.trim(),
+      estado: 'activa',
+      por: user.displayName || user.email,
+      creado: serverTimestamp()
+    });
+    const nuevoEstado = tipo==='censura' ? 'censura' : tipo==='remocion' ? 'apartado' : 'desaparecido';
+    await updateDoc(doc(db,'personas',pid), {estadoMiembro: nuevoEstado, actualizado: serverTimestamp()});
+    await addDoc(collection(db,'historia'), {
+      personaId: pid, nombrePersona: p.nombre,
+      texto: tipo==='censura'
+        ? `Colocado bajo censura por ${dur} ${dur===1?'mes':'meses'} por voto de la iglesia. Razón: ${$('dc-motivo').value}`
+        : tipo==='remocion'
+        ? `Removido de la feligresía por voto de la iglesia. Razón: ${$('dc-motivo').value}`
+        : `Designado «desaparecido» (paradero desconocido) por voto de la iglesia`,
+      fecha: Timestamp.fromMillis(new Date(fecha+'T12:00:00').getTime()),
+      por: user.displayName || user.email,
+      creado: serverTimestamp()
+    });
+    $('disc-form').classList.add('oculto');
+    renderDisc();
+    toast('⚖️ Caso registrado (también en Historia de vida)');
+  }catch(e){ toast('Error al guardar'); console.error(e); }
+};
+
+function renderDisc(){
+  const activos = casosDisc.filter(c=>c.estado!=='resuelta')
+    .sort((a,b)=>({censura:0,remocion:1,desaparicion:2}[a.tipo]??9)-({censura:0,remocion:1,desaparicion:2}[b.tipo]??9)
+      || (b.fecha?.toMillis||0)-(a.fecha?.toMillis||0));
+  if(!activos.length){
+    $('disc-lista').innerHTML = '<p style="text-align:center;color:var(--txt2);margin:14px 0">No hay casos activos. 🙏</p>';
+    return;
+  }
+  $('disc-lista').innerHTML = activos.map(c=>{
+    const t = {censura:'⚖️ Censura', remocion:'🔴 Remoción', desaparicion:'🔇 Desaparición'}[c.tipo] || c.tipo;
+    const p = personas.find(x=>x.id===c.personaId);
+    let vence = '';
+    if(c.tipo==='censura' && c.fechaFin?.toDate){
+      const f = c.fechaFin.toDate();
+      const dias = Math.ceil((f - new Date())/86400000);
+      vence = `<div class="cs-vence ${dias<=30?'atras':''}">⏰ Revisión el ${f.toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'})} · ${dias<=0?'revisión pendiente':'faltan '+dias+' días'}</div>`;
+    }
+    let waBtn = '';
+    if(p){
+      const nombre = p.nombre||'';
+      const msg = c.tipo==='censura'
+        ? `Querido ${nombre} 🙏 Con pesar, la iglesia decidió colocarlo bajo censura. Queremos asegurarle nuestro permanente interés espiritual y nuestra preocupación por su persona. La iglesia espera su restauración plena 🙏`
+        : c.tipo==='remocion'
+        ? `Querido ${nombre} 🙏 Le escribimos con pesar por la decisión tomada. Queremos asegurarle que la iglesia siempre esperará su regreso, y que un día estemos juntos en la eterna feligresía del reino de Dios. ¿Podemos visitarlo? 🙏`
+        : `Querido ${nombre} 🙏 Hace tiempo que no tenemos noticias suyas. ¿Cómo está? Nos gustaría saber de usted y ayudarlo en lo que necesitemos 🙏`;
+      const link = waLinkMsg(p, msg);
+      if(link) waBtn = `<a class="cs-wa" href="${link}" target="_blank" rel="noopener">💬 Mensaje pastoral</a>`;
+    }
+    return `<div class="caso">
+      <div class="cs-nombre">${t} · ${esc(c.personaNombre||'')}</div>
+      <div class="cs-meta">${esc(c.motivo||'')}</div>
+      <div class="cs-meta">${c.fecha?.toDate?c.fecha.toDate().toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'}):''} · registrado por ${esc(c.por||'—')}</div>
+      ${vence}
+      <div class="cs-btns">${waBtn}<button class="cs-nota" data-hist="${c.personaId}">📖 Ficha</button><button class="cs-nota" data-restaurar="${c.id}">✔️ Restaurar</button></div>
+    </div>`;
+  }).join('');
+
+  $('disc-lista').querySelectorAll('[data-hist]').forEach(b=> b.onclick = ()=>{
+    $('modal-disc').classList.add('oculto');
+    abrirDetalle(b.dataset.hist);
+  });
+  $('disc-lista').querySelectorAll('[data-restaurar]').forEach(b=> b.onclick = async ()=>{
+    const c = casosDisc.find(x=>x.id===b.dataset.restaurar);
+    if(!c) return;
+    const esCensura = c.tipo==='censura';
+    if(!confirm(esCensura
+      ? `¿Marcar finalizada la censura de ${c.personaNombre}?\n\nManual p. 81: si la conducta fue satisfactoria, se lo considera en plena comunión sin nuevo voto, y se le notifica que la censura finalizó.`
+      : `¿Registrar la readmisión de ${c.personaNombre}?\n\nManual p. 85-86: normalmente precedida por el rebautismo, con pruebas de arrepentimiento, y consultando a la asociación.`)) return;
+    try{
+      await updateDoc(doc(db,'disciplina',c.id), {estado:'resuelta'});
+      await updateDoc(doc(db,'personas',c.personaId), {estadoMiembro:'activo', actualizado: serverTimestamp()});
+      await addDoc(collection(db,'historia'), {
+        personaId: c.personaId, nombrePersona: c.personaNombre,
+        texto: esCensura ? 'Finalizada la censura; restaurado a plena comunión (Manual, p. 81)' : 'Readmitido en la membresía, normalmente tras rebautismo (Manual, p. 85-86)',
+        fecha: serverTimestamp(), por: user.displayName || user.email, creado: serverTimestamp()
+      });
+      toast('✅ Restaurado a plena comunión');
+      renderDisc();
+    }catch(e){ toast('Error'); console.error(e); }
+  });
+};
+
+/* ---------- RECALCULAR SEMÁFOROS (una sola vez) ---------- */
+ $('btn-recalcular').onclick = async ()=>{
+  if(!confirm('Esto lee el historial completo UNA sola vez y guarda en cada ficha su último contacto y cantidad de contactos.\n\nDespués se actualiza solo. ¿Continuar?')) return;
+  try{
+    toast('⏳ Leyendo historial (puede tardar)…');
+    const snap = await getDocs(collection(db,'contactos'));
+    const mapa = new Map();
+    snap.forEach(d=>{
+      const c = d.data();
+      const ms = c.fecha?.toMillis ? c.fecha.toMillis() : 0;
+      if(!ms || !c.personaId) return;
+      const e = mapa.get(c.personaId) || {ms:0, n:0};
+      if(ms>e.ms) e.ms=ms;
+      e.n++;
+      mapa.set(c.personaId, e);
+    });
+    toast('⏳ Actualizando fichas…');
+    let batch = writeBatch(db), count = 0;
+    for(const p of personas){
+      const e = mapa.get(p.id);
+      batch.update(doc(db,'personas',p.id), {
+        ultimoContacto: e ? Timestamp.fromMillis(e.ms) : null,
+        nContactos: e ? e.n : 0
+      });
+      count++;
+      if(count===400){ await batch.commit(); batch = writeBatch(db); count = 0; }
+    }
+    if(count>0) await batch.commit();
+    toast('✅ Semáforos recalculados');
+  }catch(e){
+    toast('Error al recalcular');
+    console.error(e);
+  }
+};
+
+const hoy0 = new Date(); calY = hoy0.getFullYear(); calM = hoy0.getMonth();
+
+let toastTimer;
+function toast(m){
+  const t = $('toast'); t.textContent = m; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+if('serviceWorker' in navigator){
+  try{ navigator.serviceWorker.register('./sw.js'); }catch(e){}
+}
+</script>
+</body>
+</html>
