@@ -15,8 +15,8 @@
   --bg:#0f1f3a;--card:#1c2e4a;--card2:#264063;--borde:#345080;
   --txt:#eaf1fb;--txt2:#9fb3d1;
   --header:#1c2e4a;--avb:#0f1f3a;--overlay:rgba(0,0,0,.78);--placeholder:#9fb3d1;
-  --accent:#f59e0b;--accent2:#fbbf24;
-  --grad:linear-gradient(135deg,#f59e0b,#d97706);
+  --accent:#10b981;--accent2:#34d399;
+  --grad:linear-gradient(135deg,#10b981,#047857);
   --sombra:0 4px 14px rgba(0,0,0,.45);
   --azul:#3b82f6;--verde:#22c55e;--rojo:#ef4444;--amarillo:#f59e0b;
   --wa:#25d366;
@@ -25,7 +25,7 @@ body.claro{
   --bg:#eef2f9;--card:#ffffff;--card2:#f1f5fb;--borde:#d3dcec;
   --txt:#0f1f3a;--txt2:#4a5b7a;
   --header:#0f1f3a;--avb:#ffffff;--overlay:rgba(0,0,0,.5);--placeholder:#7a8aa3;
-  --accent:#d97706;--accent2:#b45309;
+  --accent:#047857;--accent2:#065f46;
   --sombra:0 3px 10px rgba(0,0,0,.10);
 }
 *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -507,7 +507,8 @@ const ERRORES = {
 /* ============ MOTIVOS DE ALEJAMIENTO ============ */
 const MOTIVOS = {
   herido: {
-    txt: '💔 Herido por alguien de la iglesia', corto: 'Herido',
+    txt: '💔 Herido por alguien de la iglesia',
+    corto: 'Herido',
     versiculos: [
       {r:'Mt 18:21-22', t:'Señor, ¿cuántas veces perdonaré?... hasta setenta veces siete.'},
       {r:'Ef 4:31-32', t:'Quítense toda amargura... sed benignos, misericordiosos, perdonándoos unos a otros.'},
@@ -532,12 +533,13 @@ const MOTIVOS = {
       {r:'Is 61:1', t:'Me ha enviado a sanar a los quebrantados de corazón... a consolar a los enlutados.'},
       {r:'Jer 30:17', t:'Yo haré cicatrizar tu herida, y curaré tus llagas, dice Jehová.'}
     ],
-    consejo: 'Escuchá primero, validá el dolor sin minimizar. No defiendas a la otra parte. Después de ganar confianza, ayudá a ver el perdón como un acto de liberación personal, no como aprobación del daño. Ofrecé mediación solo cuando la persona esté lista. La reconciliación es un proceso, no un evento.',
+    consejo: 'Escuchá primero, validá el dolor sin minimizar. No defiendas a la otra parte. Después de ganar confianza, ayudá a ver el perdón como un acto de liberación personal, no como aprobación del daño. Ofrecé mediación solo cuando la persona esté lista. La reconciliación es un proceso, no un evento. Tomá tiempo para orar juntos.',
     enfoque: 'Escuchar · Validar · Sanar · Perdonar · Restaurar',
     mensaje: 'Hola {nombre} 🙏 Sé que pasaste por una situación muy dolorosa en la iglesia, y tu herida es real. Dios no minimiza lo que sentiste. ¿Podemos conversar sin presiones? Solo quiero escucharte y orar con vos 🤗'
   },
   enojado_liderazgo: {
-    txt: '😤 Enojado con el liderazgo / pastor', corto: 'Enojado con liderazgo',
+    txt: '😤 Enojado con el liderazgo / pastor',
+    corto: 'Enojado con liderazgo',
     versiculos: [
       {r:'1 Ts 5:12-13', t:'Tened en estima a los que trabajan entre vosotros... y que los tengáis en mucha estima por amor a su obra.'},
       {r:'Heb 13:17', t:'Obedeced a vuestros pastores, y sujetaos a ellos; porque ellos velan por vuestras almas.'},
@@ -562,12 +564,13 @@ const MOTIVOS = {
       {r:'2 Ts 3:14-15', t:'Si alguno no obedece... no tengáis con él compañía... pero no lo tengáis por enemigo, sino amonestadle como a hermano.'},
       {r:'1 Pe 2:17', t:'Honrad a todos. Amad a los hermanos. Temed a Dios. Honrad al rey.'}
     ],
-    consejo: 'No tomes partido ni critiques al liderazgo. Reconocé que las heridas legítimas existen. Ayudá a separar al siervo del oficio: a veces Dios usa vasijas imperfectas. Fomentá el diálogo directo con el pastor. La unidad no significa silencio: significa procesar las diferencias con respeto.',
+    consejo: 'No tomes partido ni critiques al liderazgo. Reconocé que las heridas legítimas existen. Ayudá a separar al siervo del oficio: a veces Dios usa vasijas imperfectas. Fomentá el diálogo directo con el pastor. Si el conflicto es con un anciano específico, ofrecé mediación con otro anciano neutral. La unidad no significa silencio: significa procesar las diferencias con respeto.',
     enfoque: 'Escuchar · No tomar partido · Fomentar diálogo directo · Buscar mediación si hace falta',
     mensaje: 'Hola {nombre} 🙏 Entiendo que hay cosas que te lastimaron y tu enojo tiene razón de ser. Tu voz importa para nosotros. ¿Podemos tomar un café y conversar con honestidad? Sin defender a nadie, solo escucharte 🤗'
   },
   apatico: {
-    txt: '😴 Dejó de asistir gradualmente / sin razón clara', corto: 'Apático',
+    txt: '😴 Dejó de asistir gradualmente / sin razón clara',
+    corto: 'Apático',
     versiculos: [
       {r:'Heb 10:25', t:'No dejando de congregarnos, como algunos tienen por costumbre, sino exhortándonos.'},
       {r:'Sal 122:1', t:'Yo me alegré cuando me dijeron: "Vamos a la casa de Jehová".'},
@@ -592,12 +595,13 @@ const MOTIVOS = {
       {r:'Is 55:7', t:'Deje el impío su camino, y el hombre inicuo sus pensamientos, y vuélvase a Jehová.'},
       {r:'Stg 5:19-20', t:'Hermanos, si alguno de entre vosotros se ha extraviado de la verdad, y alguno le hace volver, sepa que el que haga volver al pecador... salvará un alma de muerte.'}
     ],
-    consejo: 'Contacto cálido y sin presión ni juicio. Preguntá cómo está su vida, no solo por qué no viene. A veces es cansancio, depresión, crisis de fe o problemas que no compartió. Mostrá que se lo extraña de verdad, no por obligación institucional. No prediques ni le hagas sentir culpable.',
+    consejo: 'Contacto cálido y sin presión ni juicio. Preguntá cómo está su vida, no solo por qué no viene. A veces es cansancio, depresión, crisis de fe o problemas que no compartió. Mostrá que se lo extraña de verdad, no por obligación institucional. No prediques ni le hagas sentir culpable. Una invitación a un café o comida hace más que mil palabras. Detectá si hay depresión subyacente para sugerir ayuda profesional.',
     enfoque: 'Contacto cálido · Sin presión · Interés genuino · Detectar causa de fondo',
     mensaje: 'Hola {nombre} 👋 Hace un tiempo que no te vemos por la familia de Fe, y te extrañamos de verdad 🙏 No es por pedirte nada, solo quiero saber cómo estás. ¿Te animás a conversar un rato? 🤗'
   },
   conflicto_familiar: {
-    txt: '👨‍👩‍👧 Conflicto familiar / conyugal', corto: 'Conflicto familiar',
+    txt: '👨‍👩‍👧 Conflicto familiar / conyugal',
+    corto: 'Conflicto familiar',
     versiculos: [
       {r:'Ef 5:21-25', t:'Someteos unos a otros en el temor de Dios... Maridos, amad a vuestras mujeres, así como Cristo amó la iglesia.'},
       {r:'1 Co 13:4-7', t:'El amor es sufrido, es benigno... todo lo sufre, todo lo cree, todo lo espera, todo lo soporta.'},
@@ -627,7 +631,8 @@ const MOTIVOS = {
     mensaje: 'Hola {nombre} 🙏 Sé que estás atravesando un momento difícil en familia. Dios no te juzga, te abraza. ¿Queremos conversar? Total confidencialidad, y si lo necesitás, puedo conectarlos con un hermano con más experiencia 🤗'
   },
   dudas_doctrinales: {
-    txt: '❓ Dudas doctrinales / de fe', corto: 'Dudas doctrinales',
+    txt: '❓ Dudas doctrinales / de fe',
+    corto: 'Dudas doctrinales',
     versiculos: [
       {r:'1 Pe 3:15', t:'Estad siempre preparados para presentar defensa con mansedumbre y reverencia ante todo el que os demande razón de la esperanza.'},
       {r:'Judas 3', t:'Contended ardientemente por la fe que ha sido una vez dada a los santos.'},
@@ -658,7 +663,8 @@ const MOTIVOS = {
     mensaje: 'Hola {nombre} 🙏 Entiendo que tenés preguntas y dudas serias. Eso no te hace menos creyente, al contrario: importa lo suficiente como para cuestionarlo. ¿Queremos estudiar juntos estos temas? Sin apuros, sin juicios 🤗'
   },
   mudanza: {
-    txt: '🏠 Mudanza / distancia', corto: 'Mudanza',
+    txt: '🏠 Mudanza / distancia',
+    corto: 'Mudanza',
     versiculos: [
       {r:'Mt 18:20', t:'Donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.'},
       {r:'Heb 10:24', t:'Considerémonos unos a otros para estimularnos al amor y a las buenas obras.'},
@@ -676,19 +682,20 @@ const MOTIVOS = {
       {r:'Jer 29:11', t:'Porque yo sé los pensamientos que tengo acerca de vosotros, pensamientos de paz, y no de mal.'},
       {r:'Fil 4:13', t:'Todo lo puedo en Cristo que me fortalece.'},
       {r:'Is 41:10', t:'No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios.'},
-      {r:'DT 31:6', t:'Él no te dejará, ni te desamparará.'},
+      {r:'Dt 31:6', t:'Él no te dejará, ni te desamparará.'},
       {r:'Sal 90:1', t:'Señor, tú nos has sido refugio de generación en generación.'},
       {r:'Sal 91:1', t:'El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente.'},
       {r:'Ro 1:11-12', t:'Deseo veros para comunicaros algún don espiritual... para ser mutuamente confortados.'},
       {r:'Hch 18:21', t:'Si Dios quiere, volveré a vosotros.'},
       {r:'3 Jn 1:14', t:'Espero verte pronto, y hablaremos boca a boca. Paz a ti.'}
     ],
-    consejo: 'Ayudá a conectar con una iglesia cercana a su nuevo hogar. Mantené el contacto de seguimiento hasta que se integre. Ofrecé presentarlos con el pastor de su nueva zona. Programá una videollamada mensual los primeros meses.',
+    consejo: 'Ayudá a conectar con una iglesia cercana a su nuevo hogar. Mantené el contacto de seguimiento hasta que se integre. Ofrecé presentarlos con el pastor de su nueva zona. Programá una videollamada mensual los primeros meses. Recomienda iglesias afines en la zona si las conocés.',
     enfoque: 'Conectar con iglesia cercana · Mantener contacto · Seguimiento por video',
     mensaje: 'Hola {nombre} 👋 Sé que la mudanza cambia todo, y es fácil soltar la comunión 🙏 ¿Te ayudo a buscar una iglesia cercana a tu nueva casa? Y mientras tanto, seguimos en contacto. No te soltamos 🤗'
   },
   salud_depresion: {
-    txt: '🥀 Salud / depresión / duelo', corto: 'Salud / depresión',
+    txt: '🥀 Salud / depresión / duelo',
+    corto: 'Salud / depresión',
     versiculos: [
       {r:'Sal 34:18', t:'Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.'},
       {r:'2 Co 1:3-4', t:'Padre de misericordias y Dios de toda consolación, el cual nos consuela en todas nuestras tribulaciones.'},
@@ -715,14 +722,15 @@ const MOTIVOS = {
       {r:'Jn 11:25-26', t:'Yo soy la resurrección y la vida; el que cree en mí, aunque esté muerto, vivirá.'},
       {r:'Lm 3:22-23', t:'Por la misericordia de Jehová no hemos sido consumidos... nuevas son cada mañana; grande es tu fidelidad.'}
     ],
-    consejo: 'Presencia, oración, ayuda práctica. No prediques, acompañá. Ofrecé ayuda profesional si es depresión clínica (psicólogo cristiano). Escuchá sin dar consejos rápidos. Llevá comida, hacé recados, llamá regularmente. La sanidad emocional toma tiempo.',
+    consejo: 'Presencia, oración, ayuda práctica. No prediques, acompañá. Ofrecé ayuda profesional si es depresión clínica (psicólogo cristiano). Escuchá sin dar consejos rápidos. Llevá comida, hacé recados, llamá regularmente. La sanidad emocional toma tiempo. A veces solo estar sentado al lado en silencio vale más que cualquier palabra.',
     enfoque: 'Presencia · Oración · Ayuda profesional si hace falta · Ayuda práctica',
     mensaje: 'Hola {nombre} 🙏 No te voy a pedir que vuelvas, ni que expliques nada. Solo quiero decirte que Dios te ve, que te ama, y que estoy acá para lo que necesites. ¿Puedo ir a verte, o llevarte algo? Sin pressure 🤗'
   },
   trabajo_horarios: {
-    txt: '💼 Trabajo / horarios difíciles', corto: 'Trabajo / horarios',
+    txt: '💼 Trabajo / horarios difíciles',
+    corto: 'Trabajo / horarios',
     versiculos: [
-      {r:'Mt 6:33', t:'Buscad primermente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.'},
+      {r:'Mt 6:33', t:'Buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.'},
       {r:'Ef 5:15-16', t:'Mirad, pues, con diligencia cómo andéis... aprovechando bien el tiempo, porque los días son malos.'},
       {r:'Mr 2:27', t:'El día de reposo fue hecho por causa del hombre, y no el hombre por causa del día de reposo.'},
       {r:'Ex 20:8', t:'Acuérdate del día de reposo para santificarlo.'},
@@ -745,12 +753,13 @@ const MOTIVOS = {
       {r:'Ef 5:17', t:'Por tanto, no seáis insensatos, sino entendidos cuál sea la voluntad del Señor.'},
       {r:'Sal 90:17', t:'Sea la obra de nuestras manos confirmada sobre nosotros; sí, confirma la obra de nuestras manos.'}
     ],
-    consejo: 'Sé flexible: ofrecé estudios bíblicos en otros horarios, servicios online, materiales para casa. Reconocé la legitimidad del trabajo. Ayudá a replantear prioridades sin culpa. A veces una pequeña reorganización laboral resuelve todo.',
+    consejo: 'Sé flexible: ofrecé estudios bíblicos en otros horarios, servicios online, materiales para casa. Reconocé la legitimidad del trabajo. Ayudá a replantear prioridades sin culpa. A veces una pequeña reorganización laboral resuelve todo. No le hagas sentir culpable por mantener a su familia.',
     enfoque: 'Flexibilidad · Alternativas · Sin culpa · Materiales a domicilio',
     mensaje: 'Hola {nombre} 👋 Sé que el trabajo te consume los horarios, y eso se entiende 🙏 ¿Te interesaría un estudio bíblico en otro horario, o materiales para tu casa? Quiero acompañarte en lo que se pueda 🤗'
   },
   economicos: {
-    txt: '💸 Problemas económicos', corto: 'Problemas económicos',
+    txt: '💸 Problemas económicos',
+    corto: 'Problemas económicos',
     versiculos: [
       {r:'Mt 6:25-34', t:'No os afanéis por vuestra vida, qué habéis de comer... buscad primeramente el reino de Dios.'},
       {r:'Fil 4:19', t:'Mi Dios, pues, suplirá todo lo que os falta conforme a sus riquezas en gloria.'},
@@ -770,19 +779,20 @@ const MOTIVOS = {
       {r:'Lc 6:38', t:'Dad, y se os dará; medida buena, apretada, remecida y rebosando darán en vuestro regazo.'},
       {r:'1 Ti 6:6-8', t:'Pero gran ganancia es la piedad acompañada de contentamiento; porque nada hemos traído a este mundo.'},
       {r:'2 Co 8:9', t:'Porque ya conocéis la gracia de nuestro Señor Jesucristo, que por amor a vosotros se hizo pobre.'},
-      {r:'DT 15:11', t:'Porque no faltarán menesterosos en medio de la tierra; por eso yo te mando, diciendo: Abrirás tu mano a tu hermano.'},
+      {r:'Dt 15:11', t:'Porque no faltarán menesterosos en medio de la tierra; por eso yo te mando, diciendo: Abrirás tu mano a tu hermano.'},
       {r:'Pr 19:17', t:'A Jehová presta el que da al pobre, y el bien que ha hecho, él se lo pagará.'},
       {r:'Mt 25:40', t:'En cuanto lo hicisteis a uno de estos mis hermanos más pequeños, a mí lo hicisteis.'},
       {r:'Stg 2:5', t:'¿No ha elegido Dios a los pobres de este mundo, para que sean ricos en fe y herederos del reino?'},
       {r:'Sal 34:10', t:'Los leoncillos necesitan, y tienen hambre; pero los que buscan a Jehová no tendrán falta de ningún bien.'},
       {r:'Is 33:16', t:'Éste habitará en las alturas; fortaleza de peñas será su lugar de refugio; su pan le será dado, y sus aguas serán seguras.'}
     ],
-    consejo: 'Ayuda práctica confidencial a través de los diáconos. No prediques sobre diezmo en este momento. Conectá con asistencia profesional si es deuda grave. La dignidad antes que la caridad: ofrecer trabajo, no solo limosna.',
+    consejo: 'Ayuda práctica confidencial a través de los diáconos. No prediques sobre diezmo en este momento. Conectá con asistencia profesional si es deuda grave. La dignidad antes que la caridad: ofrecer trabajo, no solo limosna. A veces la solución es orientación financiera con un hermano contador. Mantené absoluta confidencialidad.',
     enfoque: 'Ayuda confidencial · Diáconos · Dignidad · Orientación profesional',
     mensaje: 'Hola {nombre} 🙏 Sé que estás pasando por un momento económico difícil. La iglesia tiene un fondo de ayuda confidencial, y quiero ofrecértelo sin pedir nada a cambio. ¿Podemos conversar? 🤗'
   },
   caida_pecado: {
-    txt: '⚔️ Caída espiritual / pecado', corto: 'Caída / pecado',
+    txt: '⚔️ Caída espiritual / pecado',
+    corto: 'Caída / pecado',
     versiculos: [
       {r:'1 Jn 1:9', t:'Si confesamos nuestros pecados, él es fiel y justo para perdonar nuestros pecados, y limpiarnos de toda maldad.'},
       {r:'Pr 28:13', t:'El que encubre sus pecados no prosperará; mas el que los confiesa y se aparta alcanzará misericordia.'},
@@ -809,12 +819,13 @@ const MOTIVOS = {
       {r:'Ro 6:1-2', t:'¿Permaneceremos en el pecado para que la gracia abunde? En ninguna manera.'},
       {r:'1 Co 10:13', t:'Fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir.'}
     ],
-    consejo: 'Sin condena, sin minimizar el pecado. Restauración con mansedumbre (Gá 6:1). Confidencialidad absoluta al principio. Sugerí buscar a un anciano o pastor cuando esté listo. Recordá que el enemigo usa la vergüenza para aislar: rompé ese aislamiento.',
+    consejo: 'Sin condena, sin minimizar el pecado. Restauración con mansedumbre (Gá 6:1). Confidencialidad absoluta al principio. Sugerí buscar a un anciano o pastor cuando esté listo. Recordá que el enemigo usa la vergüenza para aislar: rompé ese aislamiento. La restauración es un proceso, no una oración mágica.',
     enfoque: 'Sin condena · Confidencial · Restauración mansa · Proceso gradual',
     mensaje: 'Hola {nombre} 🙏 No te juzgo. Dios no te condena, te espera. Sea lo que sea que estés atravesando, hay un camino de regreso, y quiero caminarlo con vos, sin prisa y sin reproches. ¿Podemos conversar? 🤗'
   },
   discusion_conyugal: {
-    txt: '💑 Discusión conyugal fuerte', corto: 'Discusión conyugal',
+    txt: '💑 Discusión conyugal fuerte',
+    corto: 'Discusión conyugal',
     versiculos: [
       {r:'Ef 4:26', t:'Airaos, pero no pequéis; no se ponga el sol sobre vuestro enojo.'},
       {r:'1 Co 7:10-11', t:'La mujer no se separe del marido; y si se separa, quédese sin casar, o reconcíliese con su marido.'},
@@ -840,12 +851,13 @@ const MOTIVOS = {
       {r:'Pr 15:1', t:'La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.'},
       {r:'Pr 17:14', t:'El que comienza la discordia es como quien suelta las aguas; deja, pues, la contienda, antes que se enrede.'}
     ],
-    consejo: 'Escuchar a ambas partes por separado. No tomar partido. Fomentar diálogo directo entre ellos. Ofrecer consejería matrimonial. Si hay violencia, intervenir con ayuda profesional de inmediato.',
+    consejo: 'Escuchar a ambas partes por separado. No tomar partido. Fomentar diálogo directo entre ellos. Ofrecer consejería matrimonial. Si hay violencia, intervenir con ayuda profesional de inmediato. Nunca pongas a un cónyuge contra el otro. Recordá que el esposo y la esposa son uno: ayudas a ambos o a ninguno.',
     enfoque: 'Escuchar a ambos · No tomar partido · Consejería · Cuidar violencia',
     mensaje: 'Hola {nombre} 🙏 Sé que las discusiones duelen, y a veces parecen no tener salida. Pero el sol no debería ponerse sobre el enojo. ¿Queremos conversar? Total confidencialidad, y si querés, también con tu pareja 🤗'
   },
   drogas: {
-    txt: '💉 Volvió a las drogas / adicciones', corto: 'Drogas / adicción',
+    txt: '💉 Volvió a las drogas / adicciones',
+    corto: 'Drogas / adicción',
     versiculos: [
       {r:'1 Co 6:19', t:'¿O ignoráis que vuestro cuerpo es templo del Espíritu Santo... el cual tenéis de Dios, y que no sois vuestros?'},
       {r:'1 Co 6:12', t:'Todas las cosas me son lícitas, mas no todas convienen; todas las cosas me son lícitas, mas yo no me dejaré dominar de ninguna.'},
@@ -872,12 +884,13 @@ const MOTIVOS = {
       {r:'Sal 40:2', t:'Y me hizo sacar del pozo de la desesperación, del lodo cenagoso; y puso mis pies sobre peña, y enderezó mis pasos.'},
       {r:'Sal 18:2-3', t:'Jehová, roca mía y castillo mío, y mi libertador; Dios mío, fortaleza mía, en él confiaré.'}
     ],
-    consejo: 'La adicción es una esclavitud real que requiere intervención profesional (centro de rehabilitación cristiano si es posible). No minimicés diciendo "con oración basta". Acompañá sin juzgar: la recaída es parte del proceso de recuperación. La familia cercana necesita tanto apoyo como el adicto.',
+    consejo: 'La adicción es una esclavitud real que requiere intervención profesional (centro de rehabilitación cristiano si es posible). No minimicés diciendo "con oración basta". Acompañá sin juzgar: la recaída es parte del proceso de recuperación. La familia cercana necesita tanto apoyo como el adicto. Identificá grupos de apoyo (NA, AA, ministries específicos). Si la persona está dispuesta, el primer paso es desintoxicación supervisada.',
     enfoque: 'Intervención profesional · Sin juicio · Apoyo a la familia · Constancia',
     mensaje: 'Hola {nombre} 🙏 Sé que estás atrapado en algo que te supera. No te voy a juzgar. Cristo vino a liberar a los cautivos, y quiero caminar contigo en este proceso. Hay ayuda profesional disponible, y oración sin cesar. ¿Queremos conversar? 🤗'
   },
   vida_pasada: {
-    txt: '🎢 Volvió a su vida pasada / mundanalidad', corto: 'Vida pasada',
+    txt: '🎢 Volvió a su vida pasada / mundanalidad',
+    corto: 'Vida pasada',
     versiculos: [
       {r:'2 Co 5:17', t:'De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas nuevas.'},
       {r:'1 Jn 2:15-17', t:'No améis al mundo, ni las cosas que están en el mundo... porque todo lo que hay en el mundo, los deseos de la carne, los deseos de los ojos, y la vanagloria de la vida, no proviene del Padre.'},
@@ -905,12 +918,13 @@ const MOTIVOS = {
       {r:'Jn 17:14-16', t:'No son del mundo, como tampoco yo soy del mundo. No ruego que los quites del mundo, sino que los guardes del mal.'},
       {r:'Gá 5:24', t:'Pero los que son de Cristo han crucificado la carne con sus pasiones y deseos.'}
     ],
-    consejo: 'No ataques la mundanalidad con condena: eso genera defensiva. Mostrá con amor el contraste entre la paz de la vida en Cristo y el vacío del mundo. Ayudá a identificar qué vacío busca llenar con la vida pasada (soledad, miedo, sentido). Reintegrar gradualmente: no exigir perfección inmediata.',
+    consejo: 'No ataques la mundanalidad con condena: eso genera defensiva. Mostrá con amor el contraste entre la paz de la vida en Cristo y el vacío del mundo. Ayudá a identificar qué vacío busca llenar con la vida pasada (soledad, miedo, sentido). Reintegrar gradualmente: no exigir perfección inmediata. La comunidad cristiana es clave: no puede alejarse si sus amistades siguen siendo las de antes.',
     enfoque: 'Sin condena · Identificar vacío · Renovar amistades · Reinserción gradual',
     mensaje: 'Hola {nombre} 🙏 Sé que a veces el mundo tira fuerte, y las cosas viejas parecen más fáciles. Pero Cristo te hizo nueva criatura, y eso no se pierde. ¿Queremos conversar? Sin reproches, solo con amor 🤗'
   },
   politica: {
-    txt: '🗳️ Conflicto por política / ideología', corto: 'Política',
+    txt: '🗳️ Conflicto por política / ideología',
+    corto: 'Política',
     versiculos: [
       {r:'Fil 3:20', t:'Mas nuestra ciudadanía está en los cielos, de donde también esperamos al Salvador, al Señor Jesucristo.'},
       {r:'Jn 18:36', t:'Mi reino no es de este mundo; si mi reino fuera de este mundo, mis servidores pelearían.'},
@@ -938,12 +952,13 @@ const MOTIVOS = {
       {r:'Ex 20:3', t:'No tendrás dioses ajenos delante de mí.'},
       {r:'Is 33:22', t:'Porque Jehová es nuestro juez, Jehová es nuestro legislador, Jehová es nuestro rey; él nos salvará.'}
     ],
-    consejo: 'La política NO debería dividir a la iglesia. Ayudá a poner en perspectiva: el reino de Dios trasciende cualquier bandera. No tomes partido político ni permits que la conversación derive en debate. Recordá que el hermano sigue siendo hermano aunque vote diferente.',
+    consejo: 'La política NO debería dividir a la iglesia. Ayudá a poner en perspectiva: el reino de Dios trasciende cualquier bandera. No tomes partido político ni permits que la conversación derive en debate. Recordá que el hermano sigue siendo hermano aunque vote diferente. Si la ideología se ha convertido en ídolo, ayuda a verlo. La unidad en Cristo es más grande que cualquier diferencia política.',
     enfoque: 'Sin tomar partido · Reino de Dios primero · Diálogo respetuoso · Unidad en Cristo',
     mensaje: 'Hola {nombre} 🙏 Sé que las diferencias políticas a veces lastiman la comunión entre hermanos. Pero nuestra verdadera ciudadanía está en los cielos, y eso nos une por encima de cualquier bandera 🏳️ ¿Podemos conversar? La familia de Dios te extraña 🤗'
   },
   otra_iglesia: {
-    txt: '⛪ Se fue a otra iglesia', corto: 'Otra iglesia',
+    txt: '⛪ Se fue a otra iglesia',
+    corto: 'Otra iglesia',
     versiculos: [
       {r:'1 Co 1:10-13', t:'Que no haya entre vosotros divisiones... ¿Está dividido Cristo? ¿Fue crucificado Pablo por vosotros?'},
       {r:'1 Co 3:3-7', t:'Porque todavía sois carnales; pues habiendo entre vosotros celos, contiendas y disensiones... Yo planté, Apolos regó, pero el crecimiento lo ha dado Dios.'},
@@ -955,7 +970,7 @@ const MOTIVOS = {
       {r:'Heb 10:24-25', t:'Y considerémonos unos a otros para estimularnos al amor y a las buenas obras, no dejando de congregarnos.'},
       {r:'Hch 2:42', t:'Y perseveraban en la doctrina de los apóstoles, en la comunión unos con otros, en el partimiento del pan y en las oraciones.'},
       {r:'Heb 13:17', t:'Obedeced a vuestros pastores, y sujetaos a ellos; porque ellos velan por vuestras almas.'},
-      {r:'1 Pe 5:2-3', t:'Apacentad la grey de Dios que está entre vosotros, cuidando de ella... no como teniendo señorío sobre los que están a vuestro cuidado, sino siendo ejemplos de la grey.'},
+      {r:'1 Pe 5:2-3', t:'Apacentad la grey de Dios que está entre vosotros, cuidando de ella... no como teniendo señorío sobre los que están a vuestro cuidado, sino siendo ejemplos de lagrey.'},
       {r:'1 Ts 5:12-13', t:'Os rogamos, hermanos, que reconozcáis a los que trabajan entre vosotros... y que los tengáis en mucha estima por amor a su obra.'},
       {r:'Ef 4:11-12', t:'Y él mismo constituyó a unos, apóstoles; a otros, profetas; a otros, evangelistas; a otros, pastores y maestros, a fin de perfeccionar a los santos.'},
       {r:'Hch 20:28', t:'Por tanto, mirad por vosotros, y por todo el rebaño en que el Espíritu Santo os ha puesto por obispos.'},
@@ -970,12 +985,13 @@ const MOTIVOS = {
       {r:'3 Jn 1:9-10', t:'He escrito a la iglesia; pero Diótrefes, al cual le gusta tener el primer lugar entre ellos, no nos recibe.'},
       {r:'Hch 15:36-41', t:'Y después de algunos días, Pablo dijo a Bernabé: Volvamos a visitar a los hermanos... la contención fue tan grande que se separaron.'}
     ],
-    consejo: 'No te sientas traicionado ni reacciones con reproches: eso aleja definitivamente. Preguntá con humildad qué buscaba y qué le faltó. Si el cambio fue por una herida, sanar la herida es más importante que recuperar al miembro. Mantené la puerta abierta: nunca digas "no vuelvas".',
+    consejo: 'No te sientas traicionado ni reacciones con reproches: eso aleja definitivamente. Preguntá con humildad qué buscaba y qué le faltó. Si el cambio fue por una herida, sanar la herida es más importante que recuperar al miembro. A veces es sano bendecir su partida y mantener contacto. Si la otra iglesia es sana y bíblica, Dios obra también allí. Si fue por causa doctrinal legítima, escuchá con honestidad. Mantené la puerta abierta: nunca digas "no vuelvas".',
     enfoque: 'Sin reproches · Escuchar humildemente · Bendecir si es sana · Puerta abierta',
     mensaje: 'Hola {nombre} 🙏 Nos enteramos que estás congregando en otro lugar. Lo primero que quiero decirte es que te seguimos amando como hermano. ¿Podemos conversar? Me gustaría escuchar qué buscabas, sin defendernos, y bendecir tu camino 🤗'
   },
   otro: {
-    txt: '📝 Otro motivo (especificar en notas)', corto: 'Otro',
+    txt: '📝 Otro motivo (especificar en notas)',
+    corto: 'Otro',
     versiculos: [
       {r:'Sal 34:18', t:'Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.'},
       {r:'Mt 11:28', t:'Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.'},
@@ -987,7 +1003,7 @@ const MOTIVOS = {
       {r:'Sal 37:5', t:'Encomienda a Jehová tu camino, y confía en él; y él hará.'},
       {r:'Is 41:10', t:'No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo.'},
       {r:'Jos 1:9', t:'Esfuérzate y sé valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo.'},
-      {r:'DT 31:6', t:'Sed fuertes y valientes, no temáis ni tengáis miedo de ellos; porque Jehová tu Dios es el que va contigo.'},
+      {r:'Dt 31:6', t:'Sed fuertes y valientes, no temáis ni tengáis miedo de ellos; porque Jehová tu Dios es el que va contigo.'},
       {r:'Sal 23:1', t:'Jehová es mi pastor; nada me faltará.'},
       {r:'Mt 6:33', t:'Mas buscad primermente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.'},
       {r:'Heb 13:5', t:'No te desampararé, ni te dejaré.'},
@@ -1000,7 +1016,7 @@ const MOTIVOS = {
       {r:'Sal 30:5', t:'Porque un momento será su enojo, pero su favor dura toda la vida. Por la noche durará el lloro, y a la mañana vendrá la alegría.'},
       {r:'Ro 15:13', t:'Y el Dios de esperanza os llene de todo gozo y paz en el creer, para que abundéis en esperanza por el poder del Espíritu Santo.'}
     ],
-    consejo: 'Escuchá primero. Cada situación es única. Identificá juntos cuál es la raíz real del alejamiento. A veces lo que se cuenta al principio no es lo principal. Hacé preguntas abiertas. Paciencia y constancia.',
+    consejo: 'Escuchá primero. Cada situación es única. Identificá juntos cuál es la raíz real del alejamiento. A veces lo que se cuenta al principio no es lo principal. Hacé preguntas abiertas: "¿Qué te llevó a dejar de asistir?", "¿Hubo algún momento específico?", "¿Qué cambiaría para que volvieras?". Paciencia y constancia.',
     enfoque: 'Escuchar · Identificar raíz real · Paciencia',
     mensaje: 'Hola {nombre} 🙏 Hace tiempo que no te vemos, y te extrañamos. ¿Cómo estás? Me encantaría saber de vos, sin presión, solo para conversar 🤗'
   }
@@ -1045,9 +1061,11 @@ let unsubHist = null, historialActual = [];
 let unsubVida = null, vidaActual = [];
 let repCache = {key:'', contactos:[]};
 
+/* ---------- AYUDA ---------- */
  $('btn-ayuda').onclick = ()=> $('modal-ayuda').classList.remove('oculto');
  $('ayuda-cerrar').onclick = ()=> $('modal-ayuda').classList.add('oculto');
 
+/* ---------- RECURSOS ---------- */
  $('btn-recursos').onclick = ()=>{ renderRecursos(''); $('modal-recursos').classList.remove('oculto'); };
  $('rec-cerrar').onclick = ()=> $('modal-recursos').classList.add('oculto');
  $('rec-buscar').oninput = e=> renderRecursos(e.target.value);
@@ -1081,6 +1099,7 @@ function renderRecursos(q){
   });
 }
 
+/* ---------- OLVIDÉ CONTRASEÑA ---------- */
  $('btn-forgot').onclick = async ()=>{
   const email = $('login-email').value.trim();
   if(!email){ alert('Primero escribí tu correo arriba, después tocá "¿Olvidaste tu contraseña?".'); return; }
@@ -1092,6 +1111,7 @@ function renderRecursos(q){
   }
 };
 
+/* ---------- AUTENTICACIÓN ---------- */
  $('go-reg').onclick = ()=>{ $('login-form').classList.add('oculto'); $('reg-form').classList.remove('oculto'); $('auth-msg').textContent=''; };
  $('go-login').onclick = ()=>{ $('reg-form').classList.add('oculto'); $('login-form').classList.remove('oculto'); $('auth-msg').textContent=''; };
 
@@ -1129,6 +1149,7 @@ onAuthStateChanged(auth, u=>{
   }
 });
 
+/* ---------- DATOS ---------- */
 function suscribir(){
   onSnapshot(collection(db,'personas'), snap=>{
     personas = snap.docs.map(d=>({id:d.id, ...d.data()}));
@@ -1147,6 +1168,7 @@ function suscribir(){
   }, e=>console.error(e));
 }
 
+/* ---------- SEMÁFORO ---------- */
 function estado(p){
   const ms = p.ultimoContacto?.toMillis ? p.ultimoContacto.toMillis() : 0;
   if(!ms) return {color:'rojo', txt:'Nunca contactado', dias:99999};
@@ -1155,6 +1177,7 @@ function estado(p){
           txt: d===0?'Contactado hoy':`Hace ${d} ${d===1?'día':'días'}`, dias:d};
 }
 
+/* ---------- PESTAÑAS ---------- */
 function setVista(v){
   vista = v;
   $('tab-personas').classList.toggle('active', v==='personas');
@@ -1243,6 +1266,7 @@ document.querySelectorAll('.chip[data-filtro]').forEach(ch=> ch.onclick = ()=>{
   ch.classList.add('active'); filtro = ch.dataset.filtro; render();
 });
 
+/* ---------- FECHAS ---------- */
 function hoyStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function fechaLarga(s){
   if(!s) return '';
@@ -1260,6 +1284,7 @@ function etiquetaDia(s){
 function fmtFecha(s){ const [a,m,d] = s.split('-'); return `${d} ${MESES[+m-1]}`; }
 function mapsLink(dir){ return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(dir); }
 
+/* ---------- WHATSAPP ---------- */
 function waNum(p){
   let d = (p.telefono||'').replace(/\D/g,'');
   if(!d) return null;
@@ -1288,6 +1313,7 @@ function msgPedirHorario(v){
 }
 function msgCamino(v){ return `Hola ${v.personaNombre} 👋 Ya estoy en camino a tu casa 🚗 Nos vemos en un rato 🙏`; }
 
+/* ---------- DETALLE PERSONA ---------- */
 function abrirDetalle(id){
   const p = personas.find(x=>x.id===id); if(!p) return;
   if(!visibleParaMi(p)){ toast('🔒 Esta persona está al cuidado de otro compañero'); return; }
@@ -1416,10 +1442,12 @@ function renderHistoria(){
   const f = $('vida-fecha').value;
   try{
     await addDoc(collection(db,'historia'), {
-      personaId: personaActual.id, nombrePersona: personaActual.nombre || '',
+      personaId: personaActual.id,
+      nombrePersona: personaActual.nombre || '',
       texto,
       fecha: f ? Timestamp.fromMillis(new Date(f+'T12:00:00').getTime()) : serverTimestamp(),
-      por: user.displayName || user.email, creado: serverTimestamp()
+      por: user.displayName || user.email,
+      creado: serverTimestamp()
     });
     $('vida-texto').value = '';
     $('vida-form').classList.add('oculto');
@@ -1447,7 +1475,8 @@ document.querySelectorAll('.tipo[data-tipo]').forEach(b=> b.onclick = ()=> setTi
   if(!confirm(`¿Hacerte cargo del rescate de ${personaActual.nombre}?\n\nPasará a "Mis asignados" a tu nombre.`)) return;
   try{
     await updateDoc(doc(db,'personas',personaActual.id), {
-      cuidadorUid: user.uid, cuidadorNombre: user.displayName || user.email,
+      cuidadorUid: user.uid,
+      cuidadorNombre: user.displayName || user.email,
       actualizado: serverTimestamp()
     });
     toast('🙋 Esta persona ahora está a tu cargo');
@@ -1462,8 +1491,9 @@ document.querySelectorAll('.tipo[data-tipo]').forEach(b=> b.onclick = ()=> setTi
   let msg = `Etapa actual: ${actual.icono} ${actual.txt}\n\nOpciones:\n${Object.entries(ETAPAS).map(([k,v])=>`${v.icono} ${v.txt}`).join('\n')}`;
   if(sig){
     msg += `\n\nSugerencia: pasar a "${sig.icono} ${sig.txt}". ¿Querés avanzar a esa etapa? (Cancelar para elegir otra)`;
-    if(confirm(msg)){ cambiarEtapa(actual.siguiente); }
-    else {
+    if(confirm(msg)){
+      cambiarEtapa(actual.siguiente);
+    } else {
       const nueva = prompt('Escribí el nombre de la etapa exacta:\n'+Object.keys(ETAPAS).join(' · '));
       if(nueva && ETAPAS[nueva]) cambiarEtapa(nueva);
     }
@@ -1477,11 +1507,17 @@ async function cambiarEtapa(nuevaEtapa){
   if(!personaActual) return;
   const e = ETAPAS[nuevaEtapa];
   try{
-    await updateDoc(doc(db,'personas',personaActual.id), { etapa: nuevaEtapa, actualizado: serverTimestamp() });
+    await updateDoc(doc(db,'personas',personaActual.id), {
+      etapa: nuevaEtapa,
+      actualizado: serverTimestamp()
+    });
     await addDoc(collection(db,'historia'), {
-      personaId: personaActual.id, nombrePersona: personaActual.nombre || '',
+      personaId: personaActual.id,
+      nombrePersona: personaActual.nombre || '',
       texto: `Cambio de etapa: ${e.icono} ${e.txt}`,
-      fecha: serverTimestamp(), por: user.displayName || user.email, creado: serverTimestamp()
+      fecha: serverTimestamp(),
+      por: user.displayName || user.email,
+      creado: serverTimestamp()
     });
     toast(`${e.icono} Etapa actualizada`);
     abrirDetalle(personaActual.id);
@@ -1492,12 +1528,16 @@ async function cambiarEtapa(nuevaEtapa){
   if(!personaActual) return;
   try{
     await addDoc(collection(db,'contactos'), {
-      personaId: personaActual.id, nombrePersona: personaActual.nombre || '',
-      tipo: tipoContacto, nota: $('det-nota').value.trim(),
-      por: user.displayName || user.email, fecha: serverTimestamp()
+      personaId: personaActual.id,
+      nombrePersona: personaActual.nombre || '',
+      tipo: tipoContacto,
+      nota: $('det-nota').value.trim(),
+      por: user.displayName || user.email,
+      fecha: serverTimestamp()
     });
     await updateDoc(doc(db,'personas',personaActual.id), {
-      ultimoContacto: serverTimestamp(), nContactos: increment(1)
+      ultimoContacto: serverTimestamp(),
+      nContactos: increment(1)
     });
     if((personaActual.etapa==='sin_contacto' || !personaActual.etapa) && ['llamada','mensaje','visita','visita_iglesia'].includes(tipoContacto)){
       await updateDoc(doc(db,'personas',personaActual.id), { etapa: 'primer_contacto' });
@@ -1569,7 +1609,8 @@ function cerrarForm(volverADetalle){
   const datos = {
     nombre, telefono: $('f-telefono').value.trim(),
     direccion: $('f-direccion').value.trim(),
-    cuidadorUid: uidSel || '', cuidadorNombre: cuen ? cuen.nombre : '',
+    cuidadorUid: uidSel || '',
+    cuidadorNombre: cuen ? cuen.nombre : '',
     motivoAlejamiento: $('f-motivo').value,
     etapa: $('f-etapa').value,
     desde: $('f-desde').value || '',
@@ -1606,6 +1647,7 @@ function cerrarForm(volverADetalle){
   }catch(e){ toast('Error'); console.error(e); }
 };
 
+/* ---------- CALENDARIO ---------- */
 function renderCalendario(){
   $('cal-titulo').textContent = MESES[calM]+' '+calY;
   const hoy = hoyStr();
@@ -1833,7 +1875,8 @@ function abrirVisita(id){
   try{
     await updateDoc(doc(db,'visitas',visitaActual.id), {estado:'realizada', informe});
     await addDoc(collection(db,'contactos'), {
-      personaId: visitaActual.personaId, nombrePersona: visitaActual.personaNombre || '',
+      personaId: visitaActual.personaId,
+      nombrePersona: visitaActual.personaNombre || '',
       tipo:'visita',
       nota: `Visita (${TIPOS_VISITA[visitaActual.tipo]?.txt||visitaActual.tipo})${informe?' — '+informe:''}`,
       por: visitaActual.responsableNombre || (user?.displayName||user?.email),
@@ -1841,7 +1884,8 @@ function abrirVisita(id){
     });
     try{
       await updateDoc(doc(db,'personas',visitaActual.personaId), {
-        ultimoContacto: serverTimestamp(), nContactos: increment(1)
+        ultimoContacto: serverTimestamp(),
+        nContactos: increment(1)
       });
     }catch(e2){ console.error(e2); }
     const p = personas.find(x=>x.id===visitaActual.personaId);
@@ -1868,6 +1912,7 @@ function abrirVisita(id){
   }catch(e){ toast('Error'); console.error(e); }
 };
 
+/* ---------- REPORTE ---------- */
  $('btn-reporte').onclick = ()=>{
   const ahora = new Date();
   $('rep-mes').value = String(ahora.getMonth()+1);
