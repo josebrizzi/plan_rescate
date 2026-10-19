@@ -11,15 +11,15 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
+html{font-size:115%}
 :root{
   --bg:#0f1f3a;--card:#1c2e4a;--card2:#264063;--borde:#345080;
   --txt:#eaf1fb;--txt2:#9fb3d1;
   --header:#1c2e4a;--avb:#0f1f3a;--overlay:rgba(0,0,0,.78);--placeholder:#9fb3d1;
+  --azul:#3b82f6;--verde:#22c55e;--rojo:#ef4444;--amarillo:#f59e0b;--wa:#25d366;
   --accent:#10b981;--accent2:#34d399;
   --grad:linear-gradient(135deg,#10b981,#047857);
   --sombra:0 4px 14px rgba(0,0,0,.45);
-  --azul:#3b82f6;--verde:#22c55e;--rojo:#ef4444;--amarillo:#f59e0b;
-  --wa:#25d366;
 }
 body.claro{
   --bg:#eef2f9;--card:#ffffff;--card2:#f1f5fb;--borde:#d3dcec;
@@ -38,24 +38,26 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
 .btn.primary{background:var(--grad);color:#fff}
 .btn.link{background:none;color:var(--accent);margin-top:6px}
 .link-pass{background:none;border:none;color:var(--accent);font-size:.88rem;margin-top:8px;text-decoration:underline}
-.msg{color:#f87171;font-size:.9rem;min-height:1.2em;margin-top:8px;text-align:center}
+.msg{color:#f15c6d;font-size:.9rem;min-height:1.2em;margin-top:8px;text-align:center}
 #view-login{display:flex;align-items:center;justify-content:center;padding:16px;min-height:100vh}
-.card{background:var(--card);border:1px solid var(--borde);border-radius:16px;padding:28px 22px;width:100%;max-width:420px;text-align:center;box-shadow:var(--sombra)}
+.card{background:var(--card);border:1px solid var(--borde);border-radius:16px;padding:28px 22px;width:100%;max-width:400px;text-align:center;box-shadow:var(--sombra)}
 .card h1{font-family:Georgia,'Times New Roman',serif;font-size:1.7rem;margin-bottom:4px;color:var(--accent)}
 .card .sub{color:var(--txt2);margin-bottom:6px;font-size:.95rem}
 .card .verso{font-style:italic;color:var(--txt2);font-size:.85rem;margin-bottom:20px}
 .card .verso b{color:var(--accent);font-style:normal}
-#view-app{max-width:540px;margin:0 auto;padding:0 12px 16px}
-header{position:sticky;top:0;background:var(--header);backdrop-filter:blur(10px);padding:14px 14px 10px;display:flex;justify-content:space-between;align-items:center;z-index:5;border-bottom:2px solid rgba(16,185,129,.4);margin:0 -12px 10px}
-header h1{font-family:Georgia,'Times New Roman',serif;font-size:1.2rem;color:#fff}
-header .quien{font-size:.74rem;color:rgba(255,255,255,.85)}
+#view-app{max-width:520px;margin:0 auto;padding:0 12px 16px}
+header{position:sticky;top:0;background:var(--header);backdrop-filter:blur(10px);padding:14px 14px 10px;display:flex;justify-content:space-between;align-items:center;z-index:5;border-bottom:2px solid rgba(255,255,255,.25);margin:0 -12px 10px}
+header h1{font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;color:#fff}
+header .quien{font-size:.75rem;color:rgba(255,255,255,.85)}
 header .hb{display:flex;gap:6px;flex-wrap:wrap}
-#btn-ayuda,#btn-recursos,#btn-reporte,#btn-salir{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);color:#fff;padding:7px 10px;border-radius:8px;font-size:.8rem}
+#btn-ayuda,#btn-disc,#btn-recursos,#btn-estudios,#btn-reporte,#btn-salir{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);color:#fff;padding:7px 10px;border-radius:8px;font-size:.8rem}
 .verso-hoy{background:var(--card);border:1px solid var(--borde);border-left:3px solid var(--accent);border-radius:12px;padding:10px 14px;margin-bottom:10px;font-style:italic;font-size:.88rem;color:var(--txt2)}
 .verso-hoy b{color:var(--accent);font-style:normal}
-.nota-priv{background:rgba(16,185,129,.12);border:1px solid var(--borde);border-radius:10px;padding:8px 12px;font-size:.8rem;color:var(--txt2);margin-bottom:8px}
+.nota-priv{background:rgba(0,168,132,.12);border:1px solid var(--borde);border-radius:10px;padding:8px 12px;font-size:.8rem;color:var(--txt2);margin-bottom:8px}
 .meta-tarea{background:var(--card);border:1px solid var(--borde);border-radius:12px;padding:10px 14px;margin-bottom:10px;font-size:.92rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .meta-tarea b{color:var(--accent)}
+.aviso-ficha{background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.45);border-radius:10px;padding:8px 12px;font-size:.82rem;color:var(--amarillo);margin-bottom:10px}
+body.claro .aviso-ficha{color:#8a5200;background:rgba(245,158,11,.18)}
 .tabs{display:flex;gap:4px;margin-bottom:10px}
 .tab{flex:1;padding:12px;background:none;color:var(--txt2);font-weight:600;border-bottom:2px solid transparent;border-radius:0}
 .tab.active{color:var(--accent);border-bottom:2px solid var(--accent)}
@@ -63,6 +65,13 @@ header .hb{display:flex;gap:6px;flex-wrap:wrap}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
 .chip{flex:1;padding:8px;border-radius:999px;background:var(--card);border:1px solid var(--borde);font-weight:600;font-size:.82rem;color:var(--txt2);white-space:nowrap}
 .chip.active{background:var(--accent);border-color:transparent;color:#fff}
+.cump-box{background:var(--card);border:1px solid var(--borde);border-left:3px solid var(--accent);border-radius:14px;padding:12px 14px;margin:8px 0 10px}
+.cump-titulo{font-weight:800;font-size:.85rem;color:var(--accent);margin-bottom:8px}
+.cump-lista{display:flex;gap:8px;flex-wrap:wrap}
+.cump{background:var(--card2);border:1px solid var(--borde);color:var(--accent);padding:6px 10px;border-radius:999px;font-size:.82rem;font-weight:600;cursor:pointer}
+.cump:active{transform:scale(.97)}
+.cump.pasado{opacity:.35}
+.cump.hoy{background:#fde047;border-color:#fde047;color:#713f12}
 ul#lista,ul#lista-visitas{list-style:none;display:flex;flex-direction:column;gap:6px;padding-bottom:90px}
 li.persona{background:var(--card);border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:12px;box-shadow:var(--sombra)}
 .avw{width:54px;height:54px;border-radius:50%;padding:2.5px;background:var(--borde);flex-shrink:0}
@@ -72,12 +81,17 @@ li.persona{background:var(--card);border-radius:14px;padding:10px 14px;display:f
 .avw.grande{width:92px;height:92px;margin:0 auto}
 .avw.grande .av{font-size:2rem}
 .avw.icn{width:46px;height:46px}
-.av{width:100%;height:100%;border-radius:50%;background:var(--card2);color:var(--txt);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;border:2.5px solid var(--avb)}
+.av{width:100%;height:100%;border-radius:50%;background:var(--card2);color:var(--txt);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;border:2.5px solid var(--avb);overflow:hidden}
 li .info{flex:1;min-width:0}
 li .nombre{font-weight:600;font-size:.95rem}
 li .meta{font-size:.8rem;color:var(--txt2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mch{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.66rem;font-weight:700;margin-left:6px;vertical-align:2px;background:rgba(16,185,129,.22);color:var(--accent)}
-body:not(.claro) .mch{color:#34d399}
+.gch{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.66rem;font-weight:700;margin-left:8px;vertical-align:2px}
+.gch.ausente{background:rgba(239,68,68,.18);color:#ef4444}
+body:not(.claro) .gch.ausente{color:#f28b8b}
+.gch.silencioso{background:rgba(245,158,11,.18);color:#b45309}
+body:not(.claro) .gch.silencioso{color:#fbbf24}
+.mch{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.66rem;font-weight:700;margin-left:4px;vertical-align:2px;background:rgba(0,168,132,.22);color:var(--accent)}
+body:not(.claro) .mch{color:#06cf9c}
 .etapa-chip{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.66rem;font-weight:700;margin-left:4px;vertical-align:2px}
 .etapa-chip[data-etapa="sin_contacto"]{background:rgba(239,68,68,.2);color:#ef4444}
 .etapa-chip[data-etapa="primer_contacto"]{background:rgba(245,158,11,.2);color:#f59e0b}
@@ -87,15 +101,17 @@ body:not(.claro) .mch{color:#34d399}
 .etapa-chip[data-etapa="reintegrado"]{background:rgba(34,197,94,.3);color:#16a34a}
 .etapa-chip[data-etapa="no_desea"]{background:rgba(107,114,128,.25);color:#6b7280}
 body:not(.claro) .etapa-chip{filter:brightness(1.2)}
+.cch{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--borde);font-size:.75rem;font-weight:600;color:var(--txt);margin:2px 2px}
 .fgrupo{font-weight:800;font-size:.78rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.4px;margin:12px 4px 4px}
 .fgrupo.atras{color:#ef4444}
 body:not(.claro) .fgrupo.atras{color:#f28b8b}
 .vch{display:inline-block;padding:3px 9px;border-radius:999px;font-size:.7rem;font-weight:700;color:#fff;flex-shrink:0}
-.fab{position:fixed;bottom:80px;right:22px;width:56px;height:56px;border-radius:50%;background:var(--grad);color:#fff;font-size:1.7rem;box-shadow:0 6px 18px rgba(16,185,129,.5);z-index:6;display:flex;align-items:center;justify-content:center}
+.fab{position:fixed;bottom:80px;right:22px;width:56px;height:56px;border-radius:50%;background:var(--grad);color:#fff;font-size:1.7rem;box-shadow:0 6px 18px rgba(0,128,105,.5);z-index:6;display:flex;align-items:center;justify-content:center}
 #btn-tema{position:fixed;bottom:22px;left:22px;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--borde);color:var(--txt);font-size:1.15rem;z-index:7;display:flex;align-items:center;justify-content:center;box-shadow:var(--sombra)}
 .modal{position:fixed;inset:0;background:var(--overlay);display:flex;align-items:flex-end;justify-content:center;z-index:10}
 .modal .hoja{background:var(--card);border-top:3px solid var(--accent);width:100%;max-width:540px;max-height:92vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:20px 18px 30px}
 @media(min-width:560px){.modal{align-items:center}.modal .hoja{border-radius:18px;border:1px solid var(--borde)}}
+.modal .hoja>p{color:var(--txt)}
 .cerrar{position:sticky;top:0;float:right;background:var(--card2);color:var(--txt);width:34px;height:34px;border-radius:50%;font-size:1rem}
 .det-nombre{font-size:1.3rem;margin:6px 0 2px;font-weight:700}
 .estado-chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:.78rem;font-weight:700;color:#fff;margin-bottom:12px}
@@ -104,16 +120,14 @@ body:not(.claro) .fgrupo.atras{color:#f28b8b}
 .btn-wa{background:var(--wa);color:#fff;flex:1;min-width:140px;padding:13px;border-radius:10px;font-weight:700;text-decoration:none;text-align:center}
 .btn-llamar{background:transparent;color:var(--txt);flex:1;min-width:140px;padding:12px;border-radius:10px;font-weight:700;text-decoration:none;text-align:center;border:1px solid var(--borde)}
 .btn-acc{flex:1;min-width:140px;padding:12px;border-radius:10px;font-weight:700;background:var(--card2);color:var(--txt)}
-.btn-acc.verde{background:rgba(34,197,94,.15);color:#22c55e}
+.btn-acc.verde{background:rgba(0,168,132,.15);color:var(--accent)}
+body:not(.claro) .btn-acc.verde{color:#06cf9c}
 .btn-acc.naranja{background:rgba(245,158,11,.15);color:#b45309}
-.btn-acc.azul{background:rgba(59,130,246,.15);color:#3b82f6}
-.btn-acc.rojo{background:rgba(239,68,68,.15);color:#ef4444}
-.btn-acc.violeta{background:rgba(168,85,247,.15);color:#a855f7}
-body:not(.claro) .btn-acc.verde{color:#4ade80}
 body:not(.claro) .btn-acc.naranja{color:#fbbf24}
-body:not(.claro) .btn-acc.azul{color:#60a5fa}
-body:not(.claro) .btn-acc.rojo{color:#f87171}
-body:not(.claro) .btn-acc.violeta{color:#c084fc}
+.btn-acc.azul{background:rgba(0,168,132,.12);color:var(--accent)}
+body:not(.claro) .btn-acc.azul{color:#06cf9c}
+.btn-acc.rojo{background:rgba(239,68,68,.15);color:#ef4444}
+body:not(.claro) .btn-acc.rojo{color:#f28b8b}
 .fila{display:flex;gap:8px;font-size:.93rem;margin:6px 0;flex-wrap:wrap}
 .fila .k{color:var(--txt2);flex-shrink:0;min-width:24px}
 h3.secc{margin:18px 0 8px;color:var(--accent);text-transform:uppercase;letter-spacing:.4px;font-size:.78rem}
@@ -132,7 +146,7 @@ body:not(.claro) .btn-danger{color:#f28b8b}
 .cal-nav{background:var(--card2);color:var(--txt);width:32px;height:32px;border-radius:8px;font-weight:700}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
 .cal-dow{font-size:.66rem;color:var(--txt2);font-weight:700;padding:4px 0}
-.cal-d{padding:4px 2px;min-height:52px;display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:8px}
+.cal-d{padding:4px 2px;min-height:52px;display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:8px;position:relative}
 .cal-d .num{font-size:.76rem}
 .cal-d.hoy{background:var(--card2);font-weight:700}
 .cal-d.sel{background:var(--accent);color:#fff;font-weight:700}
@@ -144,8 +158,23 @@ body:not(.claro) .btn-danger{color:#f28b8b}
 .rep-res{background:var(--card2);border-radius:12px;padding:12px;margin-top:6px;font-size:.9rem}
 .rep-res div{display:flex;justify-content:space-between;padding:4px 0}
 .rep-res b{color:var(--accent)}
-.ayuda-paso{background:var(--card2);border-radius:10px;padding:12px;margin-bottom:10px;font-size:.92rem}
-.ayuda-paso b{color:var(--accent)}
+#modal-ayuda .ayuda-paso{background:var(--card2);border-radius:10px;padding:12px;margin-bottom:10px;font-size:.92rem}
+#modal-ayuda .ayuda-paso b{color:var(--accent)}
+.caso{background:var(--card2);border-radius:10px;padding:12px;margin-bottom:8px}
+.caso .cs-nombre{font-weight:700;font-size:.95rem}
+.caso .cs-meta{font-size:.8rem;color:var(--txt2);margin:2px 0}
+.cs-vence{font-size:.8rem;font-weight:700;color:var(--accent);margin:4px 0}
+.cs-vence.atras{color:var(--amarillo)}
+body.claro .cs-vence.atras{color:#8a5200}
+.cs-btns{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.cs-btns a,.cs-btns button{flex:1;min-width:120px;padding:9px;border-radius:8px;font-weight:600;font-size:.82rem;text-decoration:none;text-align:center;border:none;cursor:pointer}
+.cs-wa{background:var(--wa);color:#fff}
+.cs-nota{background:var(--card);color:var(--txt);border:1px solid var(--borde)}
+.paso-chk{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;font-size:.88rem}
+.paso-chk input{width:auto;margin-top:2px;margin-bottom:0}
+.guia-item{background:var(--card2);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:.88rem}
+.guia-item b{color:var(--accent)}
+/* Recursos */
 .rec-cat{background:var(--card);border:1px solid var(--borde);border-radius:14px;margin-bottom:10px;overflow:hidden}
 .rec-cat-head{padding:12px 14px;background:var(--card2);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .rec-cat-head b{color:var(--accent);font-size:.95rem}
@@ -159,15 +188,26 @@ body:not(.claro) .btn-danger{color:#f28b8b}
 .rec-msg{background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);border-radius:8px;padding:8px 12px;margin:6px 0;font-size:.85rem;font-style:italic}
 .rec-msg::before{content:'💬 ';font-style:normal}
 .rec-buscar{margin-bottom:10px}
-#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);color:var(--txt);border:1px solid var(--accent);padding:10px 18px;border-radius:999px;font-size:.9rem;opacity:0;transition:.3s;pointer-events:none;z-index:20}
-#toast.show{opacity:1}
-.oculto{display:none!important}
-.aviso-ficha{background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.45);border-radius:10px;padding:8px 12px;font-size:.82rem;color:var(--amarillo);margin-bottom:10px}
-body.claro .aviso-ficha{color:#8a5200}
 .recurso-sug{background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.3);border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.86rem}
 .recurso-sug b{color:var(--accent)}
 .recurso-sug a{display:inline-block;margin-top:4px;color:var(--accent);font-weight:600;cursor:pointer;text-decoration:underline}
-.cch{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--borde);font-size:.75rem;font-weight:600;color:var(--txt);margin:2px 2px}
+/* Estudios */
+.est-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
+.est-card{background:var(--card);border:1px solid var(--borde);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .15s}
+.est-card:active{transform:scale(.97)}
+.est-card img{width:100%;height:180px;object-fit:cover;display:block;background:var(--card2)}
+.est-card-body{padding:8px 10px}
+.est-card-tag{font-size:.65rem;color:var(--accent);font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.est-card-title{font-size:.82rem;font-weight:700;color:var(--txt);margin-top:2px;line-height:1.25}
+.est-viewer{display:none;flex-direction:column;align-items:center;gap:10px}
+.est-viewer.show{display:flex}
+.est-viewer img{max-width:100%;border-radius:10px;border:1px solid var(--borde)}
+.est-viewer .est-info{text-align:center;padding:0 10px}
+.est-viewer .est-info b{color:var(--accent);font-size:1rem;display:block;margin-bottom:4px}
+.est-viewer .est-info p{font-size:.85rem;color:var(--txt2);font-style:italic}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);color:var(--txt);border:1px solid var(--accent);padding:10px 18px;border-radius:999px;font-size:.9rem;opacity:0;transition:.3s;pointer-events:none;z-index:20}
+#toast.show{opacity:1}
+.oculto{display:none!important}
 </style>
 </head>
 <body>
@@ -202,8 +242,10 @@ body.claro .aviso-ficha{color:#8a5200}
   <header>
     <div><h1>✝ Plan Rescate</h1><div class="quien" id="user-name"></div></div>
     <div class="hb">
-      <button id="btn-ayuda">❓</button>
+      <button id="btn-ayuda" class="btn-ayuda">❓</button>
       <button id="btn-recursos">📚</button>
+      <button id="btn-estudios">📖</button>
+      <button id="btn-disc" class="btn-disc">⚖️</button>
       <button id="btn-reporte">📄</button>
       <button id="btn-salir">Salir</button>
     </div>
@@ -212,7 +254,7 @@ body.claro .aviso-ficha{color:#8a5200}
   <div class="verso-hoy" id="verso-hoy"></div>
 
   <div class="tabs">
-    <button id="tab-personas" class="tab active">👥 Rescatados</button>
+    <button id="tab-personas" class="tab active">👥 Personas</button>
     <button id="tab-agenda" class="tab">📅 Agenda</button>
   </div>
 
@@ -221,13 +263,15 @@ body.claro .aviso-ficha{color:#8a5200}
       <input id="buscar" placeholder="🔍 Buscar por nombre…">
       <div class="chips">
         <button class="chip active" data-filtro="todos">Todos</button>
-        <button class="chip" data-filtro="mias">Mis asignados</button>
-        <button class="chip" data-filtro="urgentes">⚠️ Urgentes</button>
+        <button class="chip" data-filtro="mias">Mis asignadas</button>
+        <button class="chip" data-filtro="atencion" id="chip-atencion">⚠️ Atención</button>
+        <button class="chip" data-filtro="urgentes">🔴 Urgentes</button>
         <button class="chip" data-filtro="volviendo">🌱 Volviendo</button>
       </div>
     </div>
     <div id="meta-tarea" class="meta-tarea"></div>
     <div id="nota-priv" class="nota-priv oculto"></div>
+    <div id="cumples"></div>
     <ul id="lista"></ul>
   </div>
 
@@ -255,18 +299,21 @@ body.claro .aviso-ficha{color:#8a5200}
   <div class="hoja">
     <button id="ayuda-cerrar" class="cerrar">✕</button>
     <div class="det-nombre">❓ ¿Qué hago hoy?</div>
-    <div class="ayuda-paso"><b>1. Mirá la lista</b><br>Arriba están los más urgentes (borde rojo: hace +15 días sin contacto). Empezá por ahí.</div>
-    <div class="ayuda-paso"><b>2. Tocá la persona</b><br>Se abre su ficha con su motivo de alejamiento, su etapa de rescate y los recursos bíblicos sugeridos para SU situación.</div>
-    <div class="ayuda-paso"><b>3. Escribile por WhatsApp</b><br>Tocá 💬 WhatsApp. El mensaje ya está armado según su motivo (herido, enojado, apático, etc.). Solo enviá.</div>
-    <div class="ayuda-paso"><b>4. ⚠️ IMPORTANTE</b><br>Después de hablar, volvé y tocá <b>✅ Guardar contacto</b>. Si no lo guardás, queda como que nadie la llamó.</div>
-    <div class="ayuda-paso"><b>5. Cambiar la etapa</b><br>Cuando avance (de "sin contacto" a "primer contacto", luego "visita", etc.) tocá <b>🔄 Cambiar etapa</b>.</div>
-    <div class="ayuda-paso"><b>6. Visita en casa</b><br>Tocá 🏠 Agendar visita. Ya sale el mensaje escrito para avisar o pedir horario.</div>
-    <div class="ayuda-paso"><b>7. 📚 Recursos bíblicos</b><br>Botón 📚: biblioteca completa con versículos, consejo pastoral y mensajes modelo para cada situación.</div>
-    <div class="ayuda-paso">🙏 <i>"Que ninguno se pierda"</i></div>
+    <div class="ayuda-paso"><b>1. Mirá tu lista</b><br>Arriba de todo están las personas más urgentes (círculo con borde rojo o naranja). Empezá por ahí.</div>
+    <div class="ayuda-paso"><b>2. Tocá la persona</b><br>Se abre su ficha con su teléfono, dirección, motivo de alejamiento, etapa de rescate y recursos bíblicos sugeridos.</div>
+    <div class="ayuda-paso"><b>3. Contactala</b><br>Tocá 💬 WhatsApp (el mensaje ya sale escrito según su motivo, solo enviá) o 📞 Llamar.</div>
+    <div class="ayuda-paso"><b>4. LO MÁS IMPORTANTE ⚠️</b><br>Cuando termines de hablar, volvé a la app y tocá <b>✅ Guardar contacto</b>. Si no lo guardás, queda como que nadie la llamó.</div>
+    <div class="ayuda-paso"><b>5. ¿Necesita una visita en casa?</b><br>Tocá 🏠 Agendar visita y coordiná con los mensajes ya escritos.</div>
+    <div class="ayuda-paso"><b>6. Cambiar etapa de rescate</b><br>Tocá 🔄 Cambiar etapa cuando la persona avanza (de "sin contacto" a "primer contacto", luego "visita", etc.).</div>
+    <div class="ayuda-paso"><b>7. 📚 Biblioteca de Rescate</b><br>Botón 📚: 16 motivos de alejamiento con versículos, consejo pastoral y mensajes modelo.</div>
+    <div class="ayuda-paso"><b>8. 📖 Estudios Bíblicos</b><br>Botón 📖: 7 estudios bíblicos para compartir con los hermanos que se están recuperando.</div>
+    <div class="ayuda-paso"><b>9. Disciplina ⚖️ (solo ancianos)</b><br>Botón ⚖️: registra casos de censura, remoción o desaparición con la guía del Manual de la Iglesia (cap. 8) y Mateo 18. Solo los ancianos de iglesia lo usan.</div>
+    <div class="ayuda-paso"><b>💡 Otros datos útiles</b><br>• El versículo cambia cada día<br>• 🎂 Si la persona cumple años, el botón se convierte en "Felicitar"<br>• ☀️/🌙 (abajo a la izquierda) cambia los colores<br>• ⚠️ Atención muestra a los alejados y apartados<br>• 🔴 Urgentes muestra a los que hace +15 días no se los contacta</div>
+    <div class="ayuda-paso">🙏 <i>"Nadie solo, todos cuidados"</i></div>
   </div>
 </div>
 
-<!-- ====== RECURSOS BÍBLICOS ====== -->
+<!-- ====== BIBLIOTECA DE RESCATE ====== -->
 <div id="modal-recursos" class="modal oculto">
   <div class="hoja">
     <button id="rec-cerrar" class="cerrar">✕</button>
@@ -274,6 +321,66 @@ body.claro .aviso-ficha{color:#8a5200}
     <p style="font-size:.85rem;color:var(--txt2);margin-bottom:10px">Versículos, consejo pastoral y mensajes modelo para cada situación de alejamiento.</p>
     <input id="rec-buscar" class="rec-buscar" placeholder="🔍 Buscar versículo o palabra clave…">
     <div id="rec-lista"></div>
+  </div>
+</div>
+
+<!-- ====== ESTUDIOS BÍBLICOS ====== -->
+<div id="modal-estudios" class="modal oculto">
+  <div class="hoja">
+    <button id="est-cerrar" class="cerrar">✕</button>
+    <div class="det-nombre">📖 Estudios Bíblicos para Rescate</div>
+    <p style="font-size:.85rem;color:var(--txt2);margin-bottom:10px">Estudios listos para compartir con hermanos que se están recuperando. Tocá uno para verlo completo.</p>
+    <div class="est-grid" id="est-grid"></div>
+    <div id="est-viewer" class="est-viewer"></div>
+  </div>
+</div>
+
+<!-- ====== DISCIPLINA (Manual de la Iglesia, cap. 8) ====== -->
+<div id="modal-disc" class="modal oculto">
+  <div class="hoja">
+    <button id="disc-cerrar" class="cerrar">✕</button>
+    <div class="det-nombre">⚖️ Disciplina</div>
+    <p style="font-size:.8rem;color:var(--txt2);margin-bottom:10px">Basado en el capítulo 8 del <i>Manual de la Iglesia</i> y Mateo 18. Actitud siempre: <b>ayudar y salvar</b> (Efe. 5:25-30). Debe ser registrada por voto de la iglesia en reunión administrativa, presidida por el pastor o un anciano ordenado (p. 82-83).</p>
+    <div class="acciones">
+      <button id="btn-nuevo-caso" class="btn-acc verde">➕ Nuevo caso</button>
+      <button id="btn-ver-guia" class="btn-acc azul">📖 Guía del proceso</button>
+    </div>
+    <h3 class="secc">Casos activos</h3>
+    <div id="disc-lista"></div>
+    <div id="disc-form" class="oculto">
+      <h3 class="secc">Registrar caso (por voto de la iglesia)</h3>
+      <select id="dc-persona"></select>
+      <label style="font-size:.85rem;color:var(--txt2)">Medida tomada</label>
+      <select id="dc-tipo">
+        <option value="censura">⚖️ Censura (1 a 12 meses)</option>
+        <option value="remocion">🔴 Remoción de la feligresía</option>
+        <option value="desaparicion">🔇 Desaparición (paradero desconocido)</option>
+      </select>
+      <label style="font-size:.85rem;color:var(--txt2)">Razón (Manual, pp. 79-80)</label>
+      <select id="dc-motivo"></select>
+      <div style="display:flex;gap:8px">
+        <div style="flex:2"><label style="font-size:.85rem;color:var(--txt2)">Fecha del voto</label><input id="dc-fecha" type="date"></div>
+        <div style="flex:1" id="dc-dur-box"><label style="font-size:.85rem;color:var(--txt2)">Meses</label><input id="dc-dur" type="number" min="1" max="12" value="6"></div>
+      </div>
+      <label style="font-size:.85rem;color:var(--txt2)">Pasos previos (Mateo 18 + Manual) — marcar los cumplidos</label>
+      <div id="dc-pasos"></div>
+      <textarea id="dc-nota" rows="2" placeholder="Notas del caso (confidenciales)"></textarea>
+      <button id="dc-guardar" class="btn primary">💾 Guardar caso</button>
+      <p style="font-size:.78rem;color:var(--txt2);margin-top:6px">El caso se registra también automáticamente en la Historia de vida de la persona.</p>
+    </div>
+    <div id="disc-guia" class="oculto">
+      <h3 class="secc">Guía del proceso (Manual, cap. 8)</h3>
+      <div class="guia-item"><b>1. Espíritu</b> — Disciplinar siempre es para ayudar y salvar, nunca para destruir (Efe. 5:25-30).</div>
+      <div class="guia-item"><b>2. Mateo 18:15-17, en orden</b> — a) hablar entre vos y él solo; b) con uno o dos testigos; c) presentarlo a la iglesia. Ningún paso antes de los anteriores.</div>
+      <div class="guia-item"><b>3. Junta directiva</b> — Revisa el caso y solo puede RECOMENDAR. No puede remover miembros por sí misma (p. 82).</div>
+      <div class="guia-item"><b>4. Reunión administrativa</b> — Debidamente convocada, presidida por el pastor o, en su ausencia, por un anciano ordenado de común acuerdo con la asociación (p. 82-83). Voto de la mayoría presente.</div>
+      <div class="guia-item"><b>5. Derechos del miembro</b> — Notificación escrita al menos 2 semanas antes, con las razones; derecho a ser oído, a presentar pruebas y testigos (p. 83). No puede traer abogado (p. 83).</div>
+      <div class="guia-item"><b>6. Medidas</b> — Censura (1-12 meses): pierde cargos y voz/voto, conserva los cultos y la Cena del Señor. Remoción: medida extrema, solo tras agotar todo y consultar a la asociación (p. 80-81).</div>
+      <div class="guia-item"><b>7. Fin de censura</b> — Si la conducta fue satisfactoria, queda en plena comunión sin nuevo voto; se le notifica (p. 81).</div>
+      <div class="guia-item"><b>8. Después de la remoción</b> — Notificar con pesar, en lo posible en persona; mantener contacto y espíritu de amistad (p. 85). Readmisión: arrepentimiento + pruebas de cambio, normalmente con rebautismo; consultar a la asociación (p. 85-86).</div>
+      <div class="guia-item"><b>9. NO remover por</b> — falta de asistencia ni razones pecuniarias (p. 84). Paradero desconocido: tras esfuerzos certificados, se vota designarlo «desaparecido» (p. 84; DSA: 1 año).</div>
+      <div class="guia-item"><b>10. Apelación</b> — Por escrito a la iglesia; luego a la junta directiva de la asociación (p. 86).</div>
+    </div>
   </div>
 </div>
 
@@ -302,6 +409,7 @@ body.claro .aviso-ficha{color:#8a5200}
     <div class="rep-res" id="rep-resumen"></div>
     <button id="btn-generar-pdf" class="btn primary" style="margin-top:12px">⬇️ Generar PDF</button>
     <p style="font-size:.8rem;color:var(--txt2);margin-top:8px;text-align:center">El PDF se descarga en tu teléfono y podés compartirlo por WhatsApp.</p>
+    <button id="btn-recalcular" class="btn btn-secondary" style="margin-top:10px">🔧 Recalcular semáforos (una sola vez)</button>
   </div>
 </div>
 
@@ -319,30 +427,28 @@ body.claro .aviso-ficha{color:#8a5200}
       <a id="det-wa" class="btn-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
       <a id="det-llamar" class="btn-llamar">📞 <span id="det-tel-txt"></span></a>
     </div>
-    <button id="btn-tomar" class="btn btn-secondary oculto" style="margin-bottom:10px">🙋 Hacerme cargo del rescate</button>
-    <button id="btn-cambiar-etapa" class="btn btn-secondary" style="margin-bottom:10px">🔄 Cambiar etapa</button>
-    <button id="btn-agendar-visita" class="btn btn-secondary" style="margin-bottom:10px">🏠 Agendar visita</button>
-
+    <button id="btn-tomar" class="btn btn-secondary oculto" style="margin-bottom:10px">🙋 Hacerme cargo del seguimiento</button>
+    <button id="btn-cambiar-etapa" class="btn btn-secondary" style="margin-bottom:10px">🔄 Cambiar etapa de rescate</button>
+    <button id="btn-agendar-visita" class="btn btn-secondary" style="margin-bottom:10px">🏠 Agendar visita a esta persona</button>
     <div class="fila"><span class="k">💭</span><span id="det-motivo"></span></div>
-    <div class="fila"><span class="k">📅</span><span id="det-desde"></span></div>
+    <div class="fila"><span class="k">✝️</span><span id="det-miembro"></span></div>
+    <div class="fila"><span class="k">🕊️</span><span id="det-bautismo"></span></div>
+    <div class="fila"><span class="k">🏷️</span><span id="det-caracter"></span></div>
+    <div class="fila"><span class="k">👨‍👩‍👧</span><span id="det-familia"></span></div>
     <div class="fila"><span class="k">🏠</span><span id="det-direccion"></span></div>
     <div class="fila"><span class="k">🎂</span><span id="det-cumple"></span></div>
-    <div class="fila"><span class="k">🏷️</span><span id="det-caracter"></span></div>
+    <div class="fila"><span class="k">📅</span><span id="det-desde"></span></div>
     <div class="fila"><span class="k">👤</span><span id="det-cuidador"></span></div>
-    <div class="fila"><span class="k">📝</span><span id="det-notas"></span></div>
-
     <div id="det-recursos"></div>
-
     <h3 class="secc">Historia de vida</h3>
     <ul class="historia" id="det-vida"></ul>
     <button id="btn-agregar-vida" class="btn btn-secondary" style="margin-top:8px">➕ Agregar nota a la historia</button>
     <div id="vida-form" class="oculto" style="margin-top:10px">
       <label style="font-size:.85rem;color:var(--txt2)">Fecha del hecho</label>
       <input id="vida-fecha" type="date">
-      <textarea id="vida-texto" rows="2" placeholder="Qué sucedió: primer contacto, visita, reconciliación, regreso a la iglesia…"></textarea>
+      <textarea id="vida-texto" rows="2" placeholder="Qué sucedió: bautismo, reinstauración, cargo, ministerio, mudanza…"></textarea>
       <button id="btn-guardar-vida" class="btn primary">💾 Guardar nota de historia</button>
     </div>
-
     <h3 class="secc">Registrar contacto</h3>
     <div class="tipos">
       <button class="tipo" data-tipo="llamada">📞 Llamada</button>
@@ -350,9 +456,8 @@ body.claro .aviso-ficha{color:#8a5200}
       <button class="tipo" data-tipo="visita">🏠 Visita</button>
       <button class="tipo" data-tipo="visita_iglesia">⛪ Volvió a iglesia</button>
     </div>
-    <textarea id="det-nota" rows="2" placeholder="¿Cómo estuvo? ¿Qué dijo? ¿Avanzó algo?"></textarea>
+    <textarea id="det-nota" rows="2" placeholder="Nota (opcional): ¿cómo está? ¿qué pidió?"></textarea>
     <button id="btn-guardar-contacto" class="btn primary">✅ Guardar contacto</button>
-
     <h3 class="secc" id="det-historial-titulo">Historial de contactos</h3>
     <ul class="historia" id="det-historial"></ul>
     <button id="btn-editar-ficha" class="btn btn-secondary" style="margin-top:14px">✏️ Editar ficha</button>
@@ -363,27 +468,39 @@ body.claro .aviso-ficha{color:#8a5200}
 <div id="modal-form" class="modal oculto">
   <div class="hoja">
     <button id="f-cerrar" class="cerrar">✕</button>
-    <div class="det-nombre" id="form-titulo">Agregar hermano/a</div>
+    <div class="det-nombre" id="form-titulo">Agregar persona</div>
     <input id="f-nombre" placeholder="Nombre y apellido *">
     <input id="f-telefono" type="tel" placeholder="WhatsApp / teléfono *">
     <input id="f-direccion" placeholder="Dirección (para visitas)">
-    <label style="font-size:.85rem;color:var(--txt2)">Responsable del seguimiento</label>
     <select id="f-cuidador"></select>
-    <label style="font-size:.85rem;color:var(--txt2)">Motivo de alejamiento *</label>
-    <select id="f-motivo"></select>
-    <label style="font-size:.85rem;color:var(--txt2)">Etapa actual</label>
+    <label style="font-size:.85rem;color:var(--txt2)">Condición en la iglesia</label>
+    <select id="f-miembro">
+      <option value="">— Sin dato —</option>
+      <option value="activo">🟢 Activo · miembro activo</option>
+      <option value="frecuente">🟩 Frecuente · viene regularmente</option>
+      <option value="visitante">🔵 Visitante · aún no es miembro</option>
+      <option value="alejado">🟡 Alejado · hace tiempo que no viene</option>
+      <option value="apartado">🔴 Apartado · en disciplina</option>
+      <option value="censura">⚖️ Bajo censura · período de prueba</option>
+      <option value="desaparecido">🔇 Desaparecido · paradero desconocido</option>
+    </select>
+    <label style="font-size:.85rem;color:var(--txt2)">Motivo de alejamiento</label>
+    <select id="f-motivo-alejamiento"></select>
+    <label style="font-size:.85rem;color:var(--txt2)">Etapa de rescate</label>
     <select id="f-etapa"></select>
     <label style="font-size:.85rem;color:var(--txt2)">Desde cuándo no asiste</label>
     <input id="f-desde" type="date">
+    <label style="font-size:.85rem;color:var(--txt2)">Fecha de bautismo</label>
+    <input id="f-bautismo" type="date">
     <label style="font-size:.85rem;color:var(--txt2)">Carácter (tocá para marcar o desmarcar)</label>
     <div id="f-caracter" class="tipos"></div>
     <label style="font-size:.85rem;color:var(--txt2)">Familia</label>
     <textarea id="f-familia" rows="2" placeholder="Casado con…, hijos…, vive con…"></textarea>
     <label style="font-size:.85rem;color:var(--txt2)">Cumpleaños</label>
     <input id="f-cumple" type="date">
-    <textarea id="f-notas" rows="3" placeholder="Notas: cómo se fue, con quién tuvo el conflicto, qué le duele, pedidos de oración…"></textarea>
+    <textarea id="f-notas" rows="3" placeholder="Notas rápidas: pedidos de oración, salud, trabajo…"></textarea>
     <button id="btn-guardar-persona" class="btn primary">💾 Guardar</button>
-    <button id="btn-eliminar-persona" class="btn btn-danger oculto">🗑 Eliminar</button>
+    <button id="btn-eliminar-persona" class="btn btn-danger oculto">🗑 Eliminar persona</button>
   </div>
 </div>
 
@@ -393,15 +510,15 @@ body.claro .aviso-ficha{color:#8a5200}
     <button id="vf-cerrar" class="cerrar">✕</button>
     <div class="det-nombre" id="vf-titulo">Agendar visita</div>
     <select id="vf-persona"></select>
-    <label style="font-size:.85rem;color:var(--txt2)">Tipo de visita</label>
+    <label style="font-size:.85rem;color:var(--txt2)">Motivo de la visita</label>
     <div class="tipos" id="vf-tipos"></div>
     <div style="display:flex;gap:8px">
       <div style="flex:2"><label style="font-size:.85rem;color:var(--txt2)">Fecha</label><input id="vf-fecha" type="date"></div>
       <div style="flex:1"><label style="font-size:.85rem;color:var(--txt2)">Hora</label><input id="vf-hora" type="time"></div>
     </div>
-    <label style="font-size:.85rem;color:var(--txt2)">Responsable de la visita</label>
+    <label style="font-size:.85rem;color:var(--txt2)">Quién visita</label>
     <select id="vf-responsable"></select>
-    <textarea id="vf-nota" rows="2" placeholder="Notas: qué llevar, con quién vive, referencias…"></textarea>
+    <textarea id="vf-nota" rows="2" placeholder="Nota: qué necesita, con quién vive, referencias…"></textarea>
     <button id="btn-guardar-visita" class="btn primary">💾 Agendar visita</button>
   </div>
 </div>
@@ -421,7 +538,7 @@ body.claro .aviso-ficha{color:#8a5200}
     <div class="acciones" id="v-acciones"></div>
     <div id="v-informe-box" class="oculto">
       <h3 class="secc">Informe de la visita</h3>
-      <textarea id="v-informe" rows="3" placeholder="¿Cómo fue? ¿Qué compartieron? ¿Avances? ¿Pedidos de oración?"></textarea>
+      <textarea id="v-informe" rows="3" placeholder="¿Cómo fue? ¿qué compartieron? ¿pedidos de oración?"></textarea>
       <button id="btn-finalizar-visita" class="btn primary">💾 Guardar informe y finalizar</button>
     </div>
     <button id="btn-eliminar-visita" class="btn btn-danger oculto">🗑 Eliminar visita</button>
@@ -431,1637 +548,6 @@ body.claro .aviso-ficha{color:#8a5200}
 <button id="btn-tema" title="Cambiar tema">☀️</button>
 <div id="toast"></div>
 
-<script type="module">
-/* ============ CONFIGURACIÓN — PLAN RESCATE ============ */
-const CODIGO_INVITACION = "RESCATE2025";
-const CODIGO_PAIS = "54";
-const NOMBRE_ORG = "Fe de Jesús";
-/* ====================================================== */
-
-/* 🔥 REEMPLAZAR con tu proyecto Firebase nuevo */
-const firebaseConfig = {
-  apiKey: "AIzaSyB60b9ierInk3Xhf1ueyx-Tg7sJOPI4lQw",
-  authDomain: "acompa-f19c9.firebaseapp.com",
-  projectId: "acompa-f19c9",
-  storageBucket: "acompa-f19c9.firebasestorage.app",
-  messagingSenderId: "1089924717195",
-  appId: "1:1089924717195:web:698ecb4818389058b2928e"
-};
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, writeBatch, onSnapshot, serverTimestamp, getDocs, query, where, increment, Timestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-const $ = id => document.getElementById(id);
-const esc = s => (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-const VERSICULOS = [
-  {t:'"¿Qué hombre de vosotros, teniendo cien ovejas, si pierde una, no va tras la que se perdió?"', r:'Lc 15:4'},
-  {t:'"No la voluntad de vuestro Padre que está en los cielos, que se pierda uno de estos pequeños"', r:'Mt 18:14'},
-  {t:'"Id por todo el mundo y predicad el evangelio a toda criatura"', r:'Mc 16:15'},
-  {t:'"El que haga volver a un pecador de su camino, salvará un alma de muerte"', r:'Stg 5:20'},
-  {t:'"Sobrellevad los unos las cargas de los otros"', r:'Gá 6:2'},
-  {t:'"Ve tras la que se perdió, hasta que la halle"', r:'Lc 15:4'},
-  {t:'"No nos cansemos de hacer el bien, porque a su tiempo segaremos"', r:'Gá 6:9'},
-  {t:'"Fortaleced las manos cansadas y afirmad las rodillas endebles"', r:'Is 35:3'},
-  {t:'"Hay gozo en el cielo por un pecador que se arrepiente"', r:'Lc 15:7'},
-  {t:'"Compadeceos de los que dudan"', r:'Jud 22'},
-  {t:'"Restaurad al que cayera con espíritu de mansedumbre"', r:'Gá 6:1'},
-  {t:'"Considerémonos unos a otros para estimularnos al amor y a las buenas obras"', r:'He 10:24'},
-  {t:'"El Señor no quiere que nadie perezca, sino que todos procedan al arrepentimiento"', r:'2 P 3:9'},
-  {t:'"Buscad y hallaréis; llamad y se os abrirá"', r:'Mt 7:7'},
-  {t:'"Volved a mí, dice Jehová de los ejércitos"', r:'Mal 3:7'},
-  {t:'"Yo sanaré su rebelión, los amaré voluntariamente"', r:'Os 14:4'}
-];
-(function(){
-  const dia = Math.floor(Date.now()/86400000) % VERSICULOS.length;
-  const v = VERSICULOS[dia];
-  const el = $('verso-hoy');
-  if(el) el.innerHTML = `<b>📖</b> ${esc(v.t)} <b>— ${v.r}</b>`;
-})();
-
-function setTema(t){
-  const claro = t==='claro';
-  document.body.classList.toggle('claro', claro);
-  $('btn-tema').textContent = claro ? '🌙' : '☀️';
-  $('meta-tema').setAttribute('content', claro ? '#0f1f3a' : '#0f1f3a');
-  try{ localStorage.setItem('tema', t); }catch(e){}
-}
-setTema((()=>{ try{ return localStorage.getItem('tema')||'oscuro'; }catch(e){ return 'oscuro'; } })());
- $('btn-tema').onclick = ()=> setTema(document.body.classList.contains('claro') ? 'oscuro' : 'claro');
-
-const ERRORES = {
-  'auth/invalid-credential':'Correo o contraseña incorrectos.',
-  'auth/invalid-login-credentials':'Correo o contraseña incorrectos.',
-  'auth/user-not-found':'Correo o contraseña incorrectos.',
-  'auth/wrong-password':'Correo o contraseña incorrectos.',
-  'auth/email-already-in-use':'Ese correo ya tiene cuenta. Inicia sesión.',
-  'auth/weak-password':'La contraseña debe tener al menos 6 caracteres.',
-  'auth/invalid-email':'Escribe un correo válido.',
-  'auth/too-many-requests':'Demasiados intentos. Espera un momento.',
-  'auth/network-request-failed':'Sin conexión. Revisa tu internet.'
-};
-
-const MOTIVOS = {
-  herido: {
-    txt: '💔 Herido por alguien de la iglesia', corto: 'Herido',
-    versiculos: [
-      {r:'Mt 18:21-22', t:'Señor, ¿cuántas veces perdonaré?... hasta setenta veces siete.'},
-      {r:'Ef 4:31-32', t:'Quítense toda amargura... sed benignos, misericordiosos, perdonándoos unos a otros.'},
-      {r:'Col 3:13', t:'Soportándoos unos a otros, y perdonándoos... como Cristo os perdonó, así también hacedlo vosotros.'},
-      {r:'Heb 12:14-15', t:'Seguid la paz con todos... mirando que ninguna raíz de amargura brotando os estorbe.'},
-      {r:'Mt 5:23-24', t:'Si tu hermano tiene algo contra ti, ve y reconcíliate primero con tu hermano.'},
-      {r:'1 Pe 2:23', t:'Cuando le maldecían, no respondía con maldición... se encomendaba al que juzga justamente.'},
-      {r:'Mt 6:14-15', t:'Si perdonáis a los hombres sus ofensas, os perdonará también vuestro Padre celestial.'},
-      {r:'Ro 12:17-19', t:'No paguéis a nadie mal por mal... no os venguéis vosotros mismos, amados.'},
-      {r:'Pr 10:12', t:'El odio despierta rencillas; pero el amor cubrirá todas las transgresiones.'},
-      {r:'1 Co 13:5', t:'El amor no hace nada indebido, no busca lo suyo, no se irrita, no guarda rencor.'},
-      {r:'Stg 3:16', t:'Donde hay celos y contención, allí hay perturbación y toda obra perversa.'},
-      {r:'1 Jn 2:9-11', t:'El que dice que está en luz y aborrece a su hermano, está todavía en tinieblas.'},
-      {r:'Mt 18:15', t:'Si tu hermano peca contra ti, ve y repréndele estando tú y él solos.'},
-      {r:'Lc 17:3-4', t:'Si tu hermano peca contra ti, repréndele; y si se arrepiente, perdónale... siete veces al día.'},
-      {r:'2 Co 2:7-8', t:'Más bien, perdonadle y consoladle, para que no sea consumido de demasiada tristeza.'},
-      {r:'Gá 6:1', t:'Hermanos, si alguno fuere sorprendido en alguna falta, restauradle con espíritu de mansedumbre.'},
-      {r:'Ef 4:26', t:'Airaos, pero no pequéis; no se ponga el sol sobre vuestro enojo.'},
-      {r:'Pr 17:9', t:'El que cubre la falta busca amistad; mas el que la repite, aparta al amigo.'},
-      {r:'Sal 34:18', t:'Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.'},
-      {r:'Sal 147:3', t:'Él sana a los quebrantados de corazón, y vende sus heridas.'},
-      {r:'Is 61:1', t:'Me ha enviado a sanar a los quebrantados de corazón... a consolar a los enlutados.'},
-      {r:'Jer 30:17', t:'Yo haré cicatrizar tu herida, y curaré tus llagas, dice Jehová.'}
-    ],
-    consejo: 'Escuchá primero, validá el dolor sin minimizar. No defiendas a la otra parte. Después de ganar confianza, ayudá a ver el perdón como un acto de liberación personal, no como aprobación del daño. Ofrecé mediación solo cuando la persona esté lista. La reconciliación es un proceso, no un evento.',
-    enfoque: 'Escuchar · Validar · Sanar · Perdonar · Restaurar',
-    mensaje: 'Hola {nombre} 🙏 Sé que pasaste por una situación muy dolorosa en la iglesia, y tu herida es real. Dios no minimiza lo que sentiste. ¿Podemos conversar sin presiones? Solo quiero escucharte y orar con vos 🤗'
-  },
-  enojado_liderazgo: {
-    txt: '😤 Enojado con el liderazgo / pastor', corto: 'Enojado con liderazgo',
-    versiculos: [
-      {r:'1 Ts 5:12-13', t:'Tened en estima a los que trabajan entre vosotros... y que los tengáis en mucha estima por amor a su obra.'},
-      {r:'Heb 13:17', t:'Obedeced a vuestros pastores, y sujetaos a ellos; porque ellos velan por vuestras almas.'},
-      {r:'Pr 18:13', t:'Al que responde antes de escuchar, le es locura y oprobio.'},
-      {r:'Mt 18:15', t:'Si tu hermano peca contra ti, ve y repréndele estando tú y él solos.'},
-      {r:'Sal 133:1', t:'¡Cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!'},
-      {r:'Stg 1:19', t:'Todo hombre sea pronto para oír, tardo para hablar, tardo para airarse.'},
-      {r:'1 Pe 5:5', t:'Someteos los unos a los otros, revestíos de humildad... porque Dios resiste a los soberbios.'},
-      {r:'Heb 13:7', t:'Acordaos de vuestros pastores, que os hablaron la palabra de Dios... imitad su fe.'},
-      {r:'1 Co 16:15-16', t:'Reconocéis a los que trabajan entre vosotros... que os estén sujetos, y a cada uno que ayuda y trabaja.'},
-      {r:'Fil 2:3', t:'Nada hagáis por rivalidad o vanagloria; antes bien, con humildad, estimando cada uno a los demás como superiores a sí mismo.'},
-      {r:'Pr 15:1', t:'La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.'},
-      {r:'Ef 4:29', t:'Ninguna palabra corrompida salga de vuestra boca, sino la que sea buena para edificación.'},
-      {r:'1 Ti 5:1', t:'No reprendas al anciano, sino exhórtale como a padre; a los jóvenes, como a hermanos.'},
-      {r:'Nm 12:1-2', t:'María y Aarón hablaron contra Moisés... y la ira de Jehová se encendió contra ellos.'},
-      {r:'Nm 16:1-3', t:'Coré... se levantó contra Moisés... "¿Por qué os levantáis sobre la congregación de Jehová?"'},
-      {r:'1 Sam 24:6', t:'No extenderé mi mano contra él, porque es el ungido de Jehová.'},
-      {r:'2 Cr 19:6', t:'Mirad lo que hacéis, porque no juzgáis por hombre, sino por Jehová que está con vosotros.'},
-      {r:'Stg 4:11', t:'No habléis mal unos de otros. El que murmura del hermano juzga a su hermano.'},
-      {r:'Pr 21:23', t:'El que guarda su boca y su lengua, su alma guarda de angustias.'},
-      {r:'Tit 3:1-2', t:'Que se sujeten a los gobernantes y autoridades, que obedezcan, que estén prontos para toda buena obra.'},
-      {r:'2 Ts 3:14-15', t:'Si alguno no obedece... no tengáis con él compañía... pero no lo tengáis por enemigo, sino amonestadle como a hermano.'},
-      {r:'1 Pe 2:17', t:'Honrad a todos. Amad a los hermanos. Temed a Dios. Honrad al rey.'}
-    ],
-    consejo: 'No tomes partido ni critiques al liderazgo. Reconocé que las heridas legítimas existen. Ayudá a separar al siervo del oficio: a veces Dios usa vasijas imperfectas. Fomentá el diálogo directo con el pastor. La unidad no significa silencio: significa procesar las diferencias con respeto.',
-    enfoque: 'Escuchar · No tomar partido · Fomentar diálogo directo · Buscar mediación si hace falta',
-    mensaje: 'Hola {nombre} 🙏 Entiendo que hay cosas que te lastimaron y tu enojo tiene razón de ser. Tu voz importa para nosotros. ¿Podemos tomar un café y conversar con honestidad? Sin defender a nadie, solo escucharte 🤗'
-  },
-  apatico: {
-    txt: '😴 Dejó de asistir gradualmente / sin razón clara', corto: 'Apático',
-    versiculos: [
-      {r:'Heb 10:25', t:'No dejando de congregarnos, como algunos tienen por costumbre, sino exhortándonos.'},
-      {r:'Sal 122:1', t:'Yo me alegré cuando me dijeron: "Vamos a la casa de Jehová".'},
-      {r:'Ap 2:4', t:'Pero tengo contra ti, que has dejado tu primer amor. Recuerda de dónde has caído, y arrepiéntete.'},
-      {r:'Jer 2:13', t:'Porque mi pueblo ha hecho dos males: me dejaron a mí, fuente de agua viva, y cavaron cisternas rotas.'},
-      {r:'Pr 18:24', t:'El hombre que tiene amigos ha de mostrarse amigo; y amigo hay más unido que un hermano.'},
-      {r:'Lc 15:17', t:'Volviendo en sí, dijo: "¡Cuántos jornaleros en casa de mi padre tienen abundancia de pan, y yo aquí perezco de hambre!"'},
-      {r:'Ro 12:11', t:'No seáis perezosos en vuestro celo; sed fervientes en espíritu, sirviendo al Señor.'},
-      {r:'Ap 3:15-16', t:'Yo conozco tus obras, que ni eres frío ni caliente. ¡Ojalá fueses frío o caliente! Pero por cuanto eres tibio, te vomitaré de mi boca.'},
-      {r:'Mt 24:12', t:'Y por haberse multiplicado la maldad, el amor de muchos se enfriará.'},
-      {r:'Pr 24:30-34', t:'Pasé junto al campo del hombre perezoso... y he aquí que todo era espinos y ortigas... un poco de sueño... y vendrá tu pobreza.'},
-      {r:'Is 29:13', t:'Este pueblo de labios me honra, mas su corazón está lejos de mí.'},
-      {r:'Mt 15:8', t:'Este pueblo de labios me honra, pero su corazón está lejos de mí.'},
-      {r:'2 Ti 4:10', t:'Porque Demas me ha desamparado, amando este mundo, y se ha ido a Tesalónica.'},
-      {r:'Lc 8:14', t:'La que cayó entre espinos son los que oyen, pero a medida que siguen, son ahogados por los afanes, las riquezas y los placeres de la vida.'},
-      {r:'Lc 8:13', t:'Los de sobre la piedra son los que al oír, reciben la palabra con gozo; pero no tienen raíz.'},
-      {r:'Jer 3:14', t:'Convertíos, hijos rebeldes, dice Jehová, porque yo soy vuestro esposo.'},
-      {r:'Jer 3:22', t:'Volveos, hijos apóstatas, y sanaré vuestras apostasías. He aquí nosotros venimos a ti.'},
-      {r:'Os 14:1', t:'Vuelve, Israel, a Jehová tu Dios; porque por tu pecado has caído.'},
-      {r:'Mal 3:7', t:'Volveos a mí, y yo me volveré a vosotros, dice Jehová de los ejércitos.'},
-      {r:'Joel 2:12', t:'Convertíos a mí de todo corazón, con ayuno, lloro y lamento.'},
-      {r:'Is 55:7', t:'Deje el impío su camino, y el hombre inicuo sus pensamientos, y vuélvase a Jehová.'},
-      {r:'Stg 5:19-20', t:'Hermanos, si alguno de entre vosotros se ha extraviado de la verdad, y alguno le hace volver, sepa que el que haga volver al pecador... salvará un alma de muerte.'}
-    ],
-    consejo: 'Contacto cálido y sin presión ni juicio. Preguntá cómo está su vida, no solo por qué no viene. A veces es cansancio, depresión, crisis de fe o problemas que no compartió. Mostrá que se lo extraña de verdad, no por obligación institucional. No prediques ni le hagas sentir culpable.',
-    enfoque: 'Contacto cálido · Sin presión · Interés genuino · Detectar causa de fondo',
-    mensaje: 'Hola {nombre} 👋 Hace un tiempo que no te vemos por la familia de Fe, y te extrañamos de verdad 🙏 No es por pedirte nada, solo quiero saber cómo estás. ¿Te animás a conversar un rato? 🤗'
-  },
-  conflicto_familiar: {
-    txt: '👨‍👩‍👧 Conflicto familiar / conyugal', corto: 'Conflicto familiar',
-    versiculos: [
-      {r:'Ef 5:21-25', t:'Someteos unos a otros en el temor de Dios... Maridos, amad a vuestras mujeres, así como Cristo amó la iglesia.'},
-      {r:'1 Co 13:4-7', t:'El amor es sufrido, es benigno... todo lo sufre, todo lo cree, todo lo espera, todo lo soporta.'},
-      {r:'Mt 19:6', t:'Lo que Dios juntó, no lo separe el hombre.'},
-      {r:'1 Pe 3:7', t:'Vosotros, maridos, vivid con ellas sabiamente, dando honor a la mujer como a vaso más frágil.'},
-      {r:'Mal 2:16', t:'Yo odio el divorcio, dice Jehová Dios de Israel.'},
-      {r:'Pr 15:1', t:'La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.'},
-      {r:'Ef 4:32', t:'Antes sed benignos unos con otros, misericordiosos, perdonándoos unos a otros.'},
-      {r:'Col 3:19', t:'Maridos, amad a vuestras mujeres, y no seáis ásperos con ellas.'},
-      {r:'Col 3:21', t:'Padres, no exasperéis a vuestros hijos, para que no se desalienten.'},
-      {r:'Pr 22:6', t:'Instruye al niño en su camino, y aun cuando fuere viejo no se apartará de él.'},
-      {r:'Ef 6:4', t:'Y vosotros, padres, no provoquéis a ira a vuestros hijos, sino criadlos en disciplina y amonestación del Señor.'},
-      {r:'1 Pe 3:1-2', t:'Asimismo vosotras, mujeres, estad sujetas a vuestros maridos.'},
-      {r:'1 Pe 3:8', t:'Finalmente, sed todos de un mismo sentir, compasivos, amándoos fraternalmente.'},
-      {r:'Ro 12:18', t:'Si es posible, en cuanto dependa de vosotros, estad en paz con todos los hombres.'},
-      {r:'Heb 12:14', t:'Seguid la paz con todos, y la santidad, sin la cual nadie verá al Señor.'},
-      {r:'Mt 5:9', t:'Bienaventurados los pacificadores, porque ellos serán llamados hijos de Dios.'},
-      {r:'Stg 3:17-18', t:'La sabiduría de lo alto es primeramente pura, después pacífica, amable, benigna... y el fruto de justicia se siembra en paz.'},
-      {r:'Pr 17:1', t:'Mejor es un bocado seco, y en paz, que la casa llena de víctimas de contienda.'},
-      {r:'1 Co 7:3', t:'El marido cumpla con la mujer el deber conyugal, y asimismo la mujer con el marido.'},
-      {r:'1 Co 7:5', t:'No os neguéis el uno al otro, a no ser por algún tiempo de mutuo consentimiento.'},
-      {r:'Pr 19:11', t:'La cordura del hombre detiene su furor, y su honra es pasar por alto la ofensa.'},
-      {r:'Gá 6:2', t:'Sobrellevad los unos las cargas de los otros, y cumplid así la ley de Cristo.'}
-    ],
-    consejo: 'Ofrecé acompañamiento pastoral confidencial, no tomes partido. Sugerí consejería matrimonial con el pastor o una pareja madura. Recuerda que la prioridad es salvar el matrimonio, no juzgar. Ayuda práctica (cuidado de hijos, comida) vale más que muchas palabras. Si hay violencia, intervenir con ayuda profesional de inmediato.',
-    enfoque: 'Confidencial · Sin partido · Consejería profesional · Ayuda práctica',
-    mensaje: 'Hola {nombre} 🙏 Sé que estás atravesando un momento difícil en familia. Dios no te juzga, te abraza. ¿Queremos conversar? Total confidencialidad, y si lo necesitás, puedo conectarlos con un hermano con más experiencia 🤗'
-  },
-  dudas_doctrinales: {
-    txt: '❓ Dudas doctrinales / de fe', corto: 'Dudas doctrinales',
-    versiculos: [
-      {r:'1 Pe 3:15', t:'Estad siempre preparados para presentar defensa con mansedumbre y reverencia ante todo el que os demande razón de la esperanza.'},
-      {r:'Judas 3', t:'Contended ardientemente por la fe que ha sido una vez dada a los santos.'},
-      {r:'Hch 17:11', t:'Estos eran más nobles que los de Tesalónica, pues recibieron la palabra con toda solicitud, escudriñando cada día las Escrituras.'},
-      {r:'2 Ti 3:16', t:'Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia.'},
-      {r:'Mr 9:24', t:'"Creo, Señor; ayuda mi incredulidad" — clamó el padre del muchacho.'},
-      {r:'Stg 1:5', t:'Si a alguno de vosotros le falta sabiduría, pídala a Dios, el cual da a todos abundantemente.'},
-      {r:'Jn 7:17', t:'El que quiera hacer la voluntad de Dios, conocerá si la doctrina es de Dios.'},
-      {r:'Jn 8:32', t:'Y conoceréis la verdad, y la verdad os hará libres.'},
-      {r:'Sal 119:18', t:'Abre mis ojos, y miraré las maravillas de tu ley.'},
-      {r:'Sal 119:105', t:'Lámpara es a mis pies tu palabra, y lumbrera a mi camino.'},
-      {r:'Pr 3:5-6', t:'Fía en Jehová con todo tu corazón, y no te apoyes en tu propia prudencia.'},
-      {r:'Is 55:8-9', t:'Porque mis pensamientos no son vuestros pensamientos, ni vuestros caminos mis caminos.'},
-      {r:'1 Co 2:14', t:'Pero el hombre natural no percibe las cosas que son del Espíritu de Dios.'},
-      {r:'1 Co 13:12', t:'Ahora vemos por espejo, oscuramente; mas entonces veremos cara a cara.'},
-      {r:'2 Co 10:5', t:'Destruyendo consejos, y toda altivez que se levanta contra el conocimiento de Dios, llevando cautivo todo pensamiento.'},
-      {r:'Heb 11:1', t:'Es, pues, la fe la sustancia de lo que se espera, la demostración de lo que no se ve.'},
-      {r:'Heb 11:6', t:'Sin fe es imposible agradar a Dios; porque es necesario que el que se acerca a Dios crea que le hay.'},
-      {r:'Ro 12:2', t:'Transformaos por medio de la renovación de vuestro entendimiento.'},
-      {r:'Col 2:8', t:'Mirad que nadie os engañe por medio de filosofías y huecas sutilezas.'},
-      {r:'2 Ti 4:3-4', t:'Porque vendrá tiempo cuando no sufrirán la sana doctrina... y apartarán de la verdad el oído.'},
-      {r:'Hch 18:26', t:'Priscila y Aquila le tomaron aparte, y le expusieron más exactamente el camino de Dios.'},
-      {r:'Is 1:18', t:'Venid luego, dice Jehová, y estemos a cuenta... razonemos juntos.'},
-      {r:'1 Ts 5:21', t:'Examinadlo todo; retened lo bueno.'}
-    ],
-    consejo: 'Escuchá las dudas sin prejuicio ni respuestas apresuradas. Estudiá juntos, no impongas. Es sano admitir "no sé, vamos a estudiarlo". Recuerda que la fe se fortalece cuando se examina honestamente, no cuando se evade. Tomas puede servir como modelo: sus dudas no lo exiliaron.',
-    enfoque: 'Escuchar · Estudiar juntos · Sin apuro · Recursos sólidos',
-    mensaje: 'Hola {nombre} 🙏 Entiendo que tenés preguntas y dudas serias. Eso no te hace menos creyente, al contrario: importa lo suficiente como para cuestionarlo. ¿Queremos estudiar juntos estos temas? Sin apuros, sin juicios 🤗'
-  },
-  mudanza: {
-    txt: '🏠 Mudanza / distancia', corto: 'Mudanza',
-    versiculos: [
-      {r:'Mt 18:20', t:'Donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.'},
-      {r:'Heb 10:24', t:'Considerémonos unos a otros para estimularnos al amor y a las buenas obras.'},
-      {r:'Hch 2:42', t:'Perseveraban en la doctrina de los apóstoles, en la comunión unos con otros.'},
-      {r:'Sal 133:1', t:'¡Cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!'},
-      {r:'Ro 12:5', t:'Así nosotros, siendo muchos, formamos un cuerpo en Cristo, y cada uno miembros los unos de los otros.'},
-      {r:'Heb 10:25', t:'No dejando de congregarnos, como algunos tienen por costumbre.'},
-      {r:'Jos 1:9', t:'Esfuérzate y sé valiente; no temas ni desmaye, porque Jehová tu Dios estará contigo.'},
-      {r:'Sal 23:4', t:'Aunque ande en valle de sombra de muerte, no temeré mal alguno, porque tú estarás conmigo.'},
-      {r:'Sal 16:8', t:'A Jehová he puesto delante de mí siempre; porque está a mi diestra, no seré conmovido.'},
-      {r:'Pr 3:6', t:'Reconócelo en todos tus caminos, y él enderezará tus veredas.'},
-      {r:'Sal 37:23', t:'Por Jehová son ordenados los pasos del hombre, y él aprueba su camino.'},
-      {r:'Sal 121:8', t:'Jehová guardará tu salida y tu entrada, desde ahora y para siempre.'},
-      {r:'Ro 8:28', t:'Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien.'},
-      {r:'Jer 29:11', t:'Porque yo sé los pensamientos que tengo acerca de vosotros, pensamientos de paz, y no de mal.'},
-      {r:'Fil 4:13', t:'Todo lo puedo en Cristo que me fortalece.'},
-      {r:'Is 41:10', t:'No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios.'},
-      {r:'DT 31:6', t:'Él no te dejará, ni te desamparará.'},
-      {r:'Sal 90:1', t:'Señor, tú nos ha sido refugio de generación en generación.'},
-      {r:'Sal 91:1', t:'El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente.'},
-      {r:'Ro 1:11-12', t:'Deseo veros para comunicaros algún don espiritual... para ser mutuamente confortados.'},
-      {r:'Hch 18:21', t:'Si Dios quiere, volveré a vosotros.'},
-      {r:'3 Jn 1:14', t:'Espero verte pronto, y hablaremos boca a boca. Paz a ti.'}
-    ],
-    consejo: 'Ayudá a conectar con una iglesia cercana a su nuevo hogar. Mantené el contacto de seguimiento hasta que se integre. Ofrecé presentarlos con el pastor de su nueva zona. Programá una videollamada mensual los primeros meses.',
-    enfoque: 'Conectar con iglesia cercana · Mantener contacto · Seguimiento por video',
-    mensaje: 'Hola {nombre} 👋 Sé que la mudanza cambia todo, y es fácil soltar la comunión 🙏 ¿Te ayudo a buscar una iglesia cercana a tu nueva casa? Y mientras tanto, seguimos en contacto. No te soltamos 🤗'
-  },
-  salud_depresion: {
-    txt: '🥀 Salud / depresión / duelo', corto: 'Salud / depresión',
-    versiculos: [
-      {r:'Sal 34:18', t:'Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.'},
-      {r:'2 Co 1:3-4', t:'Padre de misericordias y Dios de toda consolación, el cual nos consuela en todas nuestras tribulaciones.'},
-      {r:'1 Rey 19:4', t:'Elías se sentó debajo de un enebro, y pidió para sí la muerte... "Basta ya, Jehová, toma mi vida".'},
-      {r:'Mt 11:28', t:'Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.'},
-      {r:'Sal 42:11', t:'¿Por qué te abates, oh alma mía, y por qué te turbas dentro de mí? Espera en Dios.'},
-      {r:'Ro 12:15', t:'Gozaos con los que se gozan; llorad con los que lloran.'},
-      {r:'Sal 23:4', t:'Tu vara y tu cayado me infundirán aliento.'},
-      {r:'Sal 30:5', t:'Por la noche durará el lloro, y a la mañana vendrá la alegría.'},
-      {r:'Is 41:10', t:'No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo.'},
-      {r:'Jos 1:9', t:'No temas ni desmayes, porque Jehová tu Dios estará contigo en dondequiera que vayas.'},
-      {r:'DT 31:8', t:'Jehová va delante de ti; él estará contigo, no te dejará, ni te desamparará.'},
-      {r:'Sal 46:1', t:'Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.'},
-      {r:'Sal 55:22', t:'Echa sobre Jehová tu carga, y él te sustentará; no dejará para siempre caído al justo.'},
-      {r:'1 Pe 5:7', t:'Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.'},
-      {r:'Mt 5:4', t:'Bienaventurados los que lloran, porque ellos recibirán consolación.'},
-      {r:'Jn 16:33', t:'En el mundo tendréis aflicción; pero confiad, yo he vencido al mundo.'},
-      {r:'Ro 8:18', t:'Pues tengo por cierto que las aflicciones del tiempo presente no son comparables con la gloria venidera.'},
-      {r:'2 Co 4:17', t:'Porque esta leve tribulación momentánea produce en nosotros un cada vez más excelente y eterno peso de gloria.'},
-      {r:'Sal 30:11', t:'Has cambiado mi lamento en baile; desataste mi cilicio, y me ceñiste de alegría.'},
-      {r:'Is 61:1-3', t:'Me ha enviado a sanar a los quebrantados de corazón... a consolar a todos los enlutados.'},
-      {r:'Ec 3:1-4', t:'Todo tiene su tiempo... tiempo de llorar, y tiempo de reír; tiempo de endechar, y tiempo de danzar.'},
-      {r:'1 Ts 4:13', t:'No ignoréis, hermanos, acerca de los que duermen, para que no os entristezcáis como los otros que no tienen esperanza.'},
-      {r:'Jn 11:25-26', t:'Yo soy la resurrección y la vida; el que cree en mí, aunque esté muerto, vivirá.'},
-      {r:'Lm 3:22-23', t:'Por la misericordia de Jehová no hemos sido consumidos... nuevas son cada mañana; grande es tu fidelidad.'}
-    ],
-    consejo: 'Presencia, oración, ayuda práctica. No prediques, acompañá. Ofrecé ayuda profesional si es depresión clínica (psicólogo cristiano). Escuchá sin dar consejos rápidos. Llevá comida, hacé recados, llamá regularmente. La sanidad emocional toma tiempo.',
-    enfoque: 'Presencia · Oración · Ayuda profesional si hace falta · Ayuda práctica',
-    mensaje: 'Hola {nombre} 🙏 No te voy a pedir que vuelvas, ni que expliques nada. Solo quiero decirte que Dios te ve, que te ama, y que estoy acá para lo que necesites. ¿Puedo ir a verte, o llevarte algo? Sin pressure 🤗'
-  },
-  trabajo_horarios: {
-    txt: '💼 Trabajo / horarios difíciles', corto: 'Trabajo / horarios',
-    versiculos: [
-      {r:'Mt 6:33', t:'Buscad primermente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.'},
-      {r:'Ef 5:15-16', t:'Mirad, pues, con diligencia cómo andéis... aprovechando bien el tiempo, porque los días son malos.'},
-      {r:'Mr 2:27', t:'El día de reposo fue hecho por causa del hombre, y no el hombre por causa del día de reposo.'},
-      {r:'Ex 20:8', t:'Acuérdate del día de reposo para santificarlo.'},
-      {r:'1 Ti 5:8', t:'Porque si alguno no provee para los suyos, y mayormente para los de su casa, ha negado la fe.'},
-      {r:'Col 3:23', t:'Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.'},
-      {r:'Ef 6:5-8', t:'Siervos, obedeced a vuestros amos terrenales... sirviendo de buena voluntad, como al Señor.'},
-      {r:'1 Ts 4:11-12', t:'Que procuréis tener tranquilidad, y ocuparos en vuestros negocios, y trabajar con vuestras manos.'},
-      {r:'2 Ts 3:10', t:'Si alguno no quiere trabajar, tampoco coma.'},
-      {r:'Pr 6:6-8', t:'Ve a la hormiga, oh perezoso, mira sus caminos, y sé sabio.'},
-      {r:'Pr 10:4', t:'La mano negligente empobrece; mas la mano de los diligentes enriquece.'},
-      {r:'Pr 14:23', t:'En toda labor hay fruto; mas las vanas palabras de los labios empobrecen.'},
-      {r:'Pr 22:29', t:'¿Has visto hombre solícito en su trabajo? Delante de los reyes estará.'},
-      {r:'Ec 9:10', t:'Todo lo que tu mano hallare que hacer, hazlo según tus fuerzas.'},
-      {r:'Sal 127:1-2', t:'Si Jehová no edificare la casa, en vano trabajan los que la edifican.'},
-      {r:'Mt 11:28-30', t:'Llevad mi yugo sobre vosotros... porque mi yugo es fácil, y ligera mi carga.'},
-      {r:'Mr 6:31', t:'Él les dijo: Venid vosotros aparte a un lugar desierto, y reposad un poco.'},
-      {r:'Ex 33:14', t:'Y él dijo: Mi presencia irá contigo, y te daré descanso.'},
-      {r:'Is 40:31', t:'Los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas.'},
-      {r:'Sal 90:12', t:'Enséñanos de tal modo a contar nuestros días, que traigamos al corazón sabiduría.'},
-      {r:'Ef 5:17', t:'Por tanto, no seáis insensatos, sino entendidos cuál sea la voluntad del Señor.'},
-      {r:'Sal 90:17', t:'Sea la obra de nuestras manos confirmada sobre nosotros; sí, confirma la obra de nuestras manos.'}
-    ],
-    consejo: 'Sé flexible: ofrecé estudios bíblicos en otros horarios, servicios online, materiales para casa. Reconocé la legitimidad del trabajo. Ayudá a replantear prioridades sin culpa. A veces una pequeña reorganización laboral resuelve todo.',
-    enfoque: 'Flexibilidad · Alternativas · Sin culpa · Materiales a domicilio',
-    mensaje: 'Hola {nombre} 👋 Sé que el trabajo te consume los horarios, y eso se entiende 🙏 ¿Te interesaría un estudio bíblico en otro horario, o materiales para tu casa? Quiero acompañarte en lo que se pueda 🤗'
-  },
-  economicos: {
-    txt: '💸 Problemas económicos', corto: 'Problemas económicos',
-    versiculos: [
-      {r:'Mt 6:25-34', t:'No os afanéis por vuestra vida, qué habéis de comer... buscad primermente el reino de Dios.'},
-      {r:'Fil 4:19', t:'Mi Dios, pues, suplirá todo lo que os falta conforme a sus riquezas en gloria.'},
-      {r:'1 Ti 6:10', t:'Porque raíz de todos los males es el amor al dinero, el cual codiciando algunos se extraviaron de la fe.'},
-      {r:'Hch 4:32', t:'La multitud de los que habían creído era de un corazón y un alma; y ninguno decía ser suyo propio nada de lo que poseía.'},
-      {r:'Pr 3:9-10', t:'Honra a Jehová con tus bienes, y con las primicias de todos tus frutos.'},
-      {r:'Mt 6:24', t:'Ninguno puede servir a dos señores... no podéis servir a Dios y a las riquezas.'},
-      {r:'Lc 12:15', t:'Mirad, y guardaos de toda avaricia; porque la vida del hombre no consiste en la abundancia de los bienes que posee.'},
-      {r:'Heb 13:5', t:'Sea vuestro carácter sin avaricia, contentos con lo que tenéis ahora.'},
-      {r:'Sal 37:25', t:'Joven fui, y he envejecido, y no he visto justo desamparado, ni su descendencia que mendigue pan.'},
-      {r:'Sal 23:1', t:'Jehová es mi pastor; nada me faltará.'},
-      {r:'Mt 6:31-32', t:'No os afanéis, pues, diciendo: ¿Qué comeremos?... porque los gentiles buscan todas estas cosas.'},
-      {r:'Hch 20:35', t:'Más bienaventurado es dar que recibir.'},
-      {r:'2 Co 9:7', t:'Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre.'},
-      {r:'Pr 11:24-25', t:'Hay quienes reparten, y les es añadido más; y hay quienes retienen más de lo justo, mas vienen a pobreza.'},
-      {r:'Pr 22:9', t:'El ojo misericordioso será bendito, porque dio de su pan al indigente.'},
-      {r:'Lc 6:38', t:'Dad, y se os dará; medida buena, apretada, remecida y rebosando darán en vuestro regazo.'},
-      {r:'1 Ti 6:6-8', t:'Pero gran ganancia es la piedad acompañada de contentamiento; porque nada hemos traído a este mundo.'},
-      {r:'2 Co 8:9', t:'Porque ya conocéis la gracia de nuestro Señor Jesucristo, que por amor a vosotros se hizo pobre.'},
-      {r:'DT 15:11', t:'Porque no faltarán menesterosos en medio de la tierra; por eso yo te mando, diciendo: Abrirás tu mano a tu hermano.'},
-      {r:'Pr 19:17', t:'A Jehová presta el que da al pobre, y el bien que ha hecho, él se lo pagará.'},
-      {r:'Mt 25:40', t:'En cuanto lo hicisteis a uno de estos mis hermanos más pequeños, a mí lo hicisteis.'},
-      {r:'Stg 2:5', t:'¿No ha elegido Dios a los pobres de este mundo, para que sean ricos en fe y herederos del reino?'},
-      {r:'Sal 34:10', t:'Los leoncillos necesitan, y tienen hambre; pero los que buscan a Jehová no tendrán falta de ningún bien.'},
-      {r:'Is 33:16', t:'Éste habitará en las alturas; fortaleza de peñas será su lugar de refugio; su pan le será dado, y sus aguas serán seguras.'}
-    ],
-    consejo: 'Ayuda práctica confidencial a través de los diáconos. No prediques sobre diezmo en este momento. Conectá con asistencia profesional si es deuda grave. La dignidad antes que la caridad: ofrecer trabajo, no solo limosna.',
-    enfoque: 'Ayuda confidencial · Diáconos · Dignidad · Orientación profesional',
-    mensaje: 'Hola {nombre} 🙏 Sé que estás pasando por un momento económico difícil. La iglesia tiene un fondo de ayuda confidencial, y quiero ofrecértelo sin pedir nada a cambio. ¿Podemos conversar? 🤗'
-  },
-  caida_pecado: {
-    txt: '⚔️ Caída espiritual / pecado', corto: 'Caída / pecado',
-    versiculos: [
-      {r:'1 Jn 1:9', t:'Si confesamos nuestros pecados, él es fiel y justo para perdonar nuestros pecados, y limpiarnos de toda maldad.'},
-      {r:'Pr 28:13', t:'El que encubre sus pecados no prosperará; mas el que los confiesa y se aparta alcanzará misericordia.'},
-      {r:'Sal 51:10', t:'Crea en mí, oh Dios, un corazón limpio, y renueva un espíritu recto dentro de mí.'},
-      {r:'Gá 6:1', t:'Hermanos, si alguno fuere sorprendido en alguna falta, vosotros que sois espirituales, restauradle con espíritu de mansedumbre.'},
-      {r:'Jn 8:11', t:'Ni yo te condeno; vete, y no peques más.'},
-      {r:'Ro 8:1', t:'Ahora, pues, ninguna condenación hay para los que están en Cristo Jesús.'},
-      {r:'2 Co 7:10', t:'Porque la tristeza que es según Dios produce arrepentimiento para salvación, de que no hay que arrepentirse.'},
-      {r:'Sal 32:5', t:'Mi pecado declaré, y no encubrí mi iniquidad... y tú perdonaste la maldad de mi pecado.'},
-      {r:'Sal 38:18', t:'Por tanto, confieso mi iniquidad; me angustio por mi pecado.'},
-      {r:'Pr 24:16', t:'Porque siete veces cae el justo, y vuelve a levantarse; mas los impíos tropezarán en el mal.'},
-      {r:'Lc 22:32', t:'Mas yo he rogado por ti, que tu fe no falte; y tú, una vez vuelto, confirma a tus hermanos.'},
-      {r:'Jn 21:15-17', t:'Simón, hijo de Jonás, ¿me amas?... Apacienta mis corderos.'},
-      {r:'2 Sa 12:13', t:'Entonces dijo David a Natán: Pequé contra Jehová. Y Natán dijo: También Jehová ha remitido tu pecado.'},
-      {r:'Sal 51:1-2', t:'Ten piedad de mí, oh Dios... lávame más y más de mi maldad, y límpiame de mi pecado.'},
-      {r:'Is 55:7', t:'Deje el impío su camino, y el hombre inicuo sus pensamientos, y vuélvase a Jehová, el cual tendrá de él misericordia.'},
-      {r:'Ez 18:23', t:'¿Quiero yo la muerte del impío? dice Jehová el Señor. ¿No vivirá, si se apartare de sus caminos?'},
-      {r:'2 Pe 3:9', t:'El Señor no retarda su promesa... sino que es paciente para con nosotros, no queriendo que ninguno perezca.'},
-      {r:'1 Ti 1:15', t:'Palabra fiel y digna de ser recibida por todos: que Cristo Jesús vino al mundo para salvar a los pecadores.'},
-      {r:'Ro 5:20', t:'Pero cuando el pecado abundó, sobreabundó la gracia.'},
-      {r:'2 Co 5:17', t:'De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron.'},
-      {r:'Ef 2:8-9', t:'Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios.'},
-      {r:'Tit 3:5', t:'Nos salvó, no por obras de justicia que nosotros hubiéramos hecho, sino por su misericordia.'},
-      {r:'Ro 6:1-2', t:'¿Permaneceremos en el pecado para que la gracia abunde? En ninguna manera.'},
-      {r:'1 Co 10:13', t:'Fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir.'}
-    ],
-    consejo: 'Sin condena, sin minimizar el pecado. Restauración con mansedumbre (Gá 6:1). Confidencialidad absoluta al principio. Sugerí buscar a un anciano o pastor cuando esté listo. Recordá que el enemigo usa la vergüenza para aislar: rompé ese aislamiento.',
-    enfoque: 'Sin condena · Confidencial · Restauración mansa · Proceso gradual',
-    mensaje: 'Hola {nombre} 🙏 No te juzgo. Dios no te condena, te espera. Sea lo que sea que estés atravesando, hay un camino de regreso, y quiero caminarlo con vos, sin prisa y sin reproches. ¿Podemos conversar? 🤗'
-  },
-  discusion_conyugal: {
-    txt: '💑 Discusión conyugal fuerte', corto: 'Discusión conyugal',
-    versiculos: [
-      {r:'Ef 4:26', t:'Airaos, pero no pequéis; no se ponga el sol sobre vuestro enojo.'},
-      {r:'1 Co 7:10-11', t:'La mujer no se separe del marido; y si se separa, quédese sin casar, o reconcíliese con su marido.'},
-      {r:'Mt 5:9', t:'Bienaventurados los pacificadores, porque ellos serán llamados hijos de Dios.'},
-      {r:'Pr 15:18', t:'El hombre iracundo promueve contiendas; mas el que tarda en airarse apacigua la rencilla.'},
-      {r:'Col 3:19', t:'Maridos, amad a vuestras mujeres, y no seáis ásperos con ellas.'},
-      {r:'Pr 19:11', t:'La cordura del hombre detiene su furor, y su honra es pasar por alto la ofensa.'},
-      {r:'Stg 1:19-20', t:'Pronto para oír, tardo para hablar, tardo para airarse; porque la ira del hombre no obra la justicia de Dios.'},
-      {r:'Pr 14:29', t:'El que es lento para la ira es grande de entendimiento; mas el de espíritu apresurado engrandece la necedad.'},
-      {r:'Ef 4:29', t:'Ninguna palabra corrompida salga de vuestra boca, sino la que sea buena para edificación.'},
-      {r:'Stg 3:5-6', t:'Así también la lengua es un miembro pequeño, pero jacta de grandes cosas. He aquí, ¡cómo un gran bosque un pequeño fuego incendia!'},
-      {r:'Pr 21:23', t:'El que guarda su boca y su lengua, su alma guarda de angustias.'},
-      {r:'Pr 18:21', t:'La muerte y la vida están en poder de la lengua, y el que la ama comerá de sus frutos.'},
-      {r:'Mt 7:3-5', t:'¿Y por qué miras la paja que está en el ojo de tu hermano, y no echas de ver la viga que está en tu propio ojo?'},
-      {r:'Mt 18:15', t:'Si tu hermano peca contra ti, ve y repréndele estando tú y él solos; si te oyere, has ganado a tu hermano.'},
-      {r:'Ro 12:18', t:'Si es posible, en cuanto dependa de vosotros, estad en paz con todos los hombres.'},
-      {r:'Heb 12:14', t:'Seguid la paz con todos, y la santidad, sin la cual nadie verá al Señor.'},
-      {r:'1 Co 13:4-7', t:'El amor es sufrido, es benigno; el amor no tiene envidia... todo lo sufre, todo lo espera.'},
-      {r:'1 Pe 3:8-9', t:'Sed todos de un mismo sentir, compasivos, amándoos fraternalmente... no devolviendo mal por mal.'},
-      {r:'Ef 4:32', t:'Antes sed benignos unos con otros, misericordiosos, perdonándoos unos a otros.'},
-      {r:'Ec 7:9', t:'No te apresures en tu espíritu a enojarte; porque el enojo reposa en el seno de los necios.'},
-      {r:'Stg 4:1-2', t:'¿De dónde vienen las guerras y los pleitos entre vosotros? ¿No es de vuestras pasiones, las cuales combaten en vuestros miembros?'},
-      {r:'Pr 15:1', t:'La blanda respuesta quita la ira; mas la palabra áspera hace subir el furor.'},
-      {r:'Pr 17:14', t:'El que comienza la discordia es como quien suelta las aguas; deja, pues, la contienda, antes que se enrede.'}
-    ],
-    consejo: 'Escuchar a ambas partes por separado. No tomar partido. Fomentar diálogo directo entre ellos. Ofrecer consejería matrimonial. Si hay violencia, intervenir con ayuda profesional de inmediato.',
-    enfoque: 'Escuchar a ambos · No tomar partido · Consejería · Cuidar violencia',
-    mensaje: 'Hola {nombre} 🙏 Sé que las discusiones duelen, y a veces parecen no tener salida. Pero el sol no debería ponerse sobre el enojo. ¿Queremos conversar? Total confidencialidad, y si querés, también con tu pareja 🤗'
-  },
-  drogas: {
-    txt: '💉 Volvió a las drogas / adicciones', corto: 'Drogas / adicción',
-    versiculos: [
-      {r:'1 Co 6:19', t:'¿O ignoráis que vuestro cuerpo es templo del Espíritu Santo... el cual tenéis de Dios, y que no sois vuestros?'},
-      {r:'1 Co 6:12', t:'Todas las cosas me son lícitas, mas no todas convienen; todas las cosas me son lícitas, mas yo no me dejaré dominar de ninguna.'},
-      {r:'1 Co 3:17', t:'Si alguno destruyere el templo de Dios, Dios le destruirá a él; porque el templo de Dios, el cual sois vosotros, santo es.'},
-      {r:'Ef 5:18', t:'Y no os embriaguéis con vino, en lo cual hay disolución; antes bien sed llenos del Espíritu.'},
-      {r:'Pr 20:1', t:'El vino es escarnecedor, la sidra alborotadora, y cualquiera que por ellos yerra no es sabio.'},
-      {r:'Pr 23:20-21', t:'No estés con los bebedores de vino, ni con los comilones de carne; porque el bebedor y el comilón empobrecerán.'},
-      {r:'Pr 23:31-35', t:'No mires al vino cuando rojea, cuando resplandece su color en la copa... al fin muerde como serpiente.'},
-      {r:'Ro 13:13', t:'Andemos como de día, honestamente; no en glotonerías y embriagueces, no en lujurias y lascivias.'},
-      {r:'Gá 5:19-21', t:'Y manifiestas son las obras de la carne... envidias, homicidios, embriagueces, orgías, y cosas semejantes a estas.'},
-      {r:'1 Pe 5:8', t:'Sed sobrios, y velad; porque vuestro adversario el diablo, como león rugiente, anda alrededor buscando a quien devorar.'},
-      {r:'1 Ts 5:6-8', t:'Por tanto, no durmamos como los demás, sino velemos y seamos sobrios... vistiéndonos con la coraza de fe y de amor.'},
-      {r:'2 Ti 1:7', t:'Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de dominio propio.'},
-      {r:'1 Co 10:13', t:'Fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir, sino que dará también juntamente con la tentación la salida.'},
-      {r:'Stg 4:7', t:'Someteos, pues, a Dios; resistid al diablo, y huirá de vosotros.'},
-      {r:'1 Pe 1:13', t:'Por tanto, ceñid los lomos de vuestro entendimiento, sed sobrios, y esperad por completo en la gracia.'},
-      {r:'Tit 2:11-12', t:'Porque la gracia de Dios se ha manifestado para salvación a todos los hombres, enseñándonos que, renunciando a la impiedad y a los deseos mundanos, vivamos en este siglo sobria, justa y piadosamente.'},
-      {r:'Lc 21:34', t:'Mirad también por vosotros mismos, que vuestros corazones no se carguen de glotonería y embriaguez y de los afanes de la vida.'},
-      {r:'Ro 6:16', t:'¿No sabéis que si os sometéis a alguien como esclavos para obedecerle, sois esclavos del que obedecéis?'},
-      {r:'2 Pe 2:19', t:'Porque cualquiera que es vencido por alguno es hecho esclavo de aquel que lo venció.'},
-      {r:'Jn 8:34', t:'De cierto, de cierto os digo, que todo aquel que hace pecado, esclavo es del pecado.'},
-      {r:'Jn 8:36', t:'Así que, si el Hijo os libertare, seréis verdaderamente libres.'},
-      {r:'Ro 8:2', t:'Porque la ley del Espíritu de vida en Cristo Jesús me ha librado de la ley del pecado y de la muerte.'},
-      {r:'Sal 40:2', t:'Y me hizo sacar del pozo de la desesperación, del lodo cenagoso; y puso mis pies sobre peña, y enderezó mis pasos.'},
-      {r:'Sal 18:2-3', t:'Jehová, roca mía y castillo mío, y mi libertador; Dios mío, fortaleza mía, en él confiaré.'}
-    ],
-    consejo: 'La adicción es una esclavitud real que requiere intervención profesional (centro de rehabilitación cristiano si es posible). No minimicés diciendo "con oración basta". Acompañá sin juzgar: la recaída es parte del proceso de recuperación. La familia cercana necesita tanto apoyo como el adicto.',
-    enfoque: 'Intervención profesional · Sin juicio · Apoyo a la familia · Constancia',
-    mensaje: 'Hola {nombre} 🙏 Sé que estás atrapado en algo que te supera. No te voy a juzgar. Cristo vino a liberar a los cautivos, y quiero caminar contigo en este proceso. Hay ayuda profesional disponible, y oración sin cesar. ¿Queremos conversar? 🤗'
-  },
-  vida_pasada: {
-    txt: '🎢 Volvió a su vida pasada / mundanalidad', corto: 'Vida pasada',
-    versiculos: [
-      {r:'2 Co 5:17', t:'De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas nuevas.'},
-      {r:'1 Jn 2:15-17', t:'No améis al mundo, ni las cosas que están en el mundo... porque todo lo que hay en el mundo, los deseos de la carne, los deseos de los ojos, y la vanagloria de la vida, no proviene del Padre.'},
-      {r:'Ro 12:2', t:'No os conforméis a este siglo, sino transformaos por medio de la renovación de vuestro entendimiento.'},
-      {r:'Stg 4:4', t:'¡Oh almas adúlteras! ¿No sabéis que la amistad del mundo es enemistad contra Dios? Cualquiera, pues, que quiera ser amigo del mundo, se constituye enemigo de Dios.'},
-      {r:'Gá 1:4', t:'El cual se dio a sí mismo por nuestros pecados para librarnos del presente siglo malo, conforme a la voluntad de nuestro Dios y Padre.'},
-      {r:'Ef 2:1-3', t:'Y él os dio vida a vosotros, cuando estabais muertos en vuestros delitos y pecados... en los cuales anduvisteis en otro tiempo, siguiendo la corriente de este mundo.'},
-      {r:'1 Pe 1:14-15', t:'Como hijos obedientes, no os conforméis a los deseos que antes teníais estando en vuestra ignorancia; sino, como aquel que os llamó es santo, sed también vosotros santos.'},
-      {r:'1 Pe 4:2-3', t:'Para vivir el tiempo que os resta en la carne, ya no en las concupiscencias de los hombres, sino en la voluntad de Dios. Baste ya el tiempo pasado.'},
-      {r:'Col 3:5-7', t:'Haced morir, pues, lo terrenal en vosotros: fornicación, impureza, pasiones desordenadas, malos deseos y avaricia... en las cuales vosotros también anduvisteis en otro tiempo.'},
-      {r:'Tit 3:3', t:'Porque nosotros también éramos en otro tiempo insensatos, rebeldes, extraviados, esclavos de concupiscencias y deleites diversos.'},
-      {r:'2 Pe 2:20-22', t:'Ciertamente, si habiéndose ellos escapado de las contaminaciones del mundo... son enredados de nuevo en ellas y vencidos, su postrer estado viene a ser peor que el primero.'},
-      {r:'Heb 10:26-27', t:'Porque si pecáremos voluntariamente, después de haber recibido el conocimiento de la verdad, ya no queda más sacrificio por los pecados.'},
-      {r:'Lc 9:62', t:'Y Jesús le dijo: Ninguno que poniendo su mano en el arado mira hacia atrás, es apto para el reino de Dios.'},
-      {r:'Lc 17:32', t:'Acordaos de la mujer de Lot.'},
-      {r:'Fil 3:13-14', t:'Hermanos, yo mismo no pretendo haberlo ya alcanzado; pero una cosa hago: olvidando ciertamente lo que queda atrás, y extendiéndome a lo que está delante, prosigo a la meta.'},
-      {r:'Pr 26:11', t:'Como perro que vuelve a su vómito, así es el necio que repite su necedad.'},
-      {r:'2 Pe 2:22', t:'Les ha acontecido lo del verdadero proverbio: El perro vuelve a su propio vómito; y la puerca lavada a revolcarse en el cieno.'},
-      {r:'Mt 13:22', t:'El que fue sembrado entre espinos, éste es el que oye la palabra, pero el afán de este siglo y el engaño de las riquezas ahogan la palabra.'},
-      {r:'2 Ti 4:10', t:'Porque Demas me ha desamparado, amando este mundo, y se ha ido a Tesalónica.'},
-      {r:'1 Jn 2:16', t:'Porque todo lo que hay en el mundo, los deseos de la carne, los deseos de los ojos, y la vanagloria de la vida, no proviene del Padre, sino del mundo.'},
-      {r:'1 Co 15:33', t:'No erréis: las malas conversaciones corrompen las buenas costumbres.'},
-      {r:'2 Co 6:14', t:'No os unáis en yugo desigual con los incrédulos; porque ¿qué compañerismo tiene la justicia con la injusticia?'},
-      {r:'1 Jn 5:19', t:'Sabemos que somos de Dios, y el mundo entero está bajo el maligno.'},
-      {r:'Jn 17:14-16', t:'No son del mundo, como tampoco yo soy del mundo. No ruego que los quites del mundo, sino que los guardes del mal.'},
-      {r:'Gá 5:24', t:'Pero los que son de Cristo han crucificado la carne con sus pasiones y deseos.'}
-    ],
-    consejo: 'No ataques la mundanalidad con condena: eso genera defensiva. Mostrá con amor el contraste entre la paz de la vida en Cristo y el vacío del mundo. Ayudá a identificar qué vacío busca llenar con la vida pasada (soledad, miedo, sentido). Reintegrar gradualmente: no exigir perfección inmediata.',
-    enfoque: 'Sin condena · Identificar vacío · Renovar amistades · Reinserción gradual',
-    mensaje: 'Hola {nombre} 🙏 Sé que a veces el mundo tira fuerte, y las cosas viejas parecen más fáciles. Pero Cristo te hizo nueva criatura, y eso no se pierde. ¿Queremos conversar? Sin reproches, solo con amor 🤗'
-  },
-  politica: {
-    txt: '🗳️ Conflicto por política / ideología', corto: 'Política',
-    versiculos: [
-      {r:'Fil 3:20', t:'Mas nuestra ciudadanía está en los cielos, de donde también esperamos al Salvador, al Señor Jesucristo.'},
-      {r:'Jn 18:36', t:'Mi reino no es de este mundo; si mi reino fuera de este mundo, mis servidores pelearían.'},
-      {r:'Mt 22:21', t:'Dad, pues, a César lo que es de César, y a Dios lo que es a Dios.'},
-      {r:'Ro 13:1', t:'Sométase toda persona a las autoridades superiores; porque no hay autoridad sino de parte de Dios.'},
-      {r:'Tit 3:9', t:'Evita cuestiones necias, y genealogías, y contiendas, y discusiones acerca de la ley; porque son vanas y sin provecho.'},
-      {r:'2 Ti 2:23', t:'Desecha, pues, las cuestiones necias e insensatas, sabiendo que engendran contiendas.'},
-      {r:'2 Ti 2:14', t:'Que les recuerdes estas cosas, exhortándoles delante del Señor a que no contiendan sobre palabras, lo cual para nada aprovecha.'},
-      {r:'Pr 20:3', t:'Honra es del hombre dejar la contienda; mas todo insensato se envuelve en ella.'},
-      {r:'Stg 4:1', t:'¿De dónde vienen las guerras y los pleitos entre vosotros? ¿No es de vuestras pasiones, las cuales combaten en vuestros miembros?'},
-      {r:'Ef 4:31', t:'Quítense de vosotros toda amargura, enojo, ira, gritería y maledicencia.'},
-      {r:'Ro 14:1', t:'Recibid al débil en la fe, pero no para contender sobre opiniones.'},
-      {r:'Ro 14:19', t:'Así que, sigamos lo que contribuye a la paz y a la mutua edificación.'},
-      {r:'Ro 12:18', t:'Si es posible, en cuanto dependa de vosotros, estad en paz con todos los hombres.'},
-      {r:'1 Co 1:10', t:'Os ruego, pues, hermanos, por el nombre de nuestro Señor Jesucristo, que habléis todos una misma cosa, y que no haya entre vosotros divisiones.'},
-      {r:'1 Co 11:18-19', t:'Oigo que hay divisiones entre vosotros... porque es preciso que entre vosotros haya disensiones, para que se hagan manifiestos los aprobados.'},
-      {r:'Stg 3:13-16', t:'¿Quién es sabio y entendido entre vosotros? Muestre por la buena conducta sus obras en sabia mansedumbre... donde hay celos y contención, allí hay perturbación.'},
-      {r:'Heb 12:14', t:'Seguid la paz con todos, y la santidad, sin la cual nadie verá al Señor.'},
-      {r:'Mt 5:9', t:'Bienaventurados los pacificadores, porque ellos serán llamados hijos de Dios.'},
-      {r:'Pr 17:14', t:'El que comienza la contienda es como quien suelta las aguas; deja, pues, la contienda, antes que se enrede.'},
-      {r:'Pr 18:19', t:'El hermano ofendido es más fuerte que una ciudad fortificada; y las contiendas son como cerrojos de un alcázar.'},
-      {r:'2 Cr 19:6', t:'Mirad lo que hacéis, porque no juzgáis por hombre, sino por Jehová que está con vosotros en el juicio.'},
-      {r:'1 Pe 2:17', t:'Honrad a todos. Amad a los hermanos. Temed a Dios. Honrad al rey.'},
-      {r:'Hch 5:29', t:'Es necesario obedecer a Dios antes que a los hombres.'},
-      {r:'Ex 20:3', t:'No tendrás dioses ajenos delante de mí.'},
-      {r:'Is 33:22', t:'Porque Jehová es nuestro juez, Jehová es nuestro legislador, Jehová es nuestro rey; él nos salvará.'}
-    ],
-    consejo: 'La política NO debería dividir a la iglesia. Ayudá a poner en perspectiva: el reino de Dios trasciende cualquier bandera. No tomes partido político ni permits que la conversación derive en debate. Recordá que el hermano sigue siendo hermano aunque vote diferente.',
-    enfoque: 'Sin tomar partido · Reino de Dios primero · Diálogo respetuoso · Unidad en Cristo',
-    mensaje: 'Hola {nombre} 🙏 Sé que las diferencias políticas a veces lastiman la comunión entre hermanos. Pero nuestra verdadera ciudadanía está en los cielos, y eso nos une por encima de cualquier bandera 🏳️ ¿Podemos conversar? La familia de Dios te extraña 🤗'
-  },
-  otra_iglesia: {
-    txt: '⛪ Se fue a otra iglesia', corto: 'Otra iglesia',
-    versiculos: [
-      {r:'1 Co 1:10-13', t:'Que no haya entre vosotros divisiones... ¿Está dividido Cristo? ¿Fue crucificado Pablo por vosotros?'},
-      {r:'1 Co 3:3-7', t:'Porque todavía sois carnales; pues habiendo entre vosotros celos, contiendas y disensiones... Yo planté, Apolos regó, pero el crecimiento lo ha dado Dios.'},
-      {r:'1 Co 12:25', t:'Para que no haya desavenencia en el cuerpo, sino que los miembros todos se preocupen los unos por los otros.'},
-      {r:'Ef 4:3-6', t:'Solícitos en guardar la unidad del Espíritu en el vínculo de la paz; un cuerpo, y un Espíritu... un Señor, una fe, un bautismo.'},
-      {r:'Sal 133:1', t:'¡Cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!'},
-      {r:'Jn 17:21', t:'Para que todos sean uno; como tú, oh Padre, en mí, y yo en ti, que también ellos sean uno en nosotros.'},
-      {r:'Ro 12:4-5', t:'Porque de la manera que en un cuerpo tenemos muchos miembros... así nosotros, siendo muchos, formamos un cuerpo en Cristo.'},
-      {r:'Heb 10:24-25', t:'Y considerémonos unos a otros para estimularnos al amor y a las buenas obras, no dejando de congregarnos.'},
-      {r:'Hch 2:42', t:'Y perseveraban en la doctrina de los apóstoles, en la comunión unos con otros, en el partimiento del pan y en las oraciones.'},
-      {r:'Heb 13:17', t:'Obedeced a vuestros pastores, y sujetaos a ellos; porque ellos velan por vuestras almas.'},
-      {r:'1 Pe 5:2-3', t:'Apacentad la grey de Dios que está entre vosotros, cuidando de ella... no como teniendo señorío sobre los que están a vuestro cuidado, sino siendo ejemplos de la grey.'},
-      {r:'1 Ts 5:12-13', t:'Os rogamos, hermanos, que reconozcáis a los que trabajan entre vosotros... y que los tengáis en mucha estima por amor a su obra.'},
-      {r:'Ef 4:11-12', t:'Y él mismo constituyó a unos, apóstoles; a otros, profetas; a otros, evangelistas; a otros, pastores y maestros, a fin de perfeccionar a los santos.'},
-      {r:'Hch 20:28', t:'Por tanto, mirad por vosotros, y por todo el rebaño en que el Espíritu Santo os ha puesto por obispos.'},
-      {r:'Ro 16:17', t:'Mas os ruego, hermanos, que os fijéis en los que causan divisiones y tropiezos... y que os apartéis de ellos.'},
-      {r:'Tit 3:10-11', t:'Al hombre que cause divisiones, después de una y otra amonestación, deséchalo, sabiendo que el tal se ha pervertido.'},
-      {r:'Pr 27:23', t:'Sé diligente en conocer el estado de tus ovejas, y mira con cuidado por tus rebaños.'},
-      {r:'Ez 34:6-12', t:'Andaban errantes mis ovejas por todos los montes... y no habiendo quien las buscase... yo buscaré mis ovejas.'},
-      {r:'Lc 15:4-7', t:'¿Qué hombre de vosotros, teniendo cien ovejas, si pierde una de ellas, no deja las noventa y nueve en el desierto, y va tras la que se perdió?'},
-      {r:'Jn 10:11-16', t:'Yo soy el buen pastor; el buen pastor su vida da por las ovejas... yo conozco mis ovejas, y las mías me conocen.'},
-      {r:'1 Co 9:7', t:'¿Quién fue jamás soldado a sus propias expensas? ¿Quién planta viña, y no come de su fruto?'},
-      {r:'Gá 4:18', t:'Bueno es mostrar celo en lo bueno siempre, y no solamente cuando estoy presente con vosotros.'},
-      {r:'3 Jn 1:9-10', t:'He escrito a la iglesia; pero Diótrefes, al cual le gusta tener el primer lugar entre ellos, no nos recibe.'},
-      {r:'Hch 15:36-41', t:'Y después de algunos días, Pablo dijo a Bernabé: Volvamos a visitar a los hermanos... la contención fue tan grande que se separaron.'}
-    ],
-    consejo: 'No te sientas traicionado ni reacciones con reproches: eso aleja definitivamente. Preguntá con humildad qué buscaba y qué le faltó. Si el cambio fue por una herida, sanar la herida es más importante que recuperar al miembro. Mantené la puerta abierta: nunca digas "no vuelvas".',
-    enfoque: 'Sin reproches · Escuchar humildemente · Bendecir si es sana · Puerta abierta',
-    mensaje: 'Hola {nombre} 🙏 Nos enteramos que estás congregando en otro lugar. Lo primero que quiero decirte es que te seguimos amando como hermano. ¿Podemos conversar? Me gustaría escuchar qué buscabas, sin defendernos, y bendecir tu camino 🤗'
-  },
-  otro: {
-    txt: '📝 Otro motivo (especificar en notas)', corto: 'Otro',
-    versiculos: [
-      {r:'Sal 34:18', t:'Cercano está Jehová a los quebrantados de corazón; y salva a los contritos de espíritu.'},
-      {r:'Mt 11:28', t:'Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.'},
-      {r:'1 Pe 5:7', t:'Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.'},
-      {r:'Sal 55:22', t:'Echa sobre Jehová tu carga, y él te sustentará; no dejará para siempre caído al justo.'},
-      {r:'Pr 3:5-6', t:'Fía en Jehová con todo tu corazón, y no te apoyes en tu propia prudencia.'},
-      {r:'Jer 29:11', t:'Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal.'},
-      {r:'Ro 8:28', t:'Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien.'},
-      {r:'Sal 37:5', t:'Encomienda a Jehová tu camino, y confía en él; y él hará.'},
-      {r:'Is 41:10', t:'No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo.'},
-      {r:'Jos 1:9', t:'Esfuérzate y sé valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo.'},
-      {r:'DT 31:6', t:'Sed fuertes y valientes, no temáis ni tengáis miedo de ellos; porque Jehová tu Dios es el que va contigo.'},
-      {r:'Sal 23:1', t:'Jehová es mi pastor; nada me faltará.'},
-      {r:'Mt 6:33', t:'Mas buscad primermente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.'},
-      {r:'Heb 13:5', t:'No te desampararé, ni te dejaré.'},
-      {r:'Sal 16:11', t:'Me mostrarás la senda de la vida; en tu presencia hay plenitud de gozos.'},
-      {r:'Sal 27:14', t:'Aguarda a Jehová; esfuérzate, y aliéntese tu corazón; sí, espera a Jehová.'},
-      {r:'Is 40:31', t:'Pero los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas.'},
-      {r:'Sal 121:1-2', t:'Alzaré mis ojos a los montes; ¿de dónde vendrá mi socorro? Mi socorro viene de Jehová.'},
-      {r:'Sal 46:1', t:'Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.'},
-      {r:'Lm 3:22-23', t:'Por la misericordia de Jehová no hemos sido consumidos, porque nunca decayeron sus misericordias. Nuevas son cada mañana.'},
-      {r:'Sal 30:5', t:'Porque un momento será su enojo, pero su favor dura toda la vida. Por la noche durará el lloro, y a la mañana vendrá la alegría.'},
-      {r:'Ro 15:13', t:'Y el Dios de esperanza os llene de todo gozo y paz en el creer, para que abundéis en esperanza por el poder del Espíritu Santo.'}
-    ],
-    consejo: 'Escuchá primero. Cada situación es única. Identificá juntos cuál es la raíz real del alejamiento. A veces lo que se cuenta al principio no es lo principal. Hacé preguntas abiertas. Paciencia y constancia.',
-    enfoque: 'Escuchar · Identificar raíz real · Paciencia',
-    mensaje: 'Hola {nombre} 🙏 Hace tiempo que no te vemos, y te extrañamos. ¿Cómo estás? Me encantaría saber de vos, sin presión, solo para conversar 🤗'
-  }
-};
-
-const ETAPAS = {
-  sin_contacto: { txt: 'Sin contacto', color:'#ef4444', icono:'🆕', siguiente:'primer_contacto' },
-  primer_contacto: { txt: 'Primer contacto', color:'#f59e0b', icono:'💬', siguiente:'visita' },
-  visita: { txt: 'Visita realizada', color:'#3b82f6', icono:'🏠', siguiente:'dialogo' },
-  dialogo: { txt: 'Diálogo espiritual', color:'#a855f7', icono:'🙏', siguiente:'volviendo' },
-  volviendo: { txt: 'Volviendo', color:'#22c55e', icono:'🌱', siguiente:'reintegrado' },
-  reintegrado: { txt: 'Reintegrado', color:'#16a34a', icono:'✅', siguiente:null },
-  no_desea: { txt: 'No desea contacto', color:'#6b7280', icono:'🚫', siguiente:null }
-};
-
-const TIPOS_VISITA = {
-  oracion:{txt:'Oración',icono:'🙏',frase:'orar con vos'},
-  uncion:{txt:'Unción',icono:'🕊️',frase:'orar y ungirte con aceite'},
-  pastoral:{txt:'Visita pastoral',icono:'⛪',frase:'una visita pastoral'},
-  estudio:{txt:'Estudio bíblico',icono:'📖',frase:'compartir un estudio bíblico'},
-  acompanamiento:{txt:'Acompañamiento',icono:'☕',frase:'acompañarte y conversar'},
-  reconciliacion:{txt:'Reconciliación',icono:'🤝',frase:'ayudarte en una reconciliación'}
-};
-const ESTADOS_VISITA = {
-  programada:{txt:'Programada',color:'#0f1f3a'},
-  confirmada:{txt:'Confirmada',color:'#f59e0b'},
-  camino:{txt:'En camino',color:'#3b82f6'},
-  realizada:{txt:'Realizada',color:'#22c55e'},
-  cancelada:{txt:'Cancelada',color:'#b03a3a'}
-};
-const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-const CARACTERES = ['Amigable','Alegre','Enojón','Serio','Consagrado','Tímido','Disperso','Servicial','Sensible','Líder','Honrado','Trabajador','Genial','Reservado','Apático','Heredado','Nuevo converso','Anciano','Joven','Adulto'];
-
-let user = null, personas = [], cuidadores = [], visitas = [];
-let filtro = 'todos', busqueda = '';
-let personaActual = null, editandoId = null, tipoContacto = 'llamada';
-let vista = 'personas';
-let calY, calM, calDia = null;
-let visitaActual = null, editandoVisitaId = null, tipoVisitaSel = 'oracion';
-let listasCargadas = false;
-let unsubHist = null, historialActual = [];
-let unsubVida = null, vidaActual = [];
-let repCache = {key:'', contactos:[]};
-let fCarSel = [];
-
- $('btn-ayuda').onclick = ()=> $('modal-ayuda').classList.remove('oculto');
- $('ayuda-cerrar').onclick = ()=> $('modal-ayuda').classList.add('oculto');
-
- $('btn-recursos').onclick = ()=>{ renderRecursos(''); $('modal-recursos').classList.remove('oculto'); };
- $('rec-cerrar').onclick = ()=> $('modal-recursos').classList.add('oculto');
- $('rec-buscar').oninput = e=> renderRecursos(e.target.value);
-
-function renderRecursos(q){
-  q = (q||'').toLowerCase().trim();
-  let html = '';
-  for(const [k,m] of Object.entries(MOTIVOS)){
-    if(q){
-      const hit = m.txt.toLowerCase().includes(q) || m.consejo.toLowerCase().includes(q) ||
-        m.mensaje.toLowerCase().includes(q) || m.enfoque.toLowerCase().includes(q) ||
-        m.versiculos.some(v=>v.t.toLowerCase().includes(q) || v.r.toLowerCase().includes(q));
-      if(!hit) continue;
-    }
-    html += `<div class="rec-cat">
-      <div class="rec-cat-head" data-cat="${k}">
-        <span><span class="ico">${m.txt.split(' ')[0]}</span> <b>${esc(m.txt)}</b></span>
-        <span>▾</span>
-      </div>
-      <div class="rec-cat-body" id="cat-${k}">
-        ${m.versiculos.map(v=>`<div class="rec-verso"><b>${esc(v.r)}</b>${esc(v.t)}</div>`).join('')}
-        <div class="rec-consejo"><b>💡 Consejo pastoral:</b> ${esc(m.consejo)}</div>
-        <div class="rec-consejo"><b>🎯 Enfoque:</b> ${esc(m.enfoque)}</div>
-        <div class="rec-msg">${esc(m.mensaje.replaceAll('{nombre}','[nombre]'))}</div>
-      </div>
-    </div>`;
-  }
-  $('rec-lista').innerHTML = html || '<p style="text-align:center;color:var(--txt2);margin-top:20px">Sin resultados.</p>';
-  $('rec-lista').querySelectorAll('.rec-cat-head').forEach(h=> h.onclick = ()=>{
-    const b = $('cat-'+h.dataset.cat); b.classList.toggle('open');
-  });
-}
-
- $('btn-forgot').onclick = async ()=>{
-  const email = $('login-email').value.trim();
-  if(!email){ alert('Primero escribí tu correo arriba, después tocá "¿Olvidaste tu contraseña?".'); return; }
-  try{
-    await sendPasswordResetEmail(auth, email);
-    alert('📬 Te enviamos un correo a '+email+'.\nAbrilo y seguí el enlace.\n(Revisá también el spam)');
-  }catch(e){
-    alert('No se pudo enviar. Revisá la dirección.');
-  }
-};
-
- $('go-reg').onclick = ()=>{ $('login-form').classList.add('oculto'); $('reg-form').classList.remove('oculto'); $('auth-msg').textContent=''; };
- $('go-login').onclick = ()=>{ $('reg-form').classList.add('oculto'); $('login-form').classList.remove('oculto'); $('auth-msg').textContent=''; };
-
- $('btn-login').onclick = async ()=>{
-  $('auth-msg').textContent = 'Entrando…';
-  try{ await signInWithEmailAndPassword(auth, $('login-email').value.trim(), $('login-pass').value); }
-  catch(e){ $('auth-msg').textContent = ERRORES[e.code] || ('Error: '+e.message); }
-};
-
- $('btn-reg').onclick = async ()=>{
-  const nombre=$('reg-nombre').value.trim();
-  const email=$('reg-email').value.trim(), pass=$('reg-pass').value, cod=$('reg-codigo').value.trim();
-  $('auth-msg').textContent='';
-  if(!nombre){ $('auth-msg').textContent='Escribe tu nombre y apellido.'; return; }
-  if(cod !== CODIGO_INVITACION){ $('auth-msg').textContent='Código de invitación incorrecto.'; return; }
-  try{
-    const cred = await createUserWithEmailAndPassword(auth, email, pass);
-    await updateProfile(cred.user, {displayName: nombre});
-    await setDoc(doc(db,'cuidadores',cred.user.uid), {nombre, email, creado: serverTimestamp()});
-  }catch(e){ $('auth-msg').textContent = ERRORES[e.code] || ('Error: '+e.message); }
-};
-
- $('btn-salir').onclick = ()=> signOut(auth);
-
-onAuthStateChanged(auth, u=>{
-  user = u;
-  if(u){
-    $('view-login').classList.add('oculto');
-    $('view-app').classList.remove('oculto');
-    $('user-name').textContent = 'Dios te bendiga, ' + (u.displayName || u.email);
-    if(!listasCargadas){ suscribir(); listasCargadas = true; }
-  }else{
-    $('view-app').classList.add('oculto');
-    $('view-login').classList.remove('oculto');
-  }
-});
-
-function suscribir(){
-  onSnapshot(collection(db,'personas'), snap=>{
-    personas = snap.docs.map(d=>({id:d.id, ...d.data()}));
-    personas.sort((a,b)=>(a.nombre||'').localeCompare(b.nombre||''));
-    render(); llenarSelectPersonas();
-  }, e=>console.error(e));
-  onSnapshot(collection(db,'cuidadores'), snap=>{
-    cuidadores = snap.docs.map(d=>({uid:d.id, ...d.data()}));
-    llenarSelectCuidadores();
-    renderAgenda();
-  });
-  onSnapshot(collection(db,'visitas'), snap=>{
-    visitas = snap.docs.map(d=>({id:d.id, ...d.data()}));
-    visitas.sort((a,b)=>(a.fecha||'').localeCompare(b.fecha||'') || (a.hora||'').localeCompare(b.hora||''));
-    renderAgenda(); renderCalendario();
-  }, e=>console.error(e));
-}
-
-function estado(p){
-  const ms = p.ultimoContacto?.toMillis ? p.ultimoContacto.toMillis() : 0;
-  if(!ms) return {color:'rojo', txt:'Nunca contactado', dias:99999};
-  const d = Math.floor((Date.now()-ms)/86400000);
-  return {color: d<=7?'verde': d<=14?'amarillo':'rojo',
-          txt: d===0?'Contactado hoy':`Hace ${d} ${d===1?'día':'días'}`, dias:d};
-}
-
-function setVista(v){
-  vista = v;
-  $('tab-personas').classList.toggle('active', v==='personas');
-  $('tab-agenda').classList.toggle('active', v==='agenda');
-  $('pane-personas').classList.toggle('oculto', v!=='personas');
-  $('pane-agenda').classList.toggle('oculto', v!=='agenda');
-  $('btn-agregar').textContent = v==='agenda' ? '🏠' : '＋';
-}
- $('tab-personas').onclick = ()=> setVista('personas');
- $('tab-agenda').onclick = ()=> setVista('agenda');
-
-function esMesCumple(p){
-  return !!(p.cumple && p.cumple.slice(5,7) === String(new Date().getMonth()+1).padStart(2,'0'));
-}
-
-function visibleParaMi(p){
-  if(!user) return false;
-  return !p.cuidadorUid || p.cuidadorUid===user.uid;
-}
-
-function renderMetaTarea(){
-  if(!user) return;
-  const mias = personas.filter(p=>!p.cuidadorUid || p.cuidadorUid===user.uid);
-  const rojas = mias.filter(p=>estado(p).color==='rojo').length;
-  const amarillas = mias.filter(p=>estado(p).color==='amarillo').length;
-  const reintegrados = mias.filter(p=>p.etapa==='reintegrado').length;
-  $('meta-tarea').innerHTML = personas.length
-    ? `🎯 Tu lista: <b>${mias.length}</b> hermano${mias.length!==1?'s':''} · <b>${rojas}</b> urgente${rojas!==1?'s':''} 🔴${amarillas?' · '+amarillas+' 🟡':''} · <b>${reintegrados}</b> reintegrado${reintegrados!==1?'s':''} ✅`
-    : '';
-}
-
-function mch(p){
-  const m = MOTIVOS[p.motivoAlejamiento];
-  return m ? `<span class="mch">${esc(m.corto)}</span>` : '';
-}
-
-function etapaChip(p){
-  const e = ETAPAS[p.etapa || 'sin_contacto'];
-  return `<span class="etapa-chip" data-etapa="${p.etapa || 'sin_contacto'}">${e.icono} ${e.txt}</span>`;
-}
-
-function render(){
-  if(!user) return;
-  renderMetaTarea();
-  const q = busqueda.toLowerCase();
-  let lista = personas.filter(p=> !q || p.nombre.toLowerCase().includes(q));
-  if(filtro==='mias') lista = lista.filter(p=>p.cuidadorUid === user.uid);
-  if(filtro==='urgentes') lista = lista.filter(p=>estado(p).color==='rojo' && p.etapa!=='reintegrado' && p.etapa!=='no_desea');
-  if(filtro==='volviendo') lista = lista.filter(p=>['dialogo','volviendo'].includes(p.etapa));
-  lista = lista.filter(visibleParaMi);
-
-  const ocultas = personas.filter(p=> p.cuidadorUid && p.cuidadorUid!==user.uid).length;
-  const np = $('nota-priv');
-  if(ocultas>0){
-    np.classList.remove('oculto');
-    np.innerHTML = `🔒 ${ocultas} hermano${ocultas>1?'s':''} al cuidado de otros compañeros.`;
-  }else np.classList.add('oculto');
-
-  const orden = {rojo:0, amarillo:1, verde:2};
-  const etapaOrden = {sin_contacto:0, primer_contacto:1, visita:2, dialogo:3, volviendo:4, no_desea:5, reintegrado:6};
-  lista.sort((a,b)=>{
-    const ea=estado(a), eb=estado(b);
-    return orden[ea.color]-orden[eb.color]
-      || (etapaOrden[a.etapa||'sin_contacto']-etapaOrden[b.etapa||'sin_contacto'])
-      || eb.dias-ea.dias || a.nombre.localeCompare(b.nombre);
-  });
-
-  $('lista').innerHTML = lista.map(p=>{
-    const e = estado(p);
-    const ini = (p.nombre||'?').trim().charAt(0).toUpperCase();
-    return `<li class="persona" data-id="${p.id}">
-      <div class="avw ${e.color}"><div class="av">${esc(ini)}</div></div>
-      <div class="info">
-        <div class="nombre">${esc(p.nombre)}${mch(p)}${etapaChip(p)}</div>
-        <div class="meta">${e.txt}${p.cuidadorNombre?' · 👤 '+esc(p.cuidadorNombre):''}</div>
-      </div>
-      <div style="color:var(--txt2)">›</div></li>`;
-  }).join('') || `<p style="text-align:center;color:var(--txt2);margin-top:30px">${filtro==='urgentes'?'Nadie en situación urgente. 🎉':filtro==='volviendo'?'Nadie volviendo todavía.':'No hay hermanos en tu lista.<br>Toca ＋ para agregar el primero.'}</p>`;
-
-  $('lista').querySelectorAll('li.persona').forEach(li=> li.onclick = ()=> abrirDetalle(li.dataset.id));
-}
-
- $('buscar').oninput = e=>{ busqueda = e.target.value; render(); };
-document.querySelectorAll('.chip[data-filtro]').forEach(ch=> ch.onclick = ()=>{
-  document.querySelectorAll('.chip[data-filtro]').forEach(c=>c.classList.remove('active'));
-  ch.classList.add('active'); filtro = ch.dataset.filtro; render();
-});
-
-function hoyStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-function fechaLarga(s){
-  if(!s) return '';
-  const [a,m,d]=s.split('-').map(Number);
-  return new Date(a,m-1,d).toLocaleDateString('es',{weekday:'long',day:'numeric',month:'long'});
-}
-function etiquetaDia(s){
-  const hoy = hoyStr();
-  if(s===hoy) return 'Hoy · '+fechaLarga(s);
-  const man = new Date(); man.setDate(man.getDate()+1);
-  const mStr = man.getFullYear()+'-'+String(man.getMonth()+1).padStart(2,'0')+'-'+String(man.getDate()).padStart(2,'0');
-  if(s===mStr) return 'Mañana · '+fechaLarga(s);
-  return fechaLarga(s).charAt(0).toUpperCase()+fechaLarga(s).slice(1);
-}
-function fmtFecha(s){ const [a,m,d] = s.split('-'); return `${d} ${MESES[+m-1]}`; }
-function mapsLink(dir){ return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(dir); }
-
-function waNum(p){
-  let d = (p.telefono||'').replace(/\D/g,'');
-  if(!d) return null;
-  if(CODIGO_PAIS && d.length<=10 && !d.startsWith(CODIGO_PAIS)) d = CODIGO_PAIS + d;
-  if(CODIGO_PAIS==='54' && d.startsWith('54') && !d.startsWith('549') && d.length===12) d = '549' + d.slice(2);
-  return d;
-}
-function waLink(p){
-  const d = waNum(p); if(!d) return null;
-  const m = MOTIVOS[p.motivoAlejamiento] || MOTIVOS.otro;
-  let plantilla = m.mensaje;
-  if(esMesCumple(p)) plantilla = `¡Feliz cumpleaños {nombre}! 🎂🎉 Que Dios te bendiga hoy y siempre 🙏 Te abraza con cariño, la familia de ${NOMBRE_ORG} 🤗`;
-  return 'https://wa.me/'+d+'?text='+encodeURIComponent(plantilla.replaceAll('{nombre}', p.nombre||''));
-}
-function waLinkMsg(p, texto){
-  const d = waNum(p); if(!d) return null;
-  return 'https://wa.me/'+d+'?text='+encodeURIComponent(texto);
-}
-function msgAvisoVisita(v){
-  const t = TIPOS_VISITA[v.tipo]||{frase:'visitarte'};
-  return `Hola ${v.personaNombre} 👋 Dios te bendiga 🙏 Te escribo para avisarte que el ${fechaLarga(v.fecha)} a las ${v.hora||''} hs te visitaré para ${t.frase}. ¿Te queda bien ese horario? 🏠`;
-}
-function msgPedirHorario(v){
-  const t = TIPOS_VISITA[v.tipo]||{frase:'visitarte'};
-  return `Hola ${v.personaNombre} 👋 Quiero coordinar una visita a tu casa para ${t.frase}. ¿En qué día y horario te encontrarías mejor? 🏠🙏`;
-}
-function msgCamino(v){ return `Hola ${v.personaNombre} 👋 Ya estoy en camino a tu casa 🚗 Nos vemos en un rato 🙏`; }
-
-function abrirDetalle(id){
-  const p = personas.find(x=>x.id===id); if(!p) return;
-  if(!visibleParaMi(p)){ toast('🔒 Esta persona está al cuidado de otro compañero'); return; }
-  personaActual = p;
-  const e = estado(p);
-  const avisoViejo = document.getElementById('aviso-ficha');
-  if(avisoViejo) avisoViejo.remove();
-  if(e.dias>=7 && e.dias!==99999 && p.etapa!=='reintegrado'){
-    const div = document.createElement('div');
-    div.className='aviso-ficha'; div.id='aviso-ficha';
-    div.innerHTML = `⏰ Hace ${e.dias} día${e.dias!==1?'s':''} sin contacto. Cuando termines de hablar, tocá <b>✅ Guardar contacto</b>.`;
-    const accionesEl = document.querySelector('#modal-detalle .acciones');
-    if(accionesEl) accionesEl.after(div);
-  }
-  $('det-av').textContent = (p.nombre||'?').trim().charAt(0).toUpperCase();
-  $('det-avw').className = 'avw grande '+e.color;
-  $('det-nombre').innerHTML = esc(p.nombre) + mch(p);
-  const chip = $('det-estado'); chip.textContent = e.txt; chip.className = 'estado-chip '+e.color;
-  $('det-etapa').outerHTML = `<span id="det-etapa" class="etapa-chip" data-etapa="${p.etapa||'sin_contacto'}">${ETAPAS[p.etapa||'sin_contacto'].icono} ${ETAPAS[p.etapa||'sin_contacto'].txt}</span>`;
-
-  const link = waLink(p), wa = $('det-wa');
-  if(esMesCumple(p)) wa.textContent = '💬 Felicitar 🎂';
-  else wa.textContent = '💬 WhatsApp';
-  if(link){ wa.classList.remove('oculto'); wa.href = link; } else wa.classList.add('oculto');
-
-  const ll = $('det-llamar');
-  if(p.telefono){ ll.classList.remove('oculto'); ll.href = 'tel:'+p.telefono.replace(/\s/g,''); $('det-tel-txt').textContent = p.telefono; }
-  else ll.classList.add('oculto');
-
-  const bt = $('btn-tomar');
-  if(!p.cuidadorUid && user) bt.classList.remove('oculto');
-  else bt.classList.add('oculto');
-
-  const m = MOTIVOS[p.motivoAlejamiento] || MOTIVOS.otro;
-  $('det-motivo').textContent = m.txt;
-  $('det-desde').textContent = p.desde ? 'Alejado desde '+fmtFecha(p.desde) : 'Sin fecha de alejamiento';
-
-  const filaDir = $('det-direccion').parentElement;
-  if(p.direccion){
-    filaDir.classList.remove('oculto');
-    $('det-direccion').innerHTML = `${esc(p.direccion)} <a href="${mapsLink(p.direccion)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">🗺 Maps</a>`;
-  } else filaDir.classList.add('oculto');
-
-  $('det-cumple').textContent = p.cumple ? fmtFecha(p.cumple) : '—';
-  $('det-caracter').innerHTML = (p.caracter && p.caracter.length)
-    ? p.caracter.map(c=>`<span class="cch">${esc(c)}</span>`).join('') : 'Sin etiquetas de carácter';
-  $('det-cuidador').textContent = p.cuidadorNombre || 'Sin asignar';
-  $('det-notas').textContent = p.notas || '—';
-
-  $('det-recursos').innerHTML = `<div class="recurso-sug">
-    <b>📚 Recursos para esta situación (${m.corto})</b><br>
-    <span style="font-size:.82rem;color:var(--txt2)">${m.versiculos.length} versículos · consejo pastoral · mensaje modelo</span><br>
-    <a id="ver-recursos-motivo">Ver recursos para ${m.corto} →</a>
-  </div>`;
-  const vrm = document.getElementById('ver-recursos-motivo');
-  if(vrm) vrm.onclick = ()=>{
-    $('modal-detalle').classList.add('oculto');
-    renderRecursos('');
-    $('modal-recursos').classList.remove('oculto');
-    setTimeout(()=>{
-      const head = document.querySelector(`.rec-cat-head[data-cat="${p.motivoAlejamiento||'otro'}"]`);
-      if(head){ head.scrollIntoView({behavior:'smooth',block:'center'}); head.click(); }
-    }, 100);
-  };
-
-  $('det-nota').value = '';
-  $('vida-form').classList.add('oculto');
-  setTipo('llamada');
-  cargarHistorial(p.id);
-  cargarHistoria(p.id);
-  $('modal-detalle').classList.remove('oculto');
-}
-
-function cargarHistorial(pid){
-  if(unsubHist) unsubHist();
-  historialActual = [];
-  $('det-historial-titulo').textContent = 'Historial…';
-  $('det-historial').innerHTML = '';
-  unsubHist = onSnapshot(query(collection(db,'contactos'), where('personaId','==',pid)), snap=>{
-    historialActual = snap.docs.map(d=>({id:d.id, ...d.data()}));
-    historialActual.sort((a,b)=>(b.fecha?.toMillis||0)-(a.fecha?.toMillis||0));
-    renderHistorial();
-  }, e=>console.error(e));
-}
-
-function renderHistorial(){
-  if(!personaActual) return;
-  $('det-historial-titulo').textContent = `Historial (${historialActual.length})`;
-  $('det-historial').innerHTML = historialActual.map(c=>{
-    const f = c.fecha?.toDate ? c.fecha.toDate() : null;
-    const icono = {llamada:'📞', mensaje:'💬', visita:'🏠', visita_iglesia:'⛪'}[c.tipo] || '📌';
-    const titulo = c.nota || {llamada:'Llamada', mensaje:'Mensaje', visita:'Visita', visita_iglesia:'Volvió a iglesia'}[c.tipo] || c.tipo;
-    return `<li><div>${icono} ${esc(titulo)}</div>
-      <div class="fecha">${f ? f.toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'})+' · ':''}por ${esc(c.por||'—')}</div></li>`;
-  }).join('') || '<li style="text-align:center;color:var(--txt2);background:none">Aún sin contactos registrados</li>';
-}
-
-function cargarHistoria(pid){
-  if(unsubVida) unsubVida();
-  vidaActual = [];
-  $('det-vida').innerHTML = '<li style="text-align:center;color:var(--txt2);background:none">Cargando…</li>';
-  unsubVida = onSnapshot(query(collection(db,'historia'), where('personaId','==',pid)), snap=>{
-    vidaActual = snap.docs.map(d=>({id:d.id, ...d.data()}));
-    vidaActual.sort((a,b)=>(b.fecha?.toMillis||0)-(a.fecha?.toMillis||0));
-    renderHistoria();
-  }, e=>console.error(e));
-}
-
-function renderHistoria(){
-  if(!personaActual) return;
-  $('det-vida').innerHTML = vidaActual.map(v=>{
-    const f = v.fecha?.toDate ? v.fecha.toDate() : null;
-    return `<li><div>📖 ${esc(v.texto)}</div>
-      <div class="fecha">${f ? f.toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'}) : ''}${v.por?' · por '+esc(v.por):''}</div></li>`;
-  }).join('') || '<li style="text-align:center;color:var(--txt2);background:none">Sin notas todavía.</li>';
-}
-
- $('btn-agregar-vida').onclick = ()=>{
-  $('vida-form').classList.toggle('oculto');
-  $('vida-fecha').value = hoyStr();
-  $('vida-texto').value = '';
-};
-
- $('btn-guardar-vida').onclick = async ()=>{
-  if(!personaActual) return;
-  const texto = $('vida-texto').value.trim();
-  if(!texto){ toast('Escribí qué sucedió'); return; }
-  const f = $('vida-fecha').value;
-  try{
-    await addDoc(collection(db,'historia'), {
-      personaId: personaActual.id, nombrePersona: personaActual.nombre || '',
-      texto,
-      fecha: f ? Timestamp.fromMillis(new Date(f+'T12:00:00').getTime()) : serverTimestamp(),
-      por: user.displayName || user.email, creado: serverTimestamp()
-    });
-    $('vida-texto').value = '';
-    $('vida-form').classList.add('oculto');
-    toast('📖 Nota guardada');
-  }catch(e){ toast('Error'); console.error(e); }
-};
-
- $('det-cerrar').onclick = ()=>{
-  $('modal-detalle').classList.add('oculto');
-  personaActual = null;
-  if(unsubHist){ unsubHist(); unsubHist = null; }
-  historialActual = [];
-  if(unsubVida){ unsubVida(); unsubVida = null; }
-  vidaActual = [];
-};
-
-function setTipo(t){
-  tipoContacto = t;
-  document.querySelectorAll('.tipo[data-tipo]').forEach(b=>b.classList.toggle('active', b.dataset.tipo===t));
-}
-document.querySelectorAll('.tipo[data-tipo]').forEach(b=> b.onclick = ()=> setTipo(b.dataset.tipo));
-
- $('btn-tomar').onclick = async ()=>{
-  if(!personaActual || personaActual.cuidadorUid || !user) return;
-  if(!confirm(`¿Hacerte cargo del rescate de ${personaActual.nombre}?\n\nPasará a "Mis asignados" a tu nombre.`)) return;
-  try{
-    await updateDoc(doc(db,'personas',personaActual.id), {
-      cuidadorUid: user.uid, cuidadorNombre: user.displayName || user.email,
-      actualizado: serverTimestamp()
-    });
-    toast('🙋 Esta persona ahora está a tu cargo');
-    abrirDetalle(personaActual.id);
-  }catch(e){ toast('Error'); console.error(e); }
-};
-
- $('btn-cambiar-etapa').onclick = ()=>{
-  if(!personaActual) return;
-  const actual = ETAPAS[personaActual.etapa||'sin_contacto'];
-  const sig = actual.siguiente ? ETAPAS[actual.siguiente] : null;
-  let msg = `Etapa actual: ${actual.icono} ${actual.txt}\n\nOpciones:\n${Object.entries(ETAPAS).map(([k,v])=>`${v.icono} ${v.txt}`).join('\n')}`;
-  if(sig){
-    msg += `\n\nSugerencia: pasar a "${sig.icono} ${sig.txt}". ¿Querés avanzar a esa etapa? (Cancelar para elegir otra)`;
-    if(confirm(msg)){ cambiarEtapa(actual.siguiente); }
-    else {
-      const nueva = prompt('Escribí el nombre de la etapa exacta:\n'+Object.keys(ETAPAS).join(' · '));
-      if(nueva && ETAPAS[nueva]) cambiarEtapa(nueva);
-    }
-  } else {
-    const nueva = prompt(`Etapa actual: ${actual.icono} ${actual.txt}\n\nEscribí el nombre de la etapa exacta:\n`+Object.keys(ETAPAS).join(' · '));
-    if(nueva && ETAPAS[nueva]) cambiarEtapa(nueva);
-  }
-};
-
-async function cambiarEtapa(nuevaEtapa){
-  if(!personaActual) return;
-  const e = ETAPAS[nuevaEtapa];
-  try{
-    await updateDoc(doc(db,'personas',personaActual.id), { etapa: nuevaEtapa, actualizado: serverTimestamp() });
-    await addDoc(collection(db,'historia'), {
-      personaId: personaActual.id, nombrePersona: personaActual.nombre || '',
-      texto: `Cambio de etapa: ${e.icono} ${e.txt}`,
-      fecha: serverTimestamp(), por: user.displayName || user.email, creado: serverTimestamp()
-    });
-    toast(`${e.icono} Etapa actualizada`);
-    abrirDetalle(personaActual.id);
-  }catch(err){ toast('Error'); console.error(err); }
-}
-
- $('btn-guardar-contacto').onclick = async ()=>{
-  if(!personaActual) return;
-  try{
-    await addDoc(collection(db,'contactos'), {
-      personaId: personaActual.id, nombrePersona: personaActual.nombre || '',
-      tipo: tipoContacto, nota: $('det-nota').value.trim(),
-      por: user.displayName || user.email, fecha: serverTimestamp()
-    });
-    await updateDoc(doc(db,'personas',personaActual.id), {
-      ultimoContacto: serverTimestamp(), nContactos: increment(1)
-    });
-    if((personaActual.etapa==='sin_contacto' || !personaActual.etapa) && ['llamada','mensaje','visita','visita_iglesia'].includes(tipoContacto)){
-      await updateDoc(doc(db,'personas',personaActual.id), { etapa: 'primer_contacto' });
-      await addDoc(collection(db,'historia'), {
-        personaId: personaActual.id, nombrePersona: personaActual.nombre || '',
-        texto: `Primer contacto registrado 💬`,
-        fecha: serverTimestamp(), por: user.displayName || user.email, creado: serverTimestamp()
-      });
-    }
-    if(tipoContacto==='visita_iglesia' && personaActual.etapa!=='reintegrado'){
-      await updateDoc(doc(db,'personas',personaActual.id), { etapa: 'volviendo' });
-      await addDoc(collection(db,'historia'), {
-        personaId: personaActual.id, nombrePersona: personaActual.nombre || '',
-        texto: `🌱 Volvió a la iglesia`,
-        fecha: serverTimestamp(), por: user.displayName || user.email, creado: serverTimestamp()
-      });
-    }
-    $('det-nota').value = '';
-    toast('✅ Contacto registrado — gracias 🙏');
-  }catch(e){ toast('Error'); console.error(e); }
-};
-
- $('btn-agregar').onclick = ()=>{ if(vista==='agenda'){ abrirVisitaForm(null); return; } abrirForm(null); };
- $('btn-editar-ficha').onclick = ()=>{ if(personaActual) abrirForm(personaActual); };
-
-function llenarCaracter(seleccionadas){
-  fCarSel = [...(seleccionadas||[])];
-  $('f-caracter').innerHTML = CARACTERES.map(c=>
-    `<button type="button" class="tipo ${fCarSel.includes(c)?'active':''}" data-car="${esc(c)}">${esc(c)}</button>`).join('');
-  $('f-caracter').querySelectorAll('.tipo').forEach(b=> b.onclick = ()=>{
-    const c = b.dataset.car;
-    if(fCarSel.includes(c)){ fCarSel = fCarSel.filter(x=>x!==c); b.classList.remove('active'); }
-    else { fCarSel.push(c); b.classList.add('active'); }
-  });
-}
-
-function llenarSelectCuidadores(seleccionado){
-  const sel = $('f-cuidador');
-  const actual = seleccionado !== undefined ? seleccionado : sel.value;
-  sel.innerHTML = '<option value="">👤 — Sin asignar —</option>' +
-    cuidadores.map(c=>`<option value="${c.uid}">${esc(c.nombre)}</option>`).join('');
-  sel.value = actual || '';
-  if(sel.value !== (actual||'')) sel.value = '';
-}
-
-function abrirForm(p){
-  editandoId = p ? p.id : null;
-  $('form-titulo').textContent = p ? 'Editar hermano/a' : 'Agregar hermano/a';
-  $('f-nombre').value = p?.nombre || '';
-  $('f-telefono').value = p?.telefono || '';
-  $('f-direccion').value = p?.direccion || '';
-  llenarSelectCuidadores(p?.cuidadorUid || '');
-  $('f-motivo').innerHTML = Object.entries(MOTIVOS).map(([k,m])=>`<option value="${k}">${esc(m.txt)}</option>`).join('');
-  $('f-motivo').value = p?.motivoAlejamiento || 'apatico';
-  $('f-etapa').innerHTML = Object.entries(ETAPAS).map(([k,v])=>`<option value="${k}">${v.icono} ${v.txt}</option>`).join('');
-  $('f-etapa').value = p?.etapa || 'sin_contacto';
-  $('f-desde').value = p?.desde || '';
-  llenarCaracter(p?.caracter || []);
-  $('f-familia').value = p?.familia || '';
-  $('f-cumple').value = p?.cumple || '';
-  $('f-notas').value = p?.notas || '';
-  $('btn-eliminar-persona').classList.toggle('oculto', !p);
-  $('modal-detalle').classList.add('oculto');
-  $('modal-form').classList.remove('oculto');
-}
-
-function cerrarForm(volverADetalle){
-  $('modal-form').classList.add('oculto');
-  editandoId = null;
-  if(volverADetalle && personaActual) abrirDetalle(personaActual.id);
-  else personaActual = null;
-}
-
- $('f-cerrar').onclick = ()=> cerrarForm(false);
-
- $('btn-guardar-persona').onclick = async ()=>{
-  const nombre = $('f-nombre').value.trim();
-  if(!nombre){ toast('Falta el nombre'); return; }
-  const uidSel = $('f-cuidador').value;
-  const cuen = cuidadores.find(c=>c.uid===uidSel);
-  const datos = {
-    nombre, telefono: $('f-telefono').value.trim(),
-    direccion: $('f-direccion').value.trim(),
-    cuidadorUid: uidSel || '', cuidadorNombre: cuen ? cuen.nombre : '',
-    motivoAlejamiento: $('f-motivo').value,
-    etapa: $('f-etapa').value,
-    desde: $('f-desde').value || '',
-    caracter: fCarSel,
-    familia: $('f-familia').value.trim(),
-    cumple: $('f-cumple').value || '',
-    notas: $('f-notas').value.trim(),
-    actualizado: serverTimestamp()
-  };
-  try{
-    if(editandoId){
-      await updateDoc(doc(db,'personas',editandoId), datos);
-      toast('✅ Cambios guardados'); cerrarForm(true);
-    }else{
-      datos.creado = serverTimestamp();
-      await addDoc(collection(db,'personas'), datos);
-      toast('✅ Hermano/a agregado'); cerrarForm(false);
-    }
-  }catch(e){ toast('Error al guardar'); console.error(e); }
-};
-
- $('btn-eliminar-persona').onclick = async ()=>{
-  if(!editandoId) return;
-  if(!confirm('¿Eliminar este hermano/a y todo su historial? No se puede deshacer.')) return;
-  try{
-    const cs = await getDocs(query(collection(db,'contactos'), where('personaId','==',editandoId)));
-    const vs = await getDocs(query(collection(db,'historia'), where('personaId','==',editandoId)));
-    const batch = writeBatch(db);
-    cs.forEach(d=> batch.delete(d.ref));
-    vs.forEach(d=> batch.delete(d.ref));
-    visitas.filter(v=>v.personaId===editandoId).forEach(v=> batch.delete(doc(db,'visitas',v.id)));
-    batch.delete(doc(db,'personas',editandoId));
-    await batch.commit();
-    toast('Eliminado'); cerrarForm(false);
-  }catch(e){ toast('Error'); console.error(e); }
-};
-
-function renderCalendario(){
-  $('cal-titulo').textContent = MESES[calM]+' '+calY;
-  const hoy = hoyStr();
-  const pendMap = new Map();
-  for(const v of visitas){
-    if(!['programada','confirmada','camino'].includes(v.estado)) continue;
-    if(!pendMap.has(v.fecha)) pendMap.set(v.fecha,[]);
-    pendMap.get(v.fecha).push(v);
-  }
-  const primerDia = new Date(calY, calM, 1);
-  const offset = (primerDia.getDay()+6)%7;
-  const cantDias = new Date(calY, calM+1, 0).getDate();
-  let html = ['L','M','X','J','V','S','D'].map(d=>`<div class="cal-dow">${d}</div>`).join('');
-  for(let i=0;i<offset;i++) html += '<div class="cal-d vacio"></div>';
-  for(let d=1;d<=cantDias;d++){
-    const fs = calY+'-'+String(calM+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
-    const cls = (fs===hoy?'hoy ':'') + (calDia===fs?'sel':'');
-    const del = pendMap.get(fs)||[];
-    let pills = '';
-    del.slice(0,2).forEach(v=>{
-      const e = ESTADOS_VISITA[v.estado]||ESTADOS_VISITA.programada;
-      const nombre = (v.personaNombre||'').split(' ')[0];
-      pills += `<span class="cal-pill" data-vid="${v.id}" style="background:${e.color}" title="${esc(v.personaNombre)}">${esc(nombre)}</span>`;
-    });
-    if(del.length>2) pills += `<span class="cal-mas">+${del.length-2}</span>`;
-    html += `<div class="cal-d ${cls}" data-fecha="${fs}"><span class="num">${d}</span>${pills}</div>`;
-  }
-  $('cal-grid').innerHTML = html;
-  $('cal-grid').querySelectorAll('.cal-d[data-fecha]').forEach(el=> el.onclick = ()=>{
-    calDia = calDia===el.dataset.fecha ? null : el.dataset.fecha;
-    renderCalendario(); renderAgenda();
-  });
-  $('cal-grid').querySelectorAll('.cal-pill').forEach(p=> p.onclick = ev=>{
-    ev.stopPropagation();
-    abrirVisita(p.dataset.vid);
-  });
-}
- $('cal-prev').onclick = ()=>{ calM--; if(calM<0){calM=11;calY--;} calDia=null; renderCalendario(); renderAgenda(); };
- $('cal-next').onclick = ()=>{ calM++; if(calM>11){calM=0;calY++;} calDia=null; renderCalendario(); renderAgenda(); };
- $('btn-ver-todas').onclick = ()=>{ calDia=null; renderCalendario(); renderAgenda(); };
-
-function itemVisita(v){
-  const t = TIPOS_VISITA[v.tipo]||{icono:'🏠',txt:v.tipo};
-  const e = ESTADOS_VISITA[v.estado]||ESTADOS_VISITA.programada;
-  return `<li class="persona" data-id="${v.id}">
-    <div class="avw icn"><div class="av">${t.icono}</div></div>
-    <div class="info"><div class="nombre">${v.hora||''} · ${esc(v.personaNombre)}</div>
-    <div class="meta">${t.txt}${v.responsableNombre?' · 👤 '+esc(v.responsableNombre):''}</div></div>
-    <span class="vch" style="background:${e.color}">${e.txt}</span></li>`;
-}
-
-function renderAgenda(){
-  if(!user) return;
-  const hoy = hoyStr();
-  const activos = visitas.filter(v=>['programada','confirmada','camino'].includes(v.estado));
-  const deHoy = activos.filter(v=>v.fecha===hoy);
-  $('resumen-txt').innerHTML = calDia
-    ? `📅 <b>${etiquetaDia(calDia)}</b>`
-    : `Hoy hay <b>${deHoy.length}</b> ${deHoy.length===1?'visita':'visitas'} programadas`;
-
-  if(calDia){
-    const lista = visitas.filter(v=>v.fecha===calDia)
-      .sort((a,b)=>(a.estado==='realizada'||a.estado==='cancelada')-(b.estado==='realizada'||b.estado==='cancelada') || (a.hora||'').localeCompare(b.hora||''));
-    $('lista-visitas').innerHTML = lista.map(itemVisita).join('') || `<p style="text-align:center;color:var(--txt2);margin-top:30px">Sin visitas ese día.</p>`;
-  }else{
-    const atrasadas = activos.filter(v=>v.fecha<hoy);
-    const proximas = activos.filter(v=>v.fecha>=hoy);
-    let html = '';
-    if(atrasadas.length){
-      html += `<li class="fgrupo atras">⚠️ Atrasadas</li>` + atrasadas.map(itemVisita).join('');
-    }
-    if(proximas.length){
-      let grupo = '';
-      proximas.forEach(v=>{
-        const et = etiquetaDia(v.fecha);
-        if(et!==grupo){ html += `<li class="fgrupo">${et}</li>`; grupo = et; }
-        html += itemVisita(v);
-      });
-    }
-    $('lista-visitas').innerHTML = html || `<p style="text-align:center;color:var(--txt2);margin-top:30px">No hay visitas agendadas.<br>Toca 🏠 para agendar la primera.</p>`;
-  }
-  $('lista-visitas').querySelectorAll('li.persona').forEach(li=> li.onclick = ()=> abrirVisita(li.dataset.id));
-}
-
-function llenarSelectPersonas(){
-  const sel = $('vf-persona');
-  const actual = sel.value;
-  sel.innerHTML = personas.filter(visibleParaMi).map(p=>`<option value="${p.id}">${esc(p.nombre)}</option>`).join('');
-  if(actual) sel.value = actual;
-  $('vf-tipos').innerHTML = Object.entries(TIPOS_VISITA).map(([k,t])=>
-    `<button type="button" class="tipo ${k===tipoVisitaSel?'active':''}" data-vtipo="${k}">${t.icono} ${t.txt}</button>`).join('');
-  $('vf-tipos').querySelectorAll('.tipo').forEach(b=> b.onclick = ()=>{
-    tipoVisitaSel = b.dataset.vtipo;
-    $('vf-tipos').querySelectorAll('.tipo').forEach(x=>x.classList.toggle('active', x.dataset.vtipo===tipoVisitaSel));
-  });
-}
-
-function llenarSelectResponsables(selUid){
-  const sel = $('vf-responsable');
-  sel.innerHTML = cuidadores.map(c=>`<option value="${c.uid}">${esc(c.nombre)}</option>`).join('') +
-    (user && !cuidadores.find(c=>c.uid===user.uid) ? `<option value="${user.uid}">${esc(user.displayName||user.email)}</option>` : '');
-  if(selUid) sel.value = selUid;
-  else if(user && cuidadores.find(c=>c.uid===user.uid)) sel.value = user.uid;
-}
-
-function abrirVisitaForm(v){
-  editandoVisitaId = v ? v.id : null;
-  $('vf-titulo').textContent = v ? 'Editar visita' : 'Agendar visita';
-  llenarSelectPersonas();
-  if(v){ $('vf-persona').value = v.personaId; tipoVisitaSel = v.tipo; }
-  else if(personaActual){ $('vf-persona').value = personaActual.id; }
-  $('vf-tipos').querySelectorAll('.tipo').forEach(x=>x.classList.toggle('active', x.dataset.vtipo===tipoVisitaSel));
-  $('vf-fecha').value = v?.fecha || hoyStr();
-  $('vf-hora').value = v?.hora || '19:00';
-  llenarSelectResponsables(v?.responsableUid);
-  $('vf-nota').value = v?.nota || '';
-  if(personaActual){ $('modal-detalle').classList.add('oculto'); }
-  $('modal-visita-form').classList.remove('oculto');
-}
- $('vf-cerrar').onclick = ()=>{ $('modal-visita-form').classList.add('oculto'); editandoVisitaId = null; if(personaActual) abrirDetalle(personaActual.id); };
- $('btn-agendar-visita').onclick = ()=>{ if(personaActual) abrirVisitaForm(null); };
-
- $('btn-guardar-visita').onclick = async ()=>{
-  const pid = $('vf-persona').value;
-  const p = personas.find(x=>x.id===pid);
-  if(!p){ toast('Elegí una persona'); return; }
-  const fecha = $('vf-fecha').value, hora = $('vf-hora').value;
-  if(!fecha){ toast('Elegí la fecha'); return; }
-  const rUid = $('vf-responsable').value;
-  const r = cuidadores.find(c=>c.uid===rUid);
-  const datos = {
-    personaId: pid, personaNombre: p.nombre,
-    tipo: tipoVisitaSel, fecha, hora,
-    direccion: p.direccion || '',
-    responsableUid: rUid || '', responsableNombre: r ? r.nombre : (user?.displayName||''),
-    nota: $('vf-nota').value.trim(),
-    actualizado: serverTimestamp()
-  };
-  try{
-    if(editandoVisitaId){
-      await updateDoc(doc(db,'visitas',editandoVisitaId), datos);
-      toast('✅ Visita actualizada');
-    }else{
-      datos.estado = 'programada';
-      datos.creado = serverTimestamp();
-      await addDoc(collection(db,'visitas'), datos);
-      toast('✅ Visita agendada');
-    }
-    $('modal-visita-form').classList.add('oculto');
-    editandoVisitaId = null;
-    if(personaActual) abrirDetalle(personaActual.id);
-  }catch(e){ toast('Error'); console.error(e); }
-};
-
-function abrirVisita(id){
-  const v = visitas.find(x=>x.id===id); if(!v) return;
-  visitaActual = v;
-  const t = TIPOS_VISITA[v.tipo]||{icono:'🏠',txt:v.tipo,frase:v.tipo};
-  const e = ESTADOS_VISITA[v.estado]||ESTADOS_VISITA.programada;
-  $('v-titulo').textContent = v.personaNombre;
-  const chip = $('v-estado'); chip.className = 'estado-chip';
-  chip.style.background = e.color; chip.textContent = e.txt;
-  $('v-tipo').textContent = `${t.icono} ${t.txt}`;
-  $('v-cuando').textContent = `${etiquetaDia(v.fecha)} · ${v.hora||''} hs`;
-  const p = personas.find(x=>x.id===v.personaId);
-  const dir = v.direccion || p?.direccion || '';
-  const filaDir = $('v-dir').parentElement;
-  if(dir){
-    filaDir.classList.remove('oculto');
-    $('v-dir').innerHTML = `${esc(dir)} <a href="${mapsLink(dir)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">🗺 Maps</a>`;
-  } else filaDir.classList.add('oculto');
-  $('v-resp').textContent = v.responsableNombre || '—';
-  $('v-nota').textContent = v.nota || '—';
-  const ir = $('v-informe-row');
-  if(v.informe){ ir.classList.remove('oculto'); $('v-informe-txt').textContent = v.informe; }
-  else ir.classList.add('oculto');
-  $('v-informe-box').classList.add('oculto');
-  $('v-informe').value = v.informe || '';
-
-  const pendiente = ['programada','confirmada','camino'].includes(v.estado);
-  function waBtn(label, msg, cls){
-    const link = p ? waLinkMsg(p, msg) : null;
-    return link ? `<a class="btn-${cls}" href="${link}" target="_blank" rel="noopener">${label}</a>` : '';
-  }
-  let html = '';
-  if(v.estado==='programada'){
-    html += waBtn('💬 Avisar visita', msgAvisoVisita(v), 'wa');
-    html += waBtn('💬 Pedir horario', msgPedirHorario(v), 'acc azul');
-    html += `<button class="btn-acc verde" data-acc="confirmada">✅ Ya confirmó</button>`;
-  }
-  if(v.estado==='confirmada'){
-    html += waBtn('🚗 Avisar que voy en camino', msgCamino(v), 'wa');
-    html += `<button class="btn-acc naranja" data-acc="camino">🚗 Estoy en camino</button>`;
-  }
-  if(v.estado==='camino'){ html += waBtn('🚗 Reenviar aviso', msgCamino(v), 'wa'); }
-  if(pendiente){
-    html += `<button class="btn-acc verde" data-acc="realizar">✔️ Marcar realizada</button>`;
-    html += `<button class="btn-acc azul" data-acc="editar">✏️ Editar</button>`;
-    html += `<button class="btn-acc rojo" data-acc="cancelar">❌ Cancelar</button>`;
-  }
-  $('v-acciones').innerHTML = html;
-  $('btn-eliminar-visita').classList.toggle('oculto', !(v.estado==='realizada'||v.estado==='cancelada'));
-
-  $('v-acciones').querySelectorAll('[data-acc]').forEach(b=> b.onclick = async ()=>{
-    const acc = b.dataset.acc;
-    if(acc==='editar'){ abrirVisitaForm(visitaActual); return; }
-    if(acc==='realizar'){ $('v-informe-box').classList.remove('oculto'); $('v-informe').focus(); return; }
-    if(acc==='cancelar'){
-      if(!confirm('¿Cancelar esta visita?')) return;
-      await updateDoc(doc(db,'visitas',visitaActual.id), {estado:'cancelada'});
-      toast('Visita cancelada'); $('modal-visita').classList.add('oculto'); visitaActual = null;
-      return;
-    }
-    await updateDoc(doc(db,'visitas',visitaActual.id), {estado:acc});
-    toast(acc==='confirmada'?'✅ Marcada como confirmada':'🚗 En camino');
-    $('modal-visita').classList.add('oculto'); visitaActual = null;
-  });
-  $('modal-visita').classList.remove('oculto');
-}
- $('v-cerrar').onclick = ()=>{ $('modal-visita').classList.add('oculto'); visitaActual = null; };
-
- $('btn-finalizar-visita').onclick = async ()=>{
-  if(!visitaActual) return;
-  const informe = $('v-informe').value.trim();
-  try{
-    await updateDoc(doc(db,'visitas',visitaActual.id), {estado:'realizada', informe});
-    await addDoc(collection(db,'contactos'), {
-      personaId: visitaActual.personaId, nombrePersona: visitaActual.personaNombre || '',
-      tipo:'visita',
-      nota: `Visita (${TIPOS_VISITA[visitaActual.tipo]?.txt||visitaActual.tipo})${informe?' — '+informe:''}`,
-      por: visitaActual.responsableNombre || (user?.displayName||user?.email),
-      fecha: serverTimestamp()
-    });
-    try{
-      await updateDoc(doc(db,'personas',visitaActual.personaId), {
-        ultimoContacto: serverTimestamp(), nContactos: increment(1)
-      });
-    }catch(e2){ console.error(e2); }
-    const p = personas.find(x=>x.id===visitaActual.personaId);
-    if(p && p.etapa==='primer_contacto'){
-      await updateDoc(doc(db,'personas',visitaActual.personaId), {etapa:'visita'});
-      await addDoc(collection(db,'historia'), {
-        personaId: visitaActual.personaId, nombrePersona: visitaActual.personaNombre || '',
-        texto: `🏠 Primera visita realizada`,
-        fecha: serverTimestamp(), por: user?.displayName||user?.email, creado: serverTimestamp()
-      });
-    }
-    toast('✅ Visita completada');
-    $('modal-visita').classList.add('oculto');
-    visitaActual = null;
-  }catch(e){ toast('Error'); console.error(e); }
-};
-
- $('btn-eliminar-visita').onclick = async ()=>{
-  if(!visitaActual) return;
-  if(!confirm('¿Eliminar esta visita?')) return;
-  try{
-    await deleteDoc(doc(db,'visitas',visitaActual.id));
-    toast('Eliminada'); $('modal-visita').classList.add('oculto'); visitaActual = null;
-  }catch(e){ toast('Error'); console.error(e); }
-};
-
- $('btn-reporte').onclick = ()=>{
-  const ahora = new Date();
-  $('rep-mes').value = String(ahora.getMonth()+1);
-  $('rep-anio').innerHTML = '';
-  const anioActual = ahora.getFullYear();
-  for(let a=anioActual; a>=anioActual-2; a--){ $('rep-anio').innerHTML += `<option value="${a}">${a}</option>`; }
-  calcResumenRep();
-  $('modal-reporte').classList.remove('oculto');
-};
- $('rep-cerrar').onclick = ()=> $('modal-reporte').classList.add('oculto');
- $('rep-mes').onchange = calcResumenRep;
- $('rep-anio').onchange = calcResumenRep;
-
-async function contactosDeMes(mes, anio){
-  const key = anio+'-'+mes;
-  if(repCache.key===key) return repCache.contactos;
-  const inicio = new Date(anio, mes-1, 1);
-  const fin = new Date(anio, mes, 1);
-  const snap = await getDocs(query(collection(db,'contactos'), where('fecha','>=',inicio), where('fecha','<',fin)));
-  const lista = snap.docs.map(d=>({id:d.id, ...d.data()})).sort((a,b)=>(b.fecha?.toMillis||0)-(a.fecha?.toMillis||0));
-  repCache = {key, contactos: lista};
-  return lista;
-}
-
-async function calcResumenRep(){
-  if(!$('rep-anio').value) return;
-  $('rep-resumen').innerHTML = '<div><span>⏳ Calculando…</span><b></b></div>';
-  try{
-    const mes = +$('rep-mes').value, anio = +$('rep-anio').value;
-    const contactosMes = await contactosDeMes(mes, anio);
-    const visitasMes = visitas.filter(v=>(v.fecha||'').startsWith(anio+'-'+String(mes).padStart(2,'0')));
-    const contactadas = new Set(contactosMes.map(c=>c.personaId));
-    const visitasRealizadas = visitasMes.filter(v=>v.estado==='realizada');
-    const reintegrados = personas.filter(p=>p.etapa==='reintegrado').length;
-    const volviendo = personas.filter(p=>['dialogo','volviendo'].includes(p.etapa)).length;
-    const sinContacto = personas.filter(p=>(p.etapa||'sin_contacto')==='sin_contacto').length;
-    $('rep-resumen').innerHTML = `
-      <div><span>Hermanos en rescate</span><b>${personas.length}</b></div>
-      <div><span>Contactos del mes</span><b>${contactosMes.length}</b></div>
-      <div><span>Personas contactadas</span><b>${contactadas.size}</b></div>
-      <div><span>Visitas realizadas</span><b>${visitasRealizadas.length}</b></div>
-      <div><span>🌱 Volviendo</span><b>${volviendo}</b></div>
-      <div><span>✅ Reintegrados</span><b style="color:#22c55e">${reintegrados}</b></div>
-      <div><span>🆕 Sin contacto aún</span><b style="color:#ef4444">${sinContacto}</b></div>`;
-  }catch(e){
-    console.error(e);
-    $('rep-resumen').innerHTML = '<div><span>Error al calcular</span><b></b></div>';
-  }
-}
-
- $('btn-generar-pdf').onclick = async ()=>{
-  try{
-    toast('⏳ Preparando informe…');
-    const mes = +$('rep-mes').value, anio = +$('rep-anio').value;
-    const contactosMes = await contactosDeMes(mes, anio);
-    const visitasMes = visitas.filter(v=>(v.fecha||'').startsWith(anio+'-'+String(mes).padStart(2,'0')));
-    const contactadas = new Set(contactosMes.map(c=>c.personaId));
-    const visitasRealizadas = visitasMes.filter(v=>v.estado==='realizada');
-    const reintegrados = personas.filter(p=>p.etapa==='reintegrado');
-    const volviendo = personas.filter(p=>['dialogo','volviendo'].includes(p.etapa));
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    const mesTxt = MESES[mes-1].charAt(0).toUpperCase()+MESES[mes-1].slice(1);
-
-    doc.setFillColor(16,185,129);
-    doc.rect(0,0,210,26,'F');
-    doc.setTextColor(255,255,255);
-    doc.setFontSize(15);
-    doc.text('Plan Rescate - Reporte mensual', 14, 11);
-    doc.setFontSize(10);
-    doc.text(mesTxt+' '+anio+' - '+NOMBRE_ORG, 14, 19);
-
-    doc.setTextColor(110,110,110);
-    doc.setFontSize(8);
-    doc.text('Generado el '+new Date().toLocaleDateString('es',{day:'2-digit',month:'2-digit',year:'numeric'})+' por '+(user?.displayName||user?.email||''), 14, 32);
-
-    doc.autoTable({
-      startY: 37,
-      head:[['En rescate','Contactos del mes','Personas contactadas','Visitas realizadas','Reintegrados','Volviendo']],
-      body:[[personas.length, contactosMes.length, contactadas.size, visitasRealizadas.length, reintegrados.length, volviendo.length]],
-      theme:'grid', headStyles:{fillColor:[16,185,129],fontSize:8}, styles:{fontSize:10,halign:'center'}
-    });
-
-    let y = doc.lastAutoTable.finalY + 10;
-    doc.setFontSize(11); doc.setTextColor(40,40,40);
-    doc.text('Avances del mes', 14, y);
-    doc.autoTable({
-      startY: y+3,
-      head:[['Fecha','Persona','Tipo','Responsable','Nota']],
-      body: contactosMes.length ? contactosMes.map(c=>{
-        const f = c.fecha?.toDate ? c.fecha.toDate() : null;
-        const tipo = {llamada:'Llamada', mensaje:'Mensaje', visita:'Visita', visita_iglesia:'Volvió a iglesia'}[c.tipo]||c.tipo;
-        return [f?f.toLocaleDateString('es',{day:'2-digit',month:'2-digit'}):'—', c.nombrePersona||'', tipo, c.por||'', c.nota||''];
-      }) : [['—','Sin registros este mes','','','']],
-      theme:'striped', headStyles:{fillColor:[16,185,129],fontSize:8}, styles:{fontSize:8},
-      columnStyles:{4:{cellWidth:55}}
-    });
-
-    y = doc.lastAutoTable.finalY + 10;
-    if(y > 250){ doc.addPage(); y = 15; }
-    doc.setFontSize(11); doc.setTextColor(40,40,40);
-    doc.text('Visitas del mes', 14, y);
-    doc.autoTable({
-      startY: y+3,
-      head:[['Fecha','Persona','Tipo','Responsable','Estado','Informe']],
-      body: visitasMes.length ? visitasMes.map(v=>{
-        const [a,m,dd] = (v.fecha||'').split('-');
-        const tipo = TIPOS_VISITA[v.tipo]?.txt||v.tipo;
-        const est = ESTADOS_VISITA[v.estado]?.txt||v.estado;
-        return [`${dd}/${m}`, v.personaNombre||'', tipo, v.responsableNombre||'', est, v.informe||v.nota||''];
-      }) : [['—','Sin visitas este mes','','','','']],
-      theme:'striped', headStyles:{fillColor:[16,185,129],fontSize:8}, styles:{fontSize:8},
-      columnStyles:{5:{cellWidth:45}}
-    });
-
-    y = doc.lastAutoTable.finalY + 10;
-    if(y > 250){ doc.addPage(); y = 15; }
-    doc.setFontSize(11); doc.setTextColor(40,40,40);
-    doc.text('Estado del rescate', 14, y);
-    const etapaOrden = {sin_contacto:0, primer_contacto:1, visita:2, dialogo:3, volviendo:4, no_desea:5, reintegrado:6};
-    const situacion = [...personas].sort((a,b)=>etapaOrden[a.etapa||'sin_contacto']-etapaOrden[b.etapa||'sin_contacto']);
-    doc.autoTable({
-      startY: y+3,
-      head:[['Nombre','Motivo','Etapa','Último contacto','Responsable','Teléfono']],
-      body: situacion.length ? situacion.map(p=>{
-        const e = estado(p);
-        const ult = e.dias===99999 ? 'Nunca' : e.txt.replace('Contactado ','');
-        const m = MOTIVOS[p.motivoAlejamiento]||{corto:'—'};
-        const et = ETAPAS[p.etapa||'sin_contacto'];
-        return [p.nombre||'', m.corto, et.txt, ult, p.cuidadorNombre||'—', p.telefono||''];
-      }) : [['—','Sin personas cargadas','','','','']],
-      theme:'striped', headStyles:{fillColor:[16,185,129],fontSize:8}, styles:{fontSize:8}
-    });
-
-    if(reintegrados.length){
-      y = doc.lastAutoTable.finalY + 10;
-      if(y > 250){ doc.addPage(); y = 15; }
-      doc.setFontSize(11); doc.setTextColor(40,40,40);
-      doc.text('🎉 Reintegrados este período', 14, y);
-      doc.autoTable({
-        startY: y+3,
-        head:[['Nombre','Motivo original','Responsable']],
-        body: reintegrados.map(p=>{
-          const m = MOTIVOS[p.motivoAlejamiento]||{corto:'—'};
-          return [p.nombre||'', m.corto, p.cuidadorNombre||'—'];
-        }),
-        theme:'striped', headStyles:{fillColor:[34,197,94],fontSize:8}, styles:{fontSize:8}
-      });
-    }
-
-    const pages = doc.internal.getNumberOfPages();
-    for(let i=1;i<=pages;i++){
-      doc.setPage(i);
-      doc.setFontSize(7); doc.setTextColor(150);
-      doc.text('"Que ninguno se pierda" - '+NOMBRE_ORG+' - Pagina '+i+' de '+pages, 105, 290, {align:'center'});
-    }
-
-    doc.save('plan-rescate-'+MESES[mes-1]+'-'+anio+'.pdf');
-    toast('✅ PDF descargado');
-  }catch(e){
-    toast('Error al generar el PDF');
-    console.error(e);
-  }
-};
-
-const hoy0 = new Date(); calY = hoy0.getFullYear(); calM = hoy0.getMonth();
-
-let toastTimer;
-function toast(m){
-  const t = $('toast'); t.textContent = m; t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
-}
-
-if('serviceWorker' in navigator){
-  try{ navigator.serviceWorker.register('./sw.js'); }catch(e){}
-}
-</script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
